@@ -1,0 +1,279 @@
+/* Investigation pages.
+ *
+ * Long-form, in the manner of Forensic Architecture's: a numbered title, a
+ * metadata block saying what was examined and how, an introduction, then areas
+ * of analysis read beside a pinned visual. Light throughout, on the site's own
+ * type and accent, because these pages are read beside greensoutherners.org.
+ *
+ * The chapter layout is the one part that needs care. On a wide screen the
+ * visual pins on the right and the text scrolls past it on the left. On a
+ * narrow one there is no room beside the text, so the visual pins to the top of
+ * the viewport, short enough that the step being read stays visible below it.
+ */
+
+.inv {
+  --measure: 68ch;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+
+.inv-wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--pad); }
+.inv-read { max-width: var(--measure); }
+
+/* ------------------------------------------------------------- hero */
+
+.inv-hero { padding: clamp(36px, 7vw, 84px) 0 28px; border-bottom: 1px solid var(--hairline); }
+
+.inv-number {
+  font-size: 0.82rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.inv-hero h1 {
+  font-size: clamp(2rem, 5.2vw, 3.6rem);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  margin: 10px 0 18px;
+  max-width: 22ch;
+}
+
+.inv-deck {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------- metadata */
+
+.inv-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px 32px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.inv-meta h3 {
+  margin: 0 0 5px;
+  font-size: 0.72rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.inv-meta p { margin: 0; font-size: 0.95rem; line-height: 1.5; }
+.inv-meta ul { margin: 0; padding: 0; list-style: none; font-size: 0.95rem; line-height: 1.55; }
+
+/* ------------------------------------------------------------- prose */
+
+.inv-section { padding: clamp(32px, 5vw, 56px) 0; border-bottom: 1px solid var(--hairline); }
+.inv-section:last-of-type { border-bottom: 0; }
+
+.inv-section > h2,
+.inv-kicker {
+  font-size: 0.78rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--accent);
+  margin: 0 0 14px;
+}
+
+.inv-section h3.inv-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: 0 0 18px;
+  max-width: 26ch;
+}
+
+.inv p { font-size: 1.06rem; line-height: 1.72; margin: 0 0 1.05em; }
+.inv p.lead { font-size: 1.2rem; line-height: 1.6; color: var(--ink-2); }
+
+/* A live figure: quietly marked, so a reader can see which numbers are read
+   from the data rather than typed into the sentence. */
+.inv .fig {
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-1);
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+}
+
+.inv .fig-missing { color: var(--ink-3); border-bottom: 1px dashed var(--ink-3); }
+
+/* ------------------------------------------------------------- chapters */
+
+.chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding: 24px 0 40px;
+}
+
+.chapter .stage {
+  grid-column: 2;
+  grid-row: 1;
+  position: sticky;
+  top: 84px;
+  height: calc(100vh - 120px);
+  min-height: 420px;
+  max-height: 760px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--plane);
+  border: 1px solid var(--hairline);
+}
+
+.stage-canvas { flex: 1; min-height: 0; position: relative; }
+.stage-canvas > * { height: 100%; }
+.stage-map { height: 100%; width: 100%; }
+.stage-chart { height: 100%; width: 100%; padding: 16px 14px 6px; }
+.stage-canvas .swipe,
+.stage-canvas .lapse-stage { aspect-ratio: auto; height: 100%; max-height: none; border-radius: 0; }
+.stage-canvas .lapse { height: 100%; display: flex; flex-direction: column; }
+.stage-canvas .lapse-stage { flex: 1; }
+.stage-canvas .lapse > .card-note { display: none; }
+.stage-canvas .lapse-bar { padding: 8px 12px 10px; margin: 0; background: var(--surface-1); }
+
+.stage-caption {
+  flex: none;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  padding: 10px 14px;
+  border-top: 1px solid var(--hairline);
+  background: var(--surface-1);
+  min-height: 1em;
+}
+
+.stage-caption:empty { display: none; }
+
+.chapter .steps { grid-column: 1; grid-row: 1; padding: 30vh 0 34vh; }
+
+.step {
+  max-width: 46ch;
+  padding: 20px 22px;
+  margin: 0 0 60vh;
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  transition: border-color 0.25s, box-shadow 0.25s, opacity 0.25s;
+  opacity: 0.55;
+}
+
+.step:last-child { margin-bottom: 0; }
+
+.step.is-active {
+  opacity: 1;
+  border-color: var(--accent);
+  box-shadow: 0 6px 28px rgba(31, 34, 32, 0.08);
+}
+
+.step p { font-size: 1.02rem; line-height: 1.65; margin: 0 0 0.8em; }
+.step p:last-child { margin-bottom: 0; }
+
+.step .step-kicker {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.chapter.no-motion .step { opacity: 1; transition: none; }
+
+/* ------------------------------------------------------------- findings */
+
+.findings { margin: 8px 0 0; padding: 0; list-style: none; counter-reset: f; }
+
+.findings li {
+  position: relative;
+  padding: 14px 0 14px 46px;
+  border-top: 1px solid var(--hairline);
+  font-size: 1.02rem;
+  line-height: 1.6;
+  counter-increment: f;
+}
+
+.findings li::before {
+  content: counter(f, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 14px;
+  font-size: 0.82rem;
+  font-weight: 650;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.limits {
+  background: var(--plane);
+  border-left: 3px solid #eda100;
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 22px 0 0;
+}
+
+.limits b { display: block; margin-bottom: 6px; }
+.limits ul { margin: 0; padding-left: 1.1rem; }
+.limits li { margin-bottom: 0.45rem; font-size: 0.97rem; line-height: 1.6; }
+
+/* ------------------------------------------------------------- index */
+
+.inv-list { list-style: none; margin: 0; padding: 0; }
+
+.inv-item {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 18px 30px;
+  padding: 30px 0;
+  border-top: 1px solid var(--hairline);
+  text-decoration: none;
+  color: inherit;
+}
+
+.inv-item:hover h2 { color: var(--accent-ink); }
+.inv-item .num { font-weight: 650; color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 4px; }
+.inv-item h2 { font-size: clamp(1.2rem, 2.4vw, 1.6rem); line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 10px; font-weight: 700; }
+.inv-item .facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; font-size: 0.86rem; margin: 0; }
+.inv-item .facts dt { color: var(--ink-3); font-weight: 600; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; padding-top: 2px; }
+.inv-item .facts dd { margin: 0; }
+.inv-item p { margin: 0; font-size: 0.98rem; line-height: 1.6; color: var(--ink-2); }
+.inv-item .thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; margin-top: 14px; background: var(--plane); display: block; }
+
+/* ------------------------------------------------------------- narrow */
+
+@media (max-width: 900px) {
+  .chapter { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .chapter .stage {
+    grid-column: 1;
+    top: 64px;
+    height: 46vh;
+    min-height: 280px;
+    z-index: 2;
+  }
+  .chapter .steps { grid-column: 1; grid-row: 2; padding: 4vh 0 10vh; position: relative; z-index: 3; }
+  .step { margin: 0 auto 34vh; max-width: none; opacity: 0.92; }
+  .inv-item { grid-template-columns: 56px minmax(0, 1fr); }
+  .inv-item > :last-child { grid-column: 1 / -1; }
+}
+
+@media print {
+  .chapter { display: block; }
+  .chapter .stage { position: static; height: 420px; break-inside: avoid; }
+  .step { opacity: 1; margin: 0 0 16px; box-shadow: none; }
+}

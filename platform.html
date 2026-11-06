@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Database | South Ecocide Analytics</title>
+<meta name="description" content="The South Lebanon corpus on one map, counted by town and by week: fires, white phosphorus attacks and displacement orders in the 2026 war, with filters, a town search and a timeline that plays them.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="Database | South Ecocide Analytics">
+<meta property="og:description" content="The South Lebanon corpus on one map, counted by town and by week, with filters, a town search and a timeline that plays them.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/platform.css">
+</head>
+<body>
+<a class="skip" href="#platform">Skip to the database</a>
+<main id="main" class="db-main"><div class="db-root" id="platform"></div></main>
+<script type="module">
+import { chrome } from './assets/js/ui.js';
+import { meta } from './assets/js/data.js';
+import { restoreTheme } from './assets/js/theme.js';
+import { platformPage } from './assets/js/platform.js';
+// ?embed=1 is the database inside a post: no site header or footer, the frame
+// is the whole application.
+const embedded = new URLSearchParams(location.search).get('embed') === '1';
+if (embedded) {
+  document.body.classList.add('db-embedded');
+  if (new URLSearchParams(location.search).get('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+} else {
+  restoreTheme();
+  chrome(new URLSearchParams(location.search).get('focus') === 'ecosystem' ? 'ecosystem' : 'platform', meta());
+}
+platformPage({ embed: embedded }).catch((err) => {
+  console.error(err);
+  document.getElementById('platform').textContent = 'The database could not load. Reload the page to try again.';
+});
+</script>
+</body>
+</html>

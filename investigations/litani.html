@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Litani River, the 2026 war | South Ecocide Analytics</title>
+<meta name="description" content="30 places within 2 km of the river in the south, since 1 March 2026: 52 fires, 37 white phosphorus attacks and 64 displacement orders.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="The Litani River, the 2026 war">
+<meta property="og:description" content="30 places within 2 km of the river in the south, since 1 March 2026: 52 fires, 37 white phosphorus attacks and 64 displacement orders.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/story.css">
+</head>
+<body>
+<a class="skip" href="#story">Skip to the investigation</a>
+<main id="main" class="st-main"><div class="st-root" id="story"></div></main>
+<script type="module">
+import { chrome } from '../assets/js/ui.js';
+import { meta } from '../assets/js/data.js';
+import { restoreTheme } from '../assets/js/theme.js';
+import { storyPage } from '../assets/js/story.js';
+restoreTheme();
+chrome('investigations', meta()).then(() => {
+  const head = document.querySelector('.site-head');
+  if (head) document.querySelector('.st-root').style.setProperty('--st-top', `${Math.round(head.getBoundingClientRect().height)}px`);
+});
+storyPage({ slug: 'litani' });
+</script>
+</body>
+</html>

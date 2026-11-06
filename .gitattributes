@@ -1,0 +1,17 @@
+# Keep the line endings the files were written with. The vendored libraries are
+# published with the SHA-256 of the exact bytes (assets/vendor/README.md), and a
+# checkout that rewrote their line endings would no longer match that hash; the
+# data files are compared byte for byte between refreshes.
+* -text
+
+# The data files and the libraries are generated or vendored. Collapse them in
+# diffs and in GitHub's language stats: a refresh rewrites every line of a
+# minified JSON file, and the meaningful change is the counts in the commit
+# message, not the diff.
+data/** linguist-generated=true -diff
+assets/vendor/** linguist-vendored=true -diff
+
+# The published pictures are generated from the imagery runs. Treat them as
+# binary and keep them out of diffs; they are rebuilt, never hand-edited.
+assets/compare/** binary linguist-generated=true
+assets/timelapse/** binary linguist-generated=true

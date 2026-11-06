@@ -1,0 +1,62 @@
+{
+ "land_cover": {
+  "source": "Impact Observatory, Microsoft and Esri, Sentinel-2 10 m land use and land cover, 2025 (CC BY 4.0)",
+  "read_at_m": 27,
+  "area_km2": 2024,
+  "governorates": [
+   "El Nabatieh",
+   "South"
+  ],
+  "percent": {
+   "Rangeland": 43.9,
+   "Built area": 40.6,
+   "Trees": 9.2,
+   "Crops": 5.9,
+   "Water": 0.2,
+   "Bare ground": 0.2,
+   "Flooded vegetation": 0.0
+  },
+  "burned_percent": {
+   "Rangeland": 59.7,
+   "Built area": 23.3,
+   "Crops": 16.9,
+   "Trees": 0.2,
+   "Bare ground": 0.1,
+   "Water": 0.0
+  },
+  "burned_outlines": 202,
+  "burned_ha_published": 6101.3
+ },
+ "kba": [
+  {
+   "name": "Nakoura - Tyre",
+   "km2": 43.9,
+   "fires": 7,
+   "burned_ha": 6.1
+  },
+  {
+   "name": "Rihane - Chouf - Ammiq - Sannine",
+   "km2": 512.0,
+   "fires": 3,
+   "burned_ha": 45.8
+  },
+  {
+   "name": "Mount Hermon",
+   "km2": 321.0,
+   "fires": 1,
+   "burned_ha": 1.6
+  },
+  {
+   "name": "Awally to Litani estuary",
+   "km2": 46.5,
+   "fires": 1,
+   "burned_ha": 1.0
+  },
+  {
+   "name": "Sarada",
+   "km2": 3.2,
+   "fires": 1,
+   "burned_ha": 53.4
+  }
+ ]
+}

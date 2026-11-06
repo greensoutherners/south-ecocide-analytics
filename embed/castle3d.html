@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beaufort Castle in 3D</title>
+<meta name="description" content="A 3D model of Beaufort Castle (Qalaat al-Shqif) above the Litani, to turn and zoom.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --paper: #f4f3ee;
+    --ink-1: #1f2220;
+    --ink-2: #4b4e4c;
+    --ink-3: #828282;
+    --line: #e3e3dd;
+    --accent: #c2410c;
+  }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--paper); color: var(--ink-1);
+    font-family: Inter, system-ui, sans-serif; overflow: hidden; }
+  model-viewer { width: 100%; height: 100%; display: block; background: radial-gradient(ellipse at 50% 40%, #fbfaf6 0%, #ecebe4 70%, #e2e0d7 100%);
+    --poster-color: transparent; }
+  .label { position: absolute; left: 16px; bottom: 16px; max-width: min(520px, calc(100% - 32px));
+    background: rgba(255, 255, 255, 0.86); border: 1px solid var(--line); border-radius: 10px;
+    padding: 10px 14px; font-size: 13px; line-height: 1.5; color: var(--ink-2); pointer-events: none; }
+  .label b { color: var(--ink-1); font-weight: 650; display: block; font-size: 14px; }
+  .label span[lang="ar"] { font-family: "Noto Naskh Arabic", serif; }
+  .tools { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 8px; }
+  .tools button { font: 600 12px Inter, system-ui, sans-serif; color: var(--ink-1); background: #fff;
+    border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+  .tools button:hover { border-color: var(--accent); color: var(--accent); }
+  .loading { position: absolute; inset: 0; display: grid; place-items: center; font-size: 13px; color: var(--ink-3);
+    pointer-events: none; }
+  body.ready .loading { display: none; }
+  body.still .label, body.still .tools { display: none; }
+  body.dark model-viewer { background: radial-gradient(ellipse at 62% 45%, #3a3731 0%, #1d1c19 62%, #121110 100%); }
+  @media (max-width: 560px) {
+    .label { font-size: 12px; bottom: 60px; }
+  }
+</style>
+<script type="module">
+  import { ModelViewerElement } from '../assets/vendor/model-viewer/model-viewer.min.js';
+  ModelViewerElement.meshoptDecoderLocation = new URL('../assets/vendor/model-viewer/meshopt_decoder.js', import.meta.url).href;
+</script>
+</head>
+<body>
+<model-viewer id="castle" src="../assets/3d/beaufort-castle.glb" alt="A 3D model of Beaufort Castle, Qalaat al-Shqif, on its cliff above the Litani"
+  camera-controls touch-action="pan-y"
+  interaction-prompt="auto" exposure="0.95" shadow-intensity="0.6" shadow-softness="0.9" environment-image="neutral"
+  orientation="0deg -90deg 0deg" camera-orbit="210deg 62deg 78%" field-of-view="32deg" min-camera-orbit="auto auto 25%"
+  max-camera-orbit="auto 88deg auto"></model-viewer>
+<div class="loading">Loading the castle, about 7 MB…</div>
+<div class="label">
+  <b>Beaufort Castle, Qalaat al-Shqif <span lang="ar">قلعة الشقيف</span></b>
+  On its cliff above the Litani, between Arnoun and Yohmor. Drag to turn it, scroll or pinch to come closer.
+</div>
+<div class="tools"><button type="button" id="reset">Reset the view</button></div>
+<script type="module">
+  const mv = document.getElementById('castle');
+  const q = new URLSearchParams(location.search);
+  // ?orbit=..&still=1 renders one fixed view (pictures for the posts).
+  if (q.get('orbit')) mv.setAttribute('camera-orbit', q.get('orbit'));
+  if (q.get('fov')) mv.setAttribute('field-of-view', q.get('fov'));
+  if (q.get('still') === '1') {
+    mv.removeAttribute('auto-rotate');
+    mv.setAttribute('interaction-prompt', 'none');
+    document.body.classList.add('still');
+  }
+  if (q.get('bg') === 'dark') document.body.classList.add('dark');
+  const start = mv.getAttribute('camera-orbit');
+  mv.addEventListener('load', () => document.body.classList.add('ready'));
+  document.getElementById('reset').addEventListener('click', () => {
+    mv.cameraOrbit = start;
+    mv.fieldOfView = mv.getAttribute('field-of-view');
+  });
+</script>
+</body>
+</html>

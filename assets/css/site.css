@@ -1,0 +1,1055 @@
+/* South Ecocide Analytics: design tokens, layout and components.
+ *
+ * Every colour a chart or map uses is declared here as a role, never inline, so
+ * the light and dark values swap in one place and the JavaScript can read the
+ * resolved value back out of the cascade (see assets/js/theme.js).
+ *
+ * Light is the default. These pages are mostly read as embeds inside a white
+ * site, and a widget that followed the reader's operating system turned up as
+ * a dark card cut into a light article. Dark is a selected set of steps for
+ * the dark surface, not an automatic flip of the light one, and it applies
+ * only when chosen: the header toggle, or theme=dark on an embed.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* surfaces and ink */
+  --surface-1: #ffffff;          /* a chart's own surface */
+  --surface-2: #ffffff;          /* a card */
+  --plane: #f7f7f7;              /* the page behind the cards */
+  --ink-1: #1f2220;
+  --ink-2: #4b4e4c;
+  --ink-3: #828282;              /* axis labels, muted captions */
+  --hairline: #e4e4e4;
+  --axis: #c3c2b7;
+  --ring: rgba(11, 11, 11, 0.10);
+
+  /* Categorical series, assigned in this fixed order, never cycled: orange,
+   * red and violet first, then the shades between them (the data owner,
+   * 2026-11-04: no blue). Charts that compare every pair at once stop at
+   * three; past that the tail folds into "Other" or the chart facets. */
+  --series-1: #f76707;
+  --series-2: #7048e8;
+  --series-3: #e03131;
+  --series-4: #f2a000;
+  --series-5: #ae3ec9;
+  --series-6: #c2255c;
+  --series-7: #a0522d;
+  --series-8: #4c2a9e;
+
+  /* One colour per kind of record, the same on every chart, map and legend.
+   * The maps count records by town: fires and white phosphorus are told apart
+   * by hue (and phosphorus by its diamond on the investigations), and
+   * displacement orders shade the municipality they name. --type-det and
+   * --type-att stay defined for kinds hidden for now. */
+  --type-brn: #f76707;
+  --type-det: #d9202f;
+  --type-alr: #7048e8;
+  --type-wpb: #d6336c;
+  --type-att: #862e9c;
+  --type-lbd: #c98a00;
+
+  /* sequential orange to red to violet, for magnitude on a map */
+  --seq-1: #fde4c8;
+  --seq-2: #fbbf8a;
+  --seq-3: #f78f4f;
+  --seq-4: #e8573a;
+  --seq-5: #c92e4a;
+  --seq-6: #93256e;
+  --seq-7: #5a1a72;
+
+  /* map chrome */
+  --map-land: #f3f1ec;
+  --map-stroke: #c9c4b8;
+  --map-accent: #7048e8;
+  --zone-stroke: #d9a400;
+
+  /* Chrome only: links, buttons, focus, active controls. Green
+   * Southerners' own green, so an embed reads as part of the page it sits
+   * in. Data never wears it; see the note at the top of this file. */
+  --accent: #3a954f;
+  --accent-ink: #195828;
+  --accent-wash: #eaf4ec;
+
+  --radius: 10px;
+  --pad: clamp(16px, 4vw, 28px);
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --accent: #5cb872;
+  --accent-ink: #9ed8ab;
+  --accent-wash: #1c2a1f;
+  --surface-1: #1a1a19;
+  --surface-2: #1f1f1e;
+  --plane: #0d0d0d;
+  --ink-1: #f0efec;
+  --ink-2: #c3c2b7;
+  --ink-3: #898781;
+  --hairline: #2c2c2a;
+  --axis: #383835;
+  --ring: rgba(255, 255, 255, 0.10);
+
+  --series-1: #ff8a3d;
+  --series-2: #9b82f5;
+  --series-3: #f25c5c;
+  --series-4: #f5b82e;
+  --series-5: #cc6be0;
+  --series-6: #e2578a;
+  --series-7: #c9773f;
+  --series-8: #7d62d9;
+
+  --type-brn: #ff8a3d;
+  --type-det: #f25060;
+  --type-alr: #9b82f5;
+  --type-wpb: #ec6a98;
+  --type-att: #c07ad6;
+  --type-lbd: #e3a72a;
+
+  --seq-1: #3a2418;
+  --seq-2: #6b3518;
+  --seq-3: #a8461c;
+  --seq-4: #d9592b;
+  --seq-5: #e8774b;
+  --seq-6: #d68ab8;
+  --seq-7: #e9c7f0;
+
+  --map-land: #242423;
+  --map-stroke: #45443f;
+  --map-accent: #9b82f5;
+  --zone-stroke: #d9a400;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--plane);
+  color: var(--ink-1);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { text-decoration-thickness: 2px; }
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.4em; font-weight: 650; letter-spacing: -0.01em; }
+h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); }
+h2 { font-size: clamp(1.2rem, 2.6vw, 1.5rem); }
+h3 { font-size: 1.02rem; font-weight: 600; }
+p { margin: 0 0 1em; }
+
+/* ---------------------------------------------------------------- layout */
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+.site-head {
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface-2);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+
+.site-head .wrap {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 60px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 680;
+  font-size: 0.97rem;
+  color: var(--ink-1);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.brand .dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  background: var(--accent);
+  flex: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 2px;
+  margin-inline-start: auto;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.site-nav a {
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-nav a:hover { background: var(--plane); color: var(--ink-1); }
+.site-nav a[aria-current="page"] { background: var(--plane); color: var(--ink-1); font-weight: 600; }
+
+.theme-toggle {
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-2);
+  border-radius: 7px;
+  width: 32px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.theme-toggle:hover { color: var(--ink-1); border-color: var(--axis); }
+
+main { padding: clamp(24px, 5vw, 44px) 0 64px; }
+
+.lede {
+  max-width: 68ch;
+  color: var(--ink-2);
+  font-size: 1.03rem;
+}
+
+/* ---------------------------------------------------------------- cards */
+
+.card {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 18px 20px 20px;
+}
+
+.card > h2, .card > h3 { margin-top: 0; }
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.card-note {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin: 10px 0 0;
+  line-height: 1.45;
+}
+
+.grid { display: grid; gap: 16px; }
+.grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+
+.section { margin: 36px 0 0; }
+.section > h2 { margin-bottom: 14px; }
+
+/* ---------------------------------------------------------------- stat tiles */
+
+.stat {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat .label {
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  font-weight: 560;
+}
+
+.stat .value {
+  font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+  font-weight: 660;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink-1);
+}
+
+.stat .value .unit {
+  font-size: 0.5em;
+  font-weight: 560;
+  color: var(--ink-2);
+  margin-inline-start: 3px;
+  letter-spacing: 0;
+}
+
+.stat .sub { font-size: 0.78rem; color: var(--ink-3); line-height: 1.4; }
+
+/* ---------------------------------------------------------------- charts */
+
+.chart { width: 100%; height: 300px; }
+.chart.tall { height: 380px; }
+.chart.short { height: 210px; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+}
+
+.legend .key { display: inline-flex; align-items: center; gap: 6px; }
+
+.legend .swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+/* ---------------------------------------------------------------- tables */
+
+.table-wrap { overflow-x: auto; margin-top: 6px; }
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+table.data th, table.data td {
+  text-align: left;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--hairline);
+  white-space: nowrap;
+}
+
+table.data th {
+  color: var(--ink-2);
+  font-weight: 600;
+  font-size: 0.8rem;
+  position: sticky;
+  top: 0;
+  background: var(--surface-2);
+}
+
+table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
+table.data tbody tr:hover { background: var(--plane); }
+table.data td.name { white-space: normal; min-width: 150px; }
+
+details.table-toggle { margin-top: 12px; }
+
+details.table-toggle > summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  padding: 3px 0;
+  width: fit-content;
+}
+
+details.table-toggle > summary:hover { color: var(--ink-1); }
+details.table-toggle[open] > summary { margin-bottom: 6px; }
+
+/* ---------------------------------------------------------------- controls */
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.field { display: flex; flex-direction: column; gap: 4px; }
+
+.field > label {
+  font-size: 0.76rem;
+  color: var(--ink-2);
+  font-weight: 560;
+}
+
+select, input[type="text"], input[type="date"], textarea {
+  font: inherit;
+  font-size: 0.875rem;
+  padding: 6px 9px;
+  border: 1px solid var(--hairline);
+  border-radius: 7px;
+  background: var(--surface-1);
+  color: var(--ink-1);
+  min-width: 130px;
+}
+
+select:focus-visible, input:focus-visible, textarea:focus-visible,
+button:focus-visible, summary:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button.btn {
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 560;
+  padding: 7px 13px;
+  border-radius: 7px;
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  cursor: pointer;
+}
+
+button.btn:hover { border-color: var(--axis); }
+
+button.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+button.btn.primary:hover { filter: brightness(1.07); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.chip {
+  font-size: 0.8rem;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chip:hover { border-color: var(--axis); color: var(--ink-1); }
+
+.chip[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-wash);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.chip .swatch { width: 9px; height: 9px; border-radius: 3px; flex: none; }
+
+/* ---------------------------------------------------------------- map */
+
+.map { width: 100%; height: 520px; border-radius: var(--radius); overflow: hidden; background: var(--surface-1); }
+.map.short { height: 360px; }
+.map.tall { height: 640px; }
+
+.leaflet-container {
+  background: var(--surface-1);
+  font-family: var(--font);
+  font-size: 0.82rem;
+}
+
+.leaflet-control-attribution {
+  background: color-mix(in srgb, var(--surface-2) 86%, transparent) !important;
+  color: var(--ink-3) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a { color: var(--ink-2) !important; }
+
+.leaflet-bar, .leaflet-bar a {
+  background: var(--surface-2) !important;
+  color: var(--ink-1) !important;
+  border-color: var(--hairline) !important;
+}
+
+.leaflet-bar a:hover { background: var(--plane) !important; }
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--surface-2);
+  color: var(--ink-1);
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.18);
+  border-radius: 8px;
+}
+
+.leaflet-popup-content { margin: 11px 13px; font-size: 0.84rem; line-height: 1.5; }
+
+.map-legend {
+  background: color-mix(in srgb, var(--surface-2) 93%, transparent);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  max-width: 210px;
+}
+
+.map-legend b { display: block; color: var(--ink-1); font-size: 0.78rem; margin-bottom: 4px; font-weight: 600; }
+.map-legend .key { display: flex; align-items: center; gap: 7px; }
+.map-legend .swatch { width: 11px; height: 11px; border-radius: 3px; flex: none; border: 1px solid var(--ring); }
+.map-legend .ramp { display: flex; height: 9px; border-radius: 3px; overflow: hidden; margin: 4px 0 2px; }
+.map-legend .ramp span { flex: 1; }
+.map-legend .ramp-ends { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--ink-3); }
+
+/* The size key of a town map: three circles, smallest to largest. */
+.map-legend .size-key { display: flex; align-items: flex-end; gap: 12px; margin: 4px 0 2px; }
+.map-legend .size-step { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 0.7rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.map-legend .size-dot { display: block; border-radius: 50%; border: 1px solid; box-sizing: border-box; }
+
+/* ------------------------------------------------- before / after compare */
+
+.compare {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-1);
+  cursor: ew-resize;
+}
+
+.compare.short { height: 340px; }
+.compare.dragging { cursor: grabbing; }
+
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
+  z-index: 600;
+  cursor: ew-resize;
+}
+
+.compare-handle .grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+}
+
+.compare-handle .grip::before {
+  content: "\2039\00a0\203a";
+  font-size: 17px;
+  color: #111;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.compare-handle::after {
+  /* An invisible 32px strip so the two-pixel line can actually be grabbed,
+     on a phone as well as with a mouse. */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -16px;
+  right: -16px;
+  cursor: ew-resize;
+}
+
+.compare-handle:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; }
+.compare-handle .grip { touch-action: none; }
+
+/* At the foot, not the head: Leaflet puts its zoom control at the top left,
+ * and a date label there is half-hidden behind the plus button. */
+.compare-labels {
+  position: absolute;
+  bottom: 24px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 600;
+  pointer-events: none;
+}
+
+.compare-labels span {
+  background: rgba(0, 0, 0, 0.66);
+  color: #fff;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-top: 12px;
+}
+
+/* ------------------------------------------------- the time scrubber */
+
+.scrub { display: flex; flex-direction: column; gap: 10px; }
+
+.scrub-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.scrub-play { min-width: 104px; font-variant-numeric: tabular-nums; }
+
+.scrub-readout {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 150px;
+}
+
+.scrub-readout b { font-size: 1.05rem; font-weight: 650; letter-spacing: -0.01em; }
+.scrub-readout .scrub-sub { font-size: 0.76rem; color: var(--ink-3); }
+
+.scrub-speed { min-width: 92px; margin-inline-start: auto; }
+
+.scrub-track { position: relative; padding-bottom: 16px; }
+
+.scrub-range {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--accent);
+  height: 22px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.scrub-ticks {
+  position: relative;
+  height: 12px;
+  margin-top: -2px;
+}
+
+.scrub-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 0.68rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.scrub-tick::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  width: 1px;
+  height: 4px;
+  background: var(--axis);
+}
+
+.scrub-note { font-size: 0.78rem; color: var(--ink-3); margin: 0; }
+
+@media (max-width: 560px) {
+  .scrub-speed { margin-inline-start: 0; }
+  .scrub-readout { min-width: 0; }
+}
+
+/* ----------------------------------------- the picture swipe and time-lapse */
+
+.swipe {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 82vh;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #111;
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.swipe-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+}
+
+.swipe-after { position: absolute; inset: 0; will-change: clip-path; }
+
+.swipe-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4);
+  z-index: 5;
+  cursor: ew-resize;
+}
+
+.swipe-handle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -18px;
+  right: -18px;
+}
+
+.swipe-handle .grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+  display: grid;
+  place-items: center;
+}
+
+.swipe-handle .grip::before {
+  content: "‹ ›";
+  font-size: 19px;
+  color: #111;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.swipe-handle:focus-visible { outline: 2px solid var(--series-1); outline-offset: 3px; }
+
+.swipe-labels {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.swipe-labels span {
+  background: rgba(0, 0, 0, 0.68);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.swipe-labels b { font-size: 0.82rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+.swipe-labels i { font-size: 0.66rem; font-style: normal; opacity: 0.75; }
+
+.swipe-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #111;
+  color: #bbb;
+  font-size: 0.85rem;
+  z-index: 6;
+}
+
+.swipe-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 12px; }
+
+/* ---- the time-lapse ---- */
+
+.lapse-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 82vh;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #0c0c0c;
+}
+
+.lapse-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  display: block;
+}
+
+/* The outgoing frame stays until the next is painted, so a slow frame holds
+   the picture rather than flashing the background. */
+.lapse-img.on { opacity: 1; z-index: 2; }
+
+.lapse-stamp {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.68);
+  color: #fff;
+  padding: 6px 11px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  pointer-events: none;
+}
+
+.lapse-stamp b { font-size: 0.95rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+.lapse-stamp i { font-size: 0.68rem; font-style: normal; opacity: 0.75; font-variant-numeric: tabular-nums; }
+
+.lapse-bar { display: flex; gap: 12px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+.lapse-play { min-width: 104px; }
+.lapse-range { flex: 1; min-width: 160px; accent-color: var(--accent); cursor: pointer; }
+.lapse-speed { min-width: 110px; }
+
+@media (max-width: 560px) {
+  .swipe, .lapse-stage { aspect-ratio: 4 / 5; }
+}
+
+
+/* ------------------------------------------------- the explorer widget */
+
+.xp-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.xp-view { flex: none; }
+.xp-scrub { margin: 10px 0 4px; padding: 12px 14px; background: var(--plane); border-radius: 8px; }
+.xp-scrub .scrub-note { display: none; }
+/* On a phone the speed is the control to give up: the play head keeps its
+   default pace, and the frame keeps its room for the chart. */
+@media (max-width: 480px) {
+  .xp-scrub .scrub-speed { display: none; }
+}
+.xp-controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: flex-end; margin: 12px 0 6px; }
+.xp-group { display: flex; flex-direction: column; gap: 5px; }
+.xp-label { font-size: 0.72rem; font-weight: 600; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.04em; }
+.xp-clear { align-self: flex-end; padding: 5px 11px; font-size: 0.8rem; }
+.xp-stats { display: flex; gap: 26px; flex-wrap: wrap; margin: 12px 0 4px; padding: 10px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.xp-stat { display: flex; flex-direction: column; }
+.xp-stat-label { font-size: 0.74rem; color: var(--ink-3); }
+.xp-stat b { font-size: 1.5rem; font-weight: 650; letter-spacing: -0.02em; line-height: 1.15; color: var(--ink-1); font-variant-numeric: tabular-nums; }
+.xp-filtered { font-size: 0.78rem; color: var(--accent-ink); background: var(--accent-wash); border-radius: 6px; padding: 6px 10px; margin: 8px 0 0; }
+.xp-visual { margin-top: 12px; }
+@media (max-width: 560px) { .xp-stats { gap: 16px; } .xp-stat b { font-size: 1.25rem; } }
+
+/* ---------------------------------------------------------------- notes */
+
+.note {
+  border-inline-start: 3px solid var(--series-4);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 13px 16px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+.note b { color: var(--ink-1); }
+.note ul { margin: 6px 0 0; padding-inline-start: 20px; }
+.note li { margin-bottom: 4px; }
+.note.frozen { border-inline-start-color: var(--ink-3); }
+.note + .card-note { margin-top: 12px; }
+
+/* Where the records used to be offered: the line that says how to ask. */
+.contact-note { font-size: 0.92rem; color: var(--ink-1); margin: 4px 0 0; }
+
+/* ---------------------------------------------------------------- one kind, one town */
+
+.kind-total { margin: 2px 0 4px; font-size: 0.92rem; color: var(--ink-2); }
+.kind-total b { font-size: 1.35rem; font-weight: 650; letter-spacing: -0.01em; color: var(--ink-1); }
+.kind-measure { margin: 0 0 6px; font-size: 0.85rem; color: var(--ink-2); }
+.kind-dims { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 12px; }
+.kind-dim h4 { margin: 0 0 5px; font-size: 0.76rem; font-weight: 600; color: var(--ink-2); }
+.mini-bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; }
+.mini-bars li { display: grid; grid-template-columns: 1fr auto; gap: 1px 8px; font-size: 0.8rem; line-height: 1.3; }
+.mini-bars .mb-label { color: var(--ink-1); }
+.mini-bars .mb-n { color: var(--ink-3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mini-bars .mb-track { grid-column: 1 / span 2; height: 5px; border-radius: 3px; background: var(--plane); overflow: hidden; }
+.mini-bars .mb-bar { display: block; height: 100%; border-radius: 3px; }
+
+.badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 620;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--plane);
+  border: 1px solid var(--hairline);
+  color: var(--ink-2);
+  vertical-align: middle;
+}
+
+.badge.frozen { border-color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- type cards */
+
+.type-card {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.type-card:hover { border-color: var(--axis); }
+.type-card .code { font-size: 0.72rem; font-weight: 680; letter-spacing: 0.06em; color: var(--ink-3); }
+.type-card h3 { margin: 0; }
+.type-card .big { font-size: 1.9rem; font-weight: 660; letter-spacing: -0.02em; line-height: 1; }
+.type-card .big small { font-size: 0.42em; font-weight: 560; color: var(--ink-2); letter-spacing: 0; }
+.type-card .span { font-size: 0.78rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.type-card .spark { height: 44px; margin: 2px -4px -4px; }
+.type-card .more { font-size: 0.82rem; color: var(--accent); font-weight: 560; margin-top: auto; }
+
+/* ---------------------------------------------------------------- footer */
+
+.site-foot {
+  border-top: 1px solid var(--hairline);
+  background: var(--surface-2);
+  padding: 26px 0 40px;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+.site-foot .wrap { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.site-foot h4 { margin: 0 0 5px; font-size: 0.78rem; color: var(--ink-2); font-weight: 620; text-transform: uppercase; letter-spacing: 0.05em; }
+.site-foot ul { margin: 0; padding: 0; list-style: none; }
+.site-foot a { color: var(--ink-2); }
+.site-foot .stamp { font-variant-numeric: tabular-nums; }
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  background: var(--surface-2);
+  padding: 9px 14px;
+  border-radius: 7px;
+  z-index: 999;
+}
+
+.skip:focus { left: 12px; top: 10px; }
+
+.loading { color: var(--ink-3); font-size: 0.875rem; padding: 20px 0; }
+
+.error {
+  border-inline-start: 3px solid var(--series-8);
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- embeds
+ *
+ * An embedded widget is one chart or one map in somebody else's page: no
+ * header, no footer, no page padding, and a transparent plane so it sits on
+ * the host's own background rather than cutting a grey rectangle into it.
+ */
+
+body.embed {
+  background: transparent;
+  --plane: transparent;
+}
+
+body.embed .embed-root { padding: 0; }
+
+body.embed .embed-frame {
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  padding: 14px 16px 12px;
+}
+
+body.embed.bare .embed-frame { border: 0; background: transparent; padding: 0; }
+
+.embed-title { font-size: 0.95rem; font-weight: 640; margin: 0 0 1px; letter-spacing: -0.01em; }
+.embed-sub { font-size: 0.78rem; color: var(--ink-3); margin: 0 0 10px; }
+
+.embed-credit {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  margin: 9px 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.embed-credit a { color: var(--ink-3); }
+
+@media (max-width: 640px) {
+  .map { height: 400px; }
+  .map.tall { height: 460px; }
+  .site-nav {
+    margin-inline-start: 0;
+    width: 100%;
+    padding-bottom: 8px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav .theme-toggle { flex: none; }
+  .site-head .wrap { padding-top: 10px; }
+}
+
+@media print {
+  .site-head, .site-foot, .controls, .theme-toggle { display: none; }
+  .card { break-inside: avoid; border-color: #999; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* In a post the pictures take most of the frame: the frame is made tall for them. */
+body.embed .swipe,
+body.embed .lapse-stage { max-height: 90vh; }

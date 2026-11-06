@@ -1,0 +1,434 @@
+/* The platform: a database in the manner of Forensic Architecture's.
+ *
+ * An application rather than a page: the panel of filters and towns on the
+ * left, the map filling the rest, and the timeline across the whole foot.
+ * Light throughout, on the site's own type and the brand green for controls;
+ * the data alone wears orange, red and violet.
+ *
+ * On a narrow screen the panel becomes a drawer over the map, and a town's
+ * card a sheet along its bottom.
+ */
+
+.db-main { padding: 0; }
+/* An application fills the window; the site's footer would only push it up. */
+body:has(.db-main) .site-foot { display: none; }
+.db-root { --db-top: 58px; }
+.db-loading { padding: 40px var(--pad); color: var(--ink-3); }
+
+.db {
+  position: relative;
+  display: grid;
+  grid-template-columns: 372px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: calc(100vh - var(--db-top));
+  height: calc(100dvh - var(--db-top));
+  min-height: 560px;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+.db.panel-closed { grid-template-columns: 0 minmax(0, 1fr); }
+.db.panel-closed .db-panel { display: none; }
+
+/* -------------------------------------------------------------- panel */
+
+.db-panel {
+  grid-row: 1;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--hairline);
+  background: var(--surface-1);
+}
+
+.db-head { padding: 18px 20px 10px; }
+.db-eyebrow {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 6px;
+}
+.db-head h1 { font-size: 1.35rem; margin: 0 0 6px; }
+.db-head p { font-size: 0.85rem; color: var(--ink-2); margin: 0 0 6px; line-height: 1.45; }
+.db-full { font-size: 0.82rem; font-weight: 600; }
+
+.db-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.db-tab-button {
+  border: 0;
+  background: none;
+  padding: 9px 10px 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+.db-tab-button[aria-selected="true"] { color: var(--ink-1); font-weight: 650; border-bottom-color: var(--accent); }
+.db-tab-button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.db-tab { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 4px 0 16px; }
+.db-tab[data-tab="records"] { display: flex; flex-direction: column; }
+.db-tab[data-tab="records"][hidden] { display: none; }
+.db-block { padding: 10px 20px; }
+.db-block h2 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); margin: 4px 0 8px; }
+.db-block h3 { font-size: 0.9rem; margin: 14px 0 6px; }
+.db-note { font-size: 0.76rem; color: var(--ink-3); line-height: 1.4; margin: 0 0 6px; }
+.db-prose p, .db-prose li { font-size: 0.85rem; color: var(--ink-2); line-height: 1.5; }
+.db-prose ul { padding-left: 18px; margin: 0 0 10px; }
+.db-label { display: block; font-size: 0.72rem; font-weight: 600; color: var(--ink-3); margin-bottom: 4px; }
+
+/* the records tab scrolls its list, not itself */
+.db-tab[data-tab="records"] > .db-block { flex: none; }
+.db-tab[data-tab="records"] .db-filter-host { flex: none; }
+
+.db-kinds { display: grid; grid-template-columns: 1fr; }
+.db-kind {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 9px;
+  padding: 3px 2px;
+  font-size: 0.84rem;
+  cursor: pointer;
+  border-radius: 6px;
+  min-width: 0;
+}
+.db-kind-name { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.db-kind:hover { background: var(--plane); }
+.db-kind.off { color: var(--ink-3); }
+.db-kind.off .db-sw { opacity: 0.35; }
+.db-kind input { accent-color: var(--accent); margin: 0; }
+.db-kind-n { font-variant-numeric: tabular-nums; font-size: 0.8rem; color: var(--ink-2); }
+.db-shade { margin-top: 8px; }
+
+.db-sw {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex: none;
+  vertical-align: -1px;
+}
+.db-sw.square { border-radius: 3px; }
+.db-sw.diamond { border-radius: 1px; transform: rotate(45deg) scale(0.86); }
+
+.db-filter { border: 1px solid var(--hairline); border-radius: 8px; padding: 7px 10px; margin-bottom: 7px; }
+.db-filter summary { cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.db-filter[open] summary { margin-bottom: 6px; }
+.db-dot-on { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-left: 6px; vertical-align: 2px; }
+.db-group { display: block; margin: 6px 0; }
+.db-place-row { display: flex; gap: 10px; }
+.db-grow { flex: 1; }
+.db-select, .db-search {
+  width: 100%;
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 6px 8px;
+  border: 1px solid var(--hairline);
+  border-radius: 7px;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+.db-select:focus, .db-search:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.db .chip {
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+.db .chip[aria-pressed="true"] { background: var(--accent-wash); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+
+.db-option { display: flex; gap: 9px; align-items: flex-start; font-size: 0.86rem; padding: 5px 0; cursor: pointer; }
+.db-option input { accent-color: var(--accent); margin-top: 3px; }
+.db-option small { display: block; font-size: 0.74rem; color: var(--ink-3); line-height: 1.35; }
+.db-option.small { font-size: 0.8rem; padding: 2px 0; align-items: center; }
+.db-option.small .db-sw { border-radius: 3px; }
+.db-studio-keys { padding: 2px 0 6px 26px; columns: 2; column-gap: 10px; }
+
+/* the towns in view: one row a town, each kind's count in a column of its own */
+.db-list-head { flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 8px 20px 6px; border-top: 1px solid var(--hairline); }
+.db-list-head h2 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.db-counts { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.76rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.db-list { flex: 1 0 260px; overflow-y: auto; position: relative; }
+.db-list-inner { position: relative; }
+.db-town {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  min-height: 34px;
+  padding: 4px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  font: inherit;
+  font-size: 0.8rem;
+  text-align: left;
+  cursor: pointer;
+}
+.db-town:hover { background: var(--plane); }
+.db-town.on { background: var(--accent-wash); }
+.db-town:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.db-town-name { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-weight: 600; }
+.db-town-name small { font-size: 0.72rem; font-weight: 400; color: var(--ink-3); margin-left: 6px; }
+.db-town-counts { display: grid; grid-auto-flow: column; grid-auto-columns: 46px; gap: 4px; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+.db-town-n { display: inline-flex; align-items: center; gap: 5px; }
+.db-empty { padding: 14px 20px; }
+.db-unplaced { padding: 8px 20px 0; }
+.db-actions { flex: none; border-top: 1px solid var(--hairline); padding-top: 10px; }
+.db-contact { margin: 0; }
+.db-contact-about { font-size: 0.85rem; color: var(--ink-2); line-height: 1.5; }
+
+/* -------------------------------------------------------------- stage */
+
+.db-stage { grid-row: 1; grid-column: 2; position: relative; min-width: 0; min-height: 0; }
+.db-map-wrap { position: absolute; inset: 0; }
+/* The map library sets its container to position: relative, so the map takes
+ * its size from width and height, not from an inset. */
+.db-map { width: 100%; height: 100%; background: var(--map-land); }
+
+.db-legend { position: absolute; top: 10px; left: 10px; z-index: 3; max-width: 260px; }
+.db-legend-box {
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 6px 10px 8px;
+  font-size: 0.76rem;
+  color: var(--ink-2);
+}
+.db-legend-box summary { cursor: pointer; font-weight: 650; color: var(--ink-1); font-size: 0.8rem; }
+.db-legend-box[open] summary { margin-bottom: 5px; }
+.db-legend .key { display: flex; align-items: center; gap: 6px; margin: 3px 0; flex-wrap: wrap; }
+.db-legend .key.hint { color: var(--ink-3); font-size: 0.72rem; line-height: 1.35; }
+.db-legend .mark { display: inline-block; width: 10px; height: 10px; flex: none; }
+.db-legend .mark.outline { border: 2px solid; border-radius: 2px; }
+.db-legend .mark.area { border-radius: 2px; }
+.db-legend .mark.dash { border-top: 2px dashed var(--zone-stroke); height: 0; width: 14px; }
+.db-legend .mark.line { border-top: 3px solid #6f6a9c; height: 0; width: 14px; }
+.db-legend .ramp-key { display: block; }
+.db-legend .ramp { display: flex; height: 8px; border-radius: 2px; overflow: hidden; margin: 4px 0 2px; }
+.db-legend .ramp span { flex: 1; }
+.db-legend .ramp-ends { display: flex; justify-content: space-between; font-size: 0.68rem; color: var(--ink-3); }
+
+.db-banner {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  max-width: min(520px, 60%);
+  margin: 0;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  font-size: 0.76rem;
+  color: var(--ink-2);
+}
+.db-banner[hidden] { display: none; }
+
+.db-card {
+  position: absolute;
+  top: 10px;
+  right: 54px;
+  z-index: 4;
+  width: 330px;
+  max-height: calc(100% - 20px);
+  overflow-y: auto;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+  padding: 12px 14px 14px;
+}
+.db-card[hidden] { display: none; }
+.db-card-head { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--ink-2); font-weight: 600; }
+.db-card-kind { display: inline-flex; align-items: center; gap: 6px; }
+.db-close { border: 0; background: none; font-size: 1.3rem; line-height: 1; cursor: pointer; color: var(--ink-3); padding: 0 2px; }
+.db-card-id { font-size: 1.15rem; margin: 6px 0 8px; }
+.db-card dl { display: grid; grid-template-columns: 112px 1fr; gap: 4px 10px; margin: 0 0 10px; font-size: 0.8rem; }
+.db-card dt { color: var(--ink-3); }
+.db-card dd { margin: 0; color: var(--ink-1); }
+.db-card-links { display: grid; gap: 4px; font-size: 0.8rem; margin-bottom: 10px; }
+.db-card-ar { margin: -4px 0 8px; font-size: 0.9rem; color: var(--ink-2); text-align: left; }
+.db .btn.small { padding: 4px 10px; font-size: 0.76rem; }
+.db-place-kind { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; align-items: center; font-size: 0.85rem; }
+
+/* A town's figures: each kind apart, its count, how it splits, its measures. */
+.db-sums { display: grid; gap: 10px; margin: 2px 0 10px; }
+.db-sum { border-top: 1px solid var(--hairline); padding-top: 8px; }
+.db-sum-head { display: flex; align-items: center; gap: 7px; font-size: 0.88rem; }
+.db-sum-head b { font-variant-numeric: tabular-nums; }
+.db-sum-lead, .db-sum-measure { margin: 3px 0 0 18px; font-size: 0.78rem; color: var(--ink-2); line-height: 1.4; }
+.db-sum-measure b { color: var(--ink-1); font-weight: 600; }
+.db-sum-group { margin: 6px 0 0 18px; }
+.db-card .db-sum-list { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; margin: 0; font-size: 0.78rem; }
+.db-card .db-sum-list dt { color: var(--ink-2); }
+.db-card .db-sum-list dd { text-align: right; font-variant-numeric: tabular-nums; }
+.db-place-towns { margin: 0 0 10px; }
+.db-area-targets { margin: 0 0 8px; }
+.db-area-targets ul { margin: 0; padding-left: 18px; font-size: 0.8rem; color: var(--ink-1); }
+
+/* Orders to a whole region: a violet area with a dashed edge. */
+.db-legend .key.wide { flex-wrap: nowrap; align-items: flex-start; }
+.db-legend .key.wide .mark { margin-top: 3px; }
+.db-sw.region,
+.db-legend .mark.area.region {
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--type-alr) 18%, transparent);
+  border: 1.5px dashed var(--type-alr);
+  box-sizing: border-box;
+}
+.db-place-regions { display: grid; gap: 5px; margin: 2px 0 8px; }
+.db-place-region {
+  border: 0;
+  background: none;
+  padding: 3px 0;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.85rem;
+}
+.db-place-region:hover span:not(.db-sw) { text-decoration: underline; }
+
+.db-tip {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  max-width: 240px;
+  background: var(--surface-1);
+  border: 1px solid var(--hairline);
+  border-radius: 7px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.14);
+  padding: 6px 9px;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--ink-1);
+}
+.db-tip[hidden] { display: none; }
+.db-tip .muted { color: var(--ink-3); }
+.db-tip .db-sw { width: 9px; height: 9px; margin-right: 2px; }
+.db-tip .db-tip-lead { display: inline-block; margin-left: 15px; }
+
+/* The legend's marks of 1, 5 and 20 records, at the map's own scale. */
+.db-legend .size-key { color: var(--ink-2); flex-wrap: nowrap; }
+.db-legend .size-key svg { display: block; flex: none; }
+
+.db-panel-toggle {
+  display: none;
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 4;
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+.db.panel-closed .db-panel-toggle { display: block; }
+
+/* ------------------------------------------------------------- strip */
+
+.db-strip { grid-row: 2; grid-column: 1 / span 2; border-top: 1px solid var(--hairline); background: var(--surface-1); padding: 6px 12px 6px; }
+.strip-controls { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; flex-wrap: wrap; }
+.strip-play, .strip-step, .strip-reset {
+  border: 1px solid var(--hairline);
+  background: var(--surface-1);
+  color: var(--ink-1);
+  border-radius: 7px;
+  font: inherit;
+  font-size: 0.8rem;
+  min-width: 30px;
+  height: 28px;
+  padding: 0 8px;
+  cursor: pointer;
+}
+.strip-play { background: var(--accent); border-color: var(--accent); color: #fff; min-width: 38px; font-weight: 700; }
+.strip-mode { font: inherit; font-size: 0.78rem; height: 28px; border: 1px solid var(--hairline); border-radius: 7px; background: var(--surface-1); color: var(--ink-1); padding: 0 6px; }
+.strip-readout { flex: 1; font-size: 0.82rem; font-weight: 600; color: var(--ink-1); min-width: 160px; }
+.strip-svg { display: block; width: 100%; cursor: crosshair; touch-action: none; }
+.strip-svg:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.strip-svg text { font-family: var(--font); }
+
+/* the map's own controls, quieter */
+.db .maplibregl-ctrl-group, .db .mapboxgl-ctrl-group { border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
+.db .maplibregl-ctrl-attrib, .db .mapboxgl-ctrl-attrib { font-size: 10px; }
+
+/* --------------------------------------------------------- narrow */
+
+@media (max-width: 900px) {
+  .db { grid-template-columns: minmax(0, 1fr); }
+  .db.panel-closed { grid-template-columns: minmax(0, 1fr); }
+  .db-stage { grid-column: 1; }
+  .db-strip { grid-column: 1; }
+  .db-panel {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(380px, 92vw);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+  }
+  .db-panel-toggle { display: block; }
+  .db:not(.panel-closed) .db-panel-toggle { left: auto; right: 10px; }
+  /* the sheet sits above the panel's button, which stays in reach */
+  .db-card { left: 8px; right: 8px; top: auto; bottom: 52px; width: auto; max-height: 52%; }
+  .db-legend { max-width: 200px; }
+  .db-banner { max-width: 70%; top: auto; bottom: 54px; }
+}
+
+@media (max-width: 620px) {
+  .strip-mode { max-width: 150px; }
+  /* the readout takes a line of its own rather than a column one word wide */
+  .strip-readout { order: 9; flex: 1 0 100%; min-width: 0; font-size: 0.76rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .db-town { padding: 4px 14px; }
+  .db-town-counts { grid-auto-columns: 40px; }
+}
+
+/* The land before the war: place marks, land cover classes. */
+.db-legend .mark.shape { width: 10px; height: 10px; background: var(--c); }
+.db-legend .mark.shape.square { border-radius: 1px; transform: scale(0.85); }
+.db-legend .mark.shape.plus { clip-path: polygon(35% 0, 65% 0, 65% 35%, 100% 35%, 100% 65%, 65% 65%, 65% 100%, 35% 100%, 35% 65%, 0 65%, 0 35%, 35% 35%); }
+.db-legend .mark.shape.triangle { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.db-legend .cover-key { display: block; }
+.db-legend .cover-classes { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; margin-top: 3px; font-size: 0.7rem; color: var(--ink-2); }
+.db-legend .cover-classes span { display: inline-flex; align-items: center; gap: 4px; }
+.db-legend .cover-classes i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+
+/* The wildlife and trees: the species key, and pictures in the legend. */
+.db-eco-species { display: grid; gap: 8px; margin: 2px 0 10px 24px; }
+.db-eco-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; }
+.db-eco-item { display: flex; align-items: center; gap: 5px; font-size: 0.74rem; color: var(--ink-2); min-width: 0; }
+.db-eco-item img { width: 22px; height: 26px; object-fit: contain; flex: none; }
+.db-eco-item span { line-height: 1.15; overflow-wrap: anywhere; }
+.db-eco-item b { margin-left: auto; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.db-legend .mark-img { width: 14px; height: 18px; object-fit: contain; flex: none; }
+
+/* A view kept to an investigation's own places says so. */
+.db-keep { margin: 6px 0 0; padding: 6px 9px; border-radius: 6px; background: var(--plane); font-size: 0.8rem; color: var(--ink-2); }

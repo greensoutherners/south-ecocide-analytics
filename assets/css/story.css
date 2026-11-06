@@ -1,0 +1,102 @@
+/* An investigation, step by step: a card beside a map that fills the frame.
+ *
+ * Light throughout, on the site's type; the brand green carries the controls
+ * and the data its own orange, red and violet. On a narrow screen the map takes
+ * the top of the frame and the card the bottom, so the step being read and the
+ * place it is about stay on screen together.
+ */
+
+.st-main { padding: 0; }
+body:has(.st-main) .site-foot { display: none; }
+.st-root { --st-top: 58px; }
+.st-loading { padding: 40px var(--pad); color: var(--ink-3); }
+
+/* What an investigation adds below its steps (Beaufort: the castle in 3D, and from above). */
+.st-after { max-width: 980px; margin: 0 auto; padding: 36px var(--pad) 64px; }
+.st-after h2 { font-size: 1.22rem; margin: 30px 0 8px; }
+.st-after p { color: var(--ink-2); line-height: 1.6; max-width: 72ch; margin: 0 0 12px; }
+.st-after iframe { width: 100%; border: 0; border-radius: 10px; display: block; background: var(--surface-2); }
+.st-after figure { margin: 14px 0 24px; }
+.st-after img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.st-after figcaption { font-size: 0.82rem; color: var(--ink-3); margin-top: 8px; line-height: 1.5; }
+
+.st {
+  display: grid;
+  grid-template-columns: 400px minmax(0, 1fr);
+  height: calc(100vh - var(--st-top));
+  height: calc(100dvh - var(--st-top));
+  min-height: 520px;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+.st-embed { height: 100vh; height: 100dvh; }
+
+.st-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--hairline);
+  padding: 22px 24px 18px;
+}
+.st-head { margin-bottom: 14px; }
+.st-eyebrow { display: block; font-size: 0.7rem; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 6px; }
+.st-head h1 { font-size: 1.32rem; margin: 0; line-height: 1.2; }
+.st-ar { margin: 4px 0 0; color: var(--ink-3); font-size: 0.95rem; }
+.st-step { flex: 1 1 auto; }
+.st-count { display: block; font-size: 0.74rem; font-weight: 600; color: var(--ink-3); margin-bottom: 4px; }
+.st-step h2 { font-size: 1.08rem; margin: 0 0 8px; }
+.st-step p { font-size: 0.92rem; line-height: 1.6; color: var(--ink-2); margin: 0 0 10px; }
+.st-note { font-size: 0.78rem !important; color: var(--ink-3) !important; border-left: 2px solid var(--hairline); padding-left: 9px; }
+.st-figures { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin: 12px 0; }
+.st-figure { border: 1px solid var(--hairline); border-radius: 8px; padding: 8px 10px; display: grid; grid-template-columns: auto 1fr; column-gap: 7px; align-items: center; }
+.st-figure b { font-size: 1.15rem; font-variant-numeric: tabular-nums; grid-column: 2; }
+.st-figure span:last-child { grid-column: 1 / span 2; font-size: 0.74rem; color: var(--ink-3); line-height: 1.3; }
+.st-figure .st-sw { grid-row: 1; }
+.st-sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.st-sw.diamond { border-radius: 1px; transform: rotate(45deg) scale(0.85); }
+
+.st-foot { border-top: 1px solid var(--hairline); padding-top: 12px; margin-top: 10px; }
+.st-dots { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.st-dot { width: 22px; height: 6px; border-radius: 3px; border: 0; background: var(--hairline); cursor: pointer; padding: 0; }
+.st-dot.on { background: var(--accent); }
+.st-nav { display: flex; justify-content: space-between; gap: 8px; }
+.st-nav .btn { min-width: 96px; }
+.st .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.st-explore { display: inline-block; margin-top: 10px; font-size: 0.82rem; font-weight: 600; }
+
+.st-stage { position: relative; min-width: 0; min-height: 0; }
+.st-map { width: 100%; height: 100%; background: var(--map-land); }
+.st-legend { position: absolute; top: 10px; left: 10px; z-index: 3; max-width: 250px; }
+.st-legend-box { background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); padding: 6px 10px 8px; font-size: 0.76rem; color: var(--ink-2); }
+.st-legend-box summary { cursor: pointer; font-weight: 650; color: var(--ink-1); font-size: 0.8rem; }
+.st-legend-box[open] summary { margin-bottom: 5px; }
+.st-legend .key { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+.st-legend .key.note { color: var(--ink-3); font-size: 0.72rem; line-height: 1.35; border: 0; background: none; padding: 0; border-radius: 0; }
+.st-legend .mark { display: inline-block; width: 10px; height: 10px; flex: none; border-radius: 2px; }
+.st-legend .mark.outline { border: 2px solid; }
+.st-legend .mark.dash { border-top: 2px dashed #2b2a28; height: 0; width: 14px; border-radius: 0; }
+.st-legend .mark.line { border-top: 3px solid #6f6a9c; height: 0; width: 14px; border-radius: 0; }
+.st-legend .ramp-key { display: block; }
+.st-legend .ramp { display: flex; height: 8px; border-radius: 2px; overflow: hidden; margin: 4px 0 2px; }
+.st-legend .ramp span { flex: 1; }
+.st-date { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 3; background: var(--surface-1); border: 1px solid var(--hairline); border-radius: 999px; padding: 5px 12px; font-size: 0.78rem; font-weight: 600; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); white-space: nowrap; }
+
+/* A town's counts, on hover over its mark. */
+.st-tip .maplibregl-popup-content,
+.st-tip .mapboxgl-popup-content { background: var(--surface-1); color: var(--ink-1); border: 1px solid var(--hairline); border-radius: 8px; box-shadow: 0 3px 14px rgba(0, 0, 0, 0.16); padding: 7px 10px; font: 0.8rem/1.4 var(--font); }
+.st-tip .maplibregl-popup-tip,
+.st-tip .mapboxgl-popup-tip { display: none; }
+
+@media (max-width: 860px) {
+  .st { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; }
+  .st-stage { grid-row: 1; }
+  .st-card { grid-row: 2; max-height: 48vh; max-height: 48dvh; border-right: 0; border-top: 1px solid var(--hairline); padding: 14px 16px 12px; }
+  .st-head { margin-bottom: 8px; }
+  .st-head h1 { font-size: 1.05rem; }
+  .st-ar { display: none; }
+  .st-step p { font-size: 0.86rem; }
+  .st-legend { max-width: 190px; }
+  /* top centre: the foot of a narrow map holds the scale and the credits */
+  .st-date { top: 10px; bottom: auto; font-size: 0.72rem; }
+}

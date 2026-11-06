@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigation | South Ecocide Analytics</title>
+<meta name="color-scheme" content="light">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/story.css">
+<style>body { background: var(--surface-1); } .st-root { --st-top: 0px; }</style>
+</head>
+<body>
+<main class="st-main"><div class="st-root" id="story"></div></main>
+<script type="module">
+import { storyPage } from '../assets/js/story.js';
+// An investigation inside a post: the frame is the story. ?story=<slug>, and
+// ?step=<n> to open on a step.
+if (new URLSearchParams(location.search).get('theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+storyPage({ embed: true }).catch((err) => {
+  console.error(err);
+  document.getElementById('story').textContent = 'The investigation could not load. Reload the page to try again.';
+});
+</script>
+</body>
+</html>

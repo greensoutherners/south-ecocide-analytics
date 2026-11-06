@@ -1,0 +1,20 @@
+{
+ "town": "Beaufort Castle",
+ "before": "assets/posts/beaufort/castle-2023-07-27.jpg",
+ "after": "assets/posts/beaufort/castle-2026-09-03.jpg",
+ "before_label": "2023-07-27",
+ "before_kind": "captured",
+ "after_label": "2026-09-03",
+ "after_kind": "captured",
+ "before_source": "Esri World Imagery Wayback (release of 24 September 2026), GeoEye-1 picture of 27 July 2023",
+ "after_source": "OnGeo Intelligence, picture of Arnoun of 3 September 2026, 0.3 m",
+ "bounds": [
+  35.53056,
+  33.323589,
+  35.53314,
+  33.325031
+ ],
+ "ground_m": 240,
+ "note": "The two were taken from different angles, five weeks apart in the season, so the cliff and the walls lean differently and the shadows fall elsewhere: compare the walls and the ground, not the shadows.",
+ "link": "https://greensoutherners.github.io/south-ecocide-analytics/platform.html?focus=beaufort"
+}
