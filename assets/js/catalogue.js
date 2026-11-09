@@ -72,9 +72,9 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
       page('I.05 Beaufort Castle', 'investigations/beaufort.html',
         'The ground within 5.5 km of the castle above the Litani: fires, white phosphorus, and ' +
         'the damage mapped in Yohmor and Zawtar El Sharqiyeh.'),
-      page('I.06 The Litani River', 'investigations/litani.html',
-        'The places within 2 km of the river in the south, the gorge below Beaufort, and the ' +
-        'fires on both banks.'),
+      page('I.06 The Litani River Basin', 'investigations/litani.html',
+        'The Lower Litani from the Beaufort side to Aalmane on Sentinel-2: the ground the war ' +
+        'changed, a year of land cover, and the river before the war.'),
     ]),
 
     group('Start here', [

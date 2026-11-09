@@ -443,6 +443,40 @@ async function lanesWidget({ mount, query, meta: metaPayload }) {
  * cloud, not quiet, and the player's own note says so.
  */
 async function lapseWidget({ mount, query, meta: metaPayload }) {
+  // A sequence a post or an investigation names itself (a stretch of river, not
+  // a town): a frames.json under assets/posts/, with its own title and note.
+  const src = String(query.src || '');
+  if (src) {
+    if (!/^assets\/posts\/[a-z0-9/_-]+\.json$/.test(src)) {
+      fill(mount, el('div', { class: 'error', text: 'No time-lapse named.' }));
+      return;
+    }
+    const url = new URL(src, ROOT);
+    const manifest = await fetch(url).then((r) => {
+      if (!r.ok) throw new Error(`${src}: ${r.status}`);
+      return r.json();
+    });
+    const frames = manifest.frames || [];
+    const host = el('div');
+    fill(
+      mount,
+      frame({
+        title: query.title || manifest.title || `${manifest.town}, every chosen pass`,
+        subtitle:
+          query.subtitle ||
+          (frames.length ? `${frames.length} Sentinel-2 passes, ${dateLabel(frames[0].d)} to ${dateLabel(frames[frames.length - 1].d)}` : ''),
+        body: [host],
+        credit: creditLine(metaPayload),
+        link: manifest.link || SITE,
+      })
+    );
+    timelapse(host, manifest, {
+      base: new URL('./', url),
+      speed: Number(query.speed) || 1000,
+      autoplay: query.autoplay === '1',
+    });
+    return;
+  }
   const payload = await villages();
   const town =
     payload.towns.find((t) => String(t.id) === String(query.v)) ||
@@ -565,6 +599,14 @@ async function pairWidget({ mount, query, meta: metaPayload }) {
     return r.json();
   });
   const host = el('div');
+  // Outlined pictures, where the pair has them: shown first (marked=0 starts
+  // on the plain pictures), with a button to hide them and read the ground.
+  const marked = Boolean(pair.before_marked && pair.after_marked);
+  let on = query.marked !== '0';
+  const what = pair.marked_label || 'the outlines';
+  const toggle = marked
+    ? el('button', { type: 'button', class: 'btn', 'aria-pressed': String(on), text: `${on ? 'Hide' : 'Show'} ${what}` })
+    : null;
   fill(
     mount,
     frame({
@@ -574,6 +616,7 @@ async function pairWidget({ mount, query, meta: metaPayload }) {
         `${dateLabel(pair.before_label)} and ${dateLabel(pair.after_label)}, about ${pair.ground_m} m across`,
       body: [
         host,
+        toggle ? el('div', { class: 'swipe-bar' }, [toggle]) : null,
         el('p', {
           class: 'card-note',
           style: 'margin-top:8px',
@@ -584,7 +627,15 @@ async function pairWidget({ mount, query, meta: metaPayload }) {
       link: pair.link || SITE,
     })
   );
-  const view = swipe(host, pair, { base: ROOT });
+  const view = swipe(host, pair, { base: ROOT, marked: on });
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      on = !on;
+      view.showMarks(on);
+      toggle.setAttribute('aria-pressed', String(on));
+      toggle.textContent = `${on ? 'Hide' : 'Show'} ${what}`;
+    });
+  }
   if (query.sweep === '1') view.sweep();
 }
 

@@ -147,6 +147,26 @@ export async function storyPage({ embed = false, slug = null } = {}) {
       paint: { 'line-color': '#2b2a28', 'line-width': 1.4, 'line-dasharray': [3, 2], 'line-opacity': 0.75 },
     });
   });
+  // Areas a story publishes with itself (story.areas, by key: a label, a colour
+  // and features), filled and outlined in their colour; a step names the ones
+  // it shows in layers.areas.
+  const areaData = { type: 'FeatureCollection', features: [] };
+  handle.overlay((m) => {
+    add(m, 'st-areas', { type: 'geojson', data: areaData });
+    layer(m, {
+      id: 'st-areas-fill',
+      type: 'fill',
+      source: 'st-areas',
+      paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.32 },
+    });
+    layer(m, {
+      id: 'st-areas-line',
+      type: 'line',
+      source: 'st-areas',
+      paint: { 'line-color': ['get', 'color'], 'line-width': 1.8 },
+    });
+  });
+  const areaKeys = (step) => ((step.layers || {}).areas || []).filter((k) => story.areas && story.areas[k]);
   await handle.ready;
   // The municipalities the investigation is about: records outside them are
   // left out and the rest of the map fades.
@@ -240,6 +260,10 @@ export async function storyPage({ embed = false, slug = null } = {}) {
 
     region.features = step.region ? regionFeatures(step.region) : [];
     if (map.getSource('st-region')) map.getSource('st-region').setData(region);
+    areaData.features = areaKeys(step).flatMap((k) =>
+      (story.areas[k].features || []).map((f) => ({ ...f, properties: { ...(f.properties || {}), color: story.areas[k].color || '#c98a00' } }))
+    );
+    if (map.getSource('st-areas')) map.getSource('st-areas').setData(areaData);
 
     if (step.base && step.base !== handle.base) handle.setBase(step.base);
     if (Boolean(step.terrain) !== handle.terrain) handle.setTerrain(Boolean(step.terrain));
@@ -366,6 +390,11 @@ export async function storyPage({ embed = false, slug = null } = {}) {
         const label = studioIndex.labels.find((l) => l.key === key);
         items.push(el('div', { class: 'key' }, [el('span', { class: 'mark area', style: `background:${STUDIO_STYLE[key].color}` }), el('span', { text: label ? label.title : key })]));
       }
+    }
+    for (const k of areaKeys(step)) {
+      const a = story.areas[k];
+      const c = a.color || '#c98a00';
+      items.push(el('div', { class: 'key' }, [el('span', { class: 'mark area', style: `background:${c}55;box-shadow:inset 0 0 0 1.5px ${c}` }), el('span', { text: a.label || k })]));
     }
     if (layers.river) items.push(el('div', { class: 'key' }, [el('span', { class: 'mark line' }), el('span', { text: 'the Litani River' })]));
     if (step.region) items.push(el('div', { class: 'key' }, [el('span', { class: 'mark dash' }), el('span', { text: step.region.label || 'the area counted' })]));

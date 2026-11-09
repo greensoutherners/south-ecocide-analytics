@@ -1,0 +1,21 @@
+{
+ "town": "The Litani at Aalmane",
+ "before": "assets/posts/litani/aalmane-2025-10-21.jpg",
+ "after": "assets/posts/litani/aalmane-2026-10-23.jpg",
+ "before_marked": "assets/posts/litani/aalmane-2025-10-21-marked.jpg",
+ "after_marked": "assets/posts/litani/aalmane-2026-10-23-marked.jpg",
+ "marked_label": "the marked boxes",
+ "aspect": [
+  810,
+  1440
+ ],
+ "before_label": "2025-10-21",
+ "before_kind": "captured",
+ "after_label": "2026-10-23",
+ "after_kind": "captured",
+ "before_source": "Copernicus Sentinel-2 L2A, true colour, 10 m (Copernicus Browser)",
+ "after_source": "the same",
+ "ground_m": 1010,
+ "note": "The yellow boxes are the places Green Southerners marked on these pictures.",
+ "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/litani.html"
+}

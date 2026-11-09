@@ -25,23 +25,39 @@ import { el } from './ui.js';
  * `pair` is a village's `compare` entry: two image paths, two labels, and the
  * ground the frame covers.
  */
-export function swipe(host, pair, { base, startAt = 0.5 } = {}) {
+export function swipe(host, pair, { base, startAt = 0.5, marked = true } = {}) {
   const frame = el('div', { class: 'swipe' });
+  // A pair may name its pictures' shape ([width, height]), so a tall picture is
+  // shown whole rather than cut to the square frame.
+  if (Array.isArray(pair.aspect) && pair.aspect[0] > 0 && pair.aspect[1] > 0) {
+    frame.classList.add('swipe-shaped');
+    frame.style.aspectRatio = `${pair.aspect[0]} / ${pair.aspect[1]}`;
+    frame.style.setProperty('--ar', String(pair.aspect[0] / pair.aspect[1]));
+  }
 
-  const beforeImg = el('img', {
-    class: 'swipe-img',
-    src: new URL(pair.before, base).href,
-    alt: `${pair.town || 'The village'}, ${pair.before_label}`,
+  const picture = (src, label, extra = '') => el('img', {
+    class: `swipe-img${extra}`,
+    src: new URL(src, base).href,
+    alt: `${pair.town || 'The village'}, ${label}`,
     draggable: 'false',
   });
+  const beforeImg = picture(pair.before, pair.before_label);
   const afterWrap = el('div', { class: 'swipe-after' });
-  const afterImg = el('img', {
-    class: 'swipe-img',
-    src: new URL(pair.after, base).href,
-    alt: `${pair.town || 'The village'}, ${pair.after_label}`,
-    draggable: 'false',
-  });
+  const afterImg = picture(pair.after, pair.after_label);
   afterWrap.append(afterImg);
+
+  // A pair may also carry the same two pictures with outlines drawn on them;
+  // they lie over the plain ones and a button shows or hides them.
+  const hasMarks = Boolean(pair.before_marked && pair.after_marked);
+  const marks = hasMarks
+    ? [picture(pair.before_marked, `${pair.before_label}, outlined`, ' swipe-marked'),
+      picture(pair.after_marked, `${pair.after_label}, outlined`, ' swipe-marked')]
+    : [];
+  if (hasMarks) afterWrap.append(marks[1]);
+  const showMarks = (on) => {
+    for (const img of marks) img.hidden = !on;
+  };
+  showMarks(marked);
 
   const handle = el('div', {
     class: 'swipe-handle',
@@ -65,7 +81,7 @@ export function swipe(host, pair, { base, startAt = 0.5 } = {}) {
 
   const loading = el('div', { class: 'swipe-loading', text: 'Loading the pictures…' });
 
-  frame.append(beforeImg, afterWrap, handle, labels, loading);
+  frame.append(beforeImg, ...(hasMarks ? [marks[0]] : []), afterWrap, handle, labels, loading);
   host.replaceChildren(frame);
 
   let loaded = 0;
@@ -169,6 +185,8 @@ export function swipe(host, pair, { base, startAt = 0.5 } = {}) {
     frame,
     set,
     sweep,
+    hasMarks,
+    showMarks,
     stop() {
       stopSweep();
       set(0.5);

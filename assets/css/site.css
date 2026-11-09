@@ -703,7 +703,17 @@ button.btn.primary:hover { filter: brightness(1.07); }
   -webkit-user-drag: none;
 }
 
+.swipe-img[hidden] { display: none; }
+
 .swipe-after { position: absolute; inset: 0; will-change: clip-path; }
+
+/* A pair that names its pictures' shape keeps it: the frame narrows rather
+   than cropping a tall picture to the square. */
+.swipe.swipe-shaped {
+  --swipe-h: 82vh;
+  width: min(100%, calc(var(--swipe-h) * var(--ar, 1)));
+  max-height: var(--swipe-h);
+}
 
 .swipe-handle {
   position: absolute;
@@ -1053,3 +1063,6 @@ body.embed.bare .embed-frame { border: 0; background: transparent; padding: 0; }
 /* In a post the pictures take most of the frame: the frame is made tall for them. */
 body.embed .swipe,
 body.embed .lapse-stage { max-height: 90vh; }
+/* A tall picture in a post: the frame is as tall as the post's frame allows
+   once the title, the button and the note have their room. */
+body.embed .swipe.swipe-shaped { --swipe-h: calc(100vh - 290px); max-height: var(--swipe-h); }

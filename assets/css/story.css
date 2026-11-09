@@ -14,11 +14,18 @@ body:has(.st-main) .site-foot { display: none; }
 /* What an investigation adds below its steps (Beaufort: the castle in 3D, and from above). */
 .st-after { max-width: 980px; margin: 0 auto; padding: 36px var(--pad) 64px; }
 .st-after h2 { font-size: 1.22rem; margin: 30px 0 8px; }
+.st-after h3 { font-size: 1.02rem; margin: 22px 0 8px; }
 .st-after p { color: var(--ink-2); line-height: 1.6; max-width: 72ch; margin: 0 0 12px; }
 .st-after iframe { width: 100%; border: 0; border-radius: 10px; display: block; background: var(--surface-2); }
 .st-after figure { margin: 14px 0 24px; }
 .st-after img { width: 100%; height: auto; display: block; border-radius: 10px; }
 .st-after figcaption { font-size: 0.82rem; color: var(--ink-3); margin-top: 8px; line-height: 1.5; }
+.st-after video { width: 100%; height: auto; display: block; border-radius: 10px; background: #111; }
+/* The investigation's main message, set apart: the reel's grey box with its red line. */
+.st-after .st-message { border-left: 4px solid #c8423f; background: rgba(150, 148, 145, 0.18); padding: 16px 20px;
+  margin: 8px 0 24px; border-radius: 0 10px 10px 0; }
+.st-after .st-message p { color: var(--ink-1); font-size: 1.05rem; font-weight: 600; margin: 0 0 10px; }
+.st-after .st-message p:last-child { margin-bottom: 0; }
 
 .st {
   display: grid;

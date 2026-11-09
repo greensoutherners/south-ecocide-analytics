@@ -1,0 +1,18 @@
+{
+ "town": "Land cover along the Lower Litani",
+ "before": "assets/posts/litani/land-cover-2025-10-21.jpg",
+ "after": "assets/posts/litani/land-cover-2026-10-23.jpg",
+ "aspect": [
+  1257,
+  931
+ ],
+ "before_label": "2025-10-21",
+ "before_kind": "captured",
+ "after_label": "2026-10-23",
+ "after_kind": "captured",
+ "before_source": "Sentinel-2 L2A scene classification, Copernicus Browser",
+ "after_source": "the same",
+ "ground_m": 9700,
+ "note": "Green is vegetated ground, yellow open ground. A classification says what the ground looked like to the satellite, not what changed it.",
+ "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/litani.html"
+}

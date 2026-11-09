@@ -66,7 +66,7 @@ const DATABASE_VIEWS = [
 const STORIES = [
   { value: 'aitaroun', label: 'I.02 Aitaroun: a border town, before and after' },
   { value: 'beaufort', label: 'I.05 Beaufort Castle and the ground around it' },
-  { value: 'litani', label: 'I.06 The Litani River' },
+  { value: 'litani', label: 'I.06 The Litani River Basin' },
 ];
 
 /** A frame's height when the widget is a whole application rather than a chart. */

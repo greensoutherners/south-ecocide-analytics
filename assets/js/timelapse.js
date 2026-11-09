@@ -139,7 +139,8 @@ export function timelapse(host, manifest, { base, speed = 1000, autoplay = false
       el('div', { class: 'lapse-bar' }, [playButton, range, speedSelect]),
       el('p', {
         class: 'card-note',
-        text:
+        // A sequence chosen by hand (one pass a month, say) says how it was chosen.
+        text: manifest.card_note ||
           `${frames.length} clear passes between ${dateLabel(frames[0].d)} and ` +
           `${dateLabel(frames[frames.length - 1].d)}. The gaps are cloud, not quiet weeks: ` +
           'a cloudy pass is no picture at all. What a frame shows is the ground on that ' +

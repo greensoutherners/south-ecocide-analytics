@@ -13,6 +13,12 @@ website's own media library.
   (`castle-pair.json`, shown by `embed/pair.html`), and part of Arnoun on
   3 September 2026. A `photos.json` here (file, caption, credit) adds
   photographs to the Beaufort post.
+- `litani/`: the Litani investigation, the reel's way: three stretches of the river on
+  Sentinel-2 (21 October 2025 and 23 October 2026, Copernicus Browser) with the yellow
+  boxes Green Southerners marked (`-marked`), the land-cover classification of the same days
+  (a pair and the year as a video), `timeline/` (the clearest pass of each month from
+  October 2025, for `embed/lapse.html?src=`), and `wide.json` (27 September 2023 beside
+  26 October 2026).
 - `photos/`: photographs from Wikimedia Commons under free licences; author,
   licence and source of each are in `photos/credits.json` and under each
   picture in the posts.

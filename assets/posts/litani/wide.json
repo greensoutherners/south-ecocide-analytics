@@ -1,0 +1,20 @@
+{
+ "town": "The Lower Litani",
+ "before": "assets/posts/litani/wide-2023-09-27.jpg",
+ "after": "assets/posts/litani/wide-2026-10-26.jpg",
+ "before_label": "2023-09-27",
+ "before_kind": "captured",
+ "after_label": "2026-10-26",
+ "after_kind": "captured",
+ "before_source": "Copernicus Sentinel-2, true colour, 10 m, the last clear pass before 8 October 2023",
+ "after_source": "Copernicus Sentinel-2, true colour, 10 m",
+ "bounds": [
+  35.4364877,
+  33.2592141,
+  35.5652338,
+  33.3668049
+ ],
+ "ground_m": 12000,
+ "note": "The sun is lower in late October than in late September, so the gorge's shadows are longer in the later picture: compare the ground, not the shade.",
+ "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/litani.html"
+}

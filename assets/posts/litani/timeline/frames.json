@@ -1,0 +1,65 @@
+{
+ "town": "The Lower Litani",
+ "title": "The Lower Litani, one Sentinel-2 pass a month",
+ "size": 960,
+ "frames": [
+  {
+   "d": "2025-10-31",
+   "f": "20251031.jpg"
+  },
+  {
+   "d": "2025-11-27",
+   "f": "20251127.jpg"
+  },
+  {
+   "d": "2025-12-17",
+   "f": "20251217.jpg"
+  },
+  {
+   "d": "2026-01-04",
+   "f": "20260104.jpg"
+  },
+  {
+   "d": "2026-02-28",
+   "f": "20260228.jpg"
+  },
+  {
+   "d": "2026-03-10",
+   "f": "20260310.jpg"
+  },
+  {
+   "d": "2026-04-29",
+   "f": "20260429.jpg"
+  },
+  {
+   "d": "2026-06-18",
+   "f": "20260618.jpg"
+  },
+  {
+   "d": "2026-07-28",
+   "f": "20260728.jpg"
+  },
+  {
+   "d": "2026-08-24",
+   "f": "20260824.jpg"
+  },
+  {
+   "d": "2026-09-16",
+   "f": "20260916.jpg"
+  },
+  {
+   "d": "2026-10-26",
+   "f": "20261026.jpg"
+  }
+ ],
+ "source": "Copernicus Sentinel-2 (ESA), true colour, 10 m",
+ "bounds": [
+  35.4364877,
+  33.2592141,
+  35.5652338,
+  33.3668049
+ ],
+ "ground_m": 11980,
+ "card_note": "The clearest Sentinel-2 pass of each month over the whole stretch, about 12 km across, chosen for no cloud, shadow or haze over the river. May and November 2026 had no clear pass. A frame shows the ground on that day; it does not say what changed it.",
+ "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/litani.html"
+}
