@@ -411,10 +411,24 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
         })),
       ]);
     });
-    const pics = (info.pictures.ongeo || []).map((p) => {
+    // Pictures a week or two apart (10 and 19 August at Al-Mansouri) would print over each other,
+    // so one label names them all.
+    const groups = [];
+    for (const p of info.pictures.ongeo || []) {
       const i = weeks.findIndex((w) => w > p.date) - 1;
-      const at = i < 0 ? weeks.length - 1 : i;
-      return el('span', { class: 'vm-pic-tick', style: `--x:${(at + 0.5) / weeks.length * 100}%`, title: `OnGeo picture of ${dateLabel(p.date)}`, text: shortDay(p.date) });
+      const t = { at: i < 0 ? weeks.length - 1 : i, date: p.date };
+      const g = groups[groups.length - 1];
+      if (g && t.at - g[g.length - 1].at < 3) g.push(t);
+      else groups.push([t]);
+    }
+    const pics = groups.map((g) => {
+      const x = (g.reduce((s, t) => s + t.at, 0) / g.length + 0.5) / weeks.length * 100;
+      return el('span', {
+        class: 'vm-pic-tick',
+        style: `--x:${x}%`,
+        title: g.map((t) => `OnGeo picture of ${dateLabel(t.date)}`).join('; '),
+        text: shortDays(g.map((t) => t.date)),
+      });
     });
     fill(
       timeline,
@@ -607,4 +621,15 @@ function addDays(iso, n) {
 function shortDay(iso) {
   const [, m, d] = iso.split('-');
   return `${+d} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m - 1]}`;
+}
+
+/** Several days as one label: "10 and 19 Aug" in one month, "31 Jul and 2 Aug" across two. */
+function shortDays(isos) {
+  if (isos.length === 1) return shortDay(isos[0]);
+  const months = new Set(isos.map((d) => d.slice(0, 7)));
+  if (months.size === 1) {
+    const days = isos.map((d) => String(+d.slice(8, 10)));
+    return `${days.slice(0, -1).join(', ')} and ${days[days.length - 1]} ${shortDay(isos[0]).split(' ')[1]}`;
+  }
+  return `${isos.slice(0, -1).map(shortDay).join(', ')} and ${shortDay(isos[isos.length - 1])}`;
 }
