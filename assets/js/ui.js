@@ -125,14 +125,51 @@ export function header(active) {
 
   return el('header', { class: 'site-head' }, [
     el('div', { class: 'wrap' }, [
-      el('a', { class: 'brand', href: url('index.html') }, [
-        el('span', { class: 'dot' }),
-        'South Ecocide Analytics',
+      el('div', { class: 'brand-block' }, [
+        el('a', { class: 'brand', href: url('index.html') }, [
+          el('span', { class: 'dot' }),
+          'South Ecocide Analytics',
+        ]),
+        el('span', { class: 'brand-credit gs-credit', text: CREDIT }),
       ]),
       nav,
     ]),
   ]);
 }
+
+/* The credit every page carries (the data owner, 2026-11-17: "put on each page
+ * the credits to Green Southerners team", on the HTML pages as well as in print). */
+export const CREDIT = 'by the Green Southerners team';
+
+/**
+ * A page drawn without the site header or footer (an embed, a story, the 3D
+ * castle) still carries the credit: once the page has drawn, if no credit is on
+ * it, a small badge is pinned to its lower corner. It never takes the pointer,
+ * so it cannot cover a control.
+ */
+function ensureCredit() {
+  if (typeof document === 'undefined') return;
+  const has = () =>
+    document.querySelector('.gs-credit') ||
+    /Green Southerners team/i.test(document.body ? document.body.innerText || '' : '');
+  const pin = () => {
+    if (!document.body || has()) return;
+    const badge = document.createElement('div');
+    badge.className = 'gs-credit gs-credit-badge';
+    badge.textContent = 'Green Southerners team';
+    badge.setAttribute(
+      'style',
+      'position:fixed;left:8px;bottom:6px;z-index:2147483000;pointer-events:none;' +
+        'font:500 11px/1.4 Inter,system-ui,sans-serif;color:#4b4e4c;' +
+        'background:rgba(255,255,255,.82);border-radius:4px;padding:1px 6px'
+    );
+    document.body.append(badge);
+  };
+  const later = () => [1200, 4000].forEach((ms) => setTimeout(pin, ms));
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', later);
+  else later();
+}
+ensureCredit();
 
 function themeGlyph() {
   return { light: '☀', dark: '☽' }[currentTheme()];

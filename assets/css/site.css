@@ -189,6 +189,21 @@ p { margin: 0 0 1em; }
   flex: none;
 }
 
+/* The brand and, under it, the credit every page carries (the data owner,
+ * 2026-11-17). */
+.brand-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.brand-credit {
+  font-size: 0.74rem;
+  color: var(--ink-3);
+  padding-inline-start: 20px;
+  white-space: nowrap;
+}
+
 .site-nav {
   display: flex;
   gap: 2px;

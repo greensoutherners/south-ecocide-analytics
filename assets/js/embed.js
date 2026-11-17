@@ -109,7 +109,7 @@ function frame({ title, subtitle, body, credit, link }) {
 
 function creditLine(metaPayload) {
   const stamp = metaPayload ? metaPayload.generated_at.slice(0, 10) : '';
-  return `Green Southerners &middot; South Lebanon OSINT corpus &middot; data of ${stamp}`;
+  return `Green Southerners team &middot; South Lebanon OSINT corpus &middot; data of ${stamp}`;
 }
 
 /* ------------------------------------------------------------------ entry */
