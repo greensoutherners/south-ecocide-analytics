@@ -81,6 +81,7 @@ body:has(.vm) .site-foot { display: none; }
 .vm-time-head b { font-size: 0.86rem; }
 .vm-time-head .btn { padding: 3px 12px; font-size: 0.8rem; }
 .vm-time-note { color: var(--ink-3); font-size: 0.74rem; flex: 1 1 320px; line-height: 1.35; }
+.vm-share { display: inline-flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-inline-start: auto; }
 .vm-lanes { display: grid; gap: 2px; }
 .vm-lane { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 10px; align-items: end; }
 .vm-lane-label { display: flex; gap: 6px; align-items: baseline; font-size: 0.74rem; line-height: 1.2; white-space: nowrap; overflow: hidden; }

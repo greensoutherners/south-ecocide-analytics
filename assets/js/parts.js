@@ -10,6 +10,7 @@
 import { ROOT, dateLabel } from './data.js';
 import { swipe } from './compare.js';
 import { el, fill, params } from './ui.js';
+import { credit, shareBar, withParams } from './share.js';
 
 export async function partsWidget(mount) {
   const q = params();
@@ -37,8 +38,17 @@ export async function partsWidget(mount) {
   const host = el('div', { class: 'pw-pair' });
   const note = el('p', { class: 'card-note pw-note' });
   const toggle = el('button', { type: 'button', class: 'btn', 'aria-pressed': String(marked) });
+  // The part on screen, with or without its outlines, as a link or an embed; and the credit.
+  const here = () => withParams(location.href, { part: parts[at].name, marked: marked ? null : '0' });
+  const share = shareBar(
+    () => ({
+      title: `${index.town}: every part of the picture`,
+      link: here(),
+      embed: { src: here(), height: 1180 },
+    })
+  );
   fill(mount, el('div', { class: 'pw' }, [
-    el('div', { class: 'pw-side' }, [overview, buttons, toggle]),
+    el('div', { class: 'pw-side' }, [overview, buttons, toggle, el('div', { class: 'pw-share' }, [credit(), share])]),
     el('div', { class: 'pw-main' }, [head, host, note]),
   ]));
 

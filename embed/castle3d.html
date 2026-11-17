@@ -55,9 +55,26 @@
 <div class="label">
   <b>Beaufort Castle, Qalaat al-Shqif <span lang="ar">قلعة الشقيف</span></b>
   On its cliff above the Litani, between Arnoun and Yohmor. Drag to turn it, scroll or pinch to come closer.
-  <span class="gs-credit" style="display:block;margin-top:4px;font-size:11px;color:var(--ink-3)">Green Southerners team</span>
+  <a class="gs-credit" href="https://greensoutherners.org" target="_blank" rel="noopener" style="display:block;margin-top:4px;font-size:11px;color:var(--ink-3);pointer-events:auto;text-decoration:none">Green Southerners team</a>
 </div>
 <div class="tools"><button type="button" id="reset">Reset the view</button></div>
+<script type="module">
+  // Share the castle as the reader has turned it: the camera goes into the address.
+  import { shareBar, withParams } from '../assets/js/share.js';
+  const mv = document.getElementById('castle');
+  const deg = (r) => `${((r * 180) / Math.PI).toFixed(1)}deg`;
+  const here = () => {
+    let orbit = null;
+    try {
+      const o = mv.getCameraOrbit();
+      orbit = `${deg(o.theta)} ${deg(o.phi)} ${o.radius.toFixed(2)}m`;
+    } catch { /* the model has not loaded: the default view */ }
+    return withParams(location.href, { orbit });
+  };
+  document.querySelector('.tools').append(
+    shareBar(() => ({ title: 'Beaufort Castle in 3D', link: here(), embed: { src: here(), height: 620 } }), { compact: true, align: 'right' })
+  );
+</script>
 <script type="module">
   const mv = document.getElementById('castle');
   const q = new URLSearchParams(location.search);

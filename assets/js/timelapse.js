@@ -55,9 +55,12 @@ export function timelapse(host, manifest, { base, speed = 1000, autoplay = false
   images[0].classList.add('on');
   stage.append(...images);
 
+  // A frame that names its own picture (a sequence of sharp pictures from more
+  // than one provider) says whose it is under its date.
+  const count = (i) => (frames[i].source ? `${frames[i].source} · ` : '') + `${i + 1} of ${frames.length}`;
   const stamp = el('div', { class: 'lapse-stamp' }, [
     el('b', { text: dateLabel(frames[0].d) }),
-    el('i', { text: `1 of ${frames.length}` }),
+    el('i', { text: count(0) }),
   ]);
   stage.append(stamp);
 
@@ -99,7 +102,7 @@ export function timelapse(host, manifest, { base, speed = 1000, autoplay = false
     images.forEach((img, n) => img.classList.toggle('on', n === state.index));
     stamp.replaceChildren(
       el('b', { text: dateLabel(frames[state.index].d) }),
-      el('i', { text: `${state.index + 1} of ${frames.length}` })
+      el('i', { text: count(state.index) })
     );
     range.value = String(state.index);
   }
@@ -139,12 +142,17 @@ export function timelapse(host, manifest, { base, speed = 1000, autoplay = false
       el('div', { class: 'lapse-bar' }, [playButton, range, speedSelect]),
       el('p', {
         class: 'card-note',
-        // A sequence chosen by hand (one pass a month, say) says how it was chosen.
+        // A sequence chosen by hand (one pass a month, say) says how it was chosen;
+        // one that names its source is sharp pictures, not cloud-gapped passes.
         text: manifest.card_note ||
-          `${frames.length} clear passes between ${dateLabel(frames[0].d)} and ` +
-          `${dateLabel(frames[frames.length - 1].d)}. The gaps are cloud, not quiet weeks: ` +
-          'a cloudy pass is no picture at all. What a frame shows is the ground on that ' +
-          'day, not what changed it.',
+          (manifest.source
+            ? `${frames.length} pictures between ${dateLabel(frames[0].d)} and ` +
+              `${dateLabel(frames[frames.length - 1].d)}. ${manifest.source} What a frame shows ` +
+              'is the ground on that day, not what changed it.'
+            : `${frames.length} clear passes between ${dateLabel(frames[0].d)} and ` +
+              `${dateLabel(frames[frames.length - 1].d)}. The gaps are cloud, not quiet weeks: ` +
+              'a cloudy pass is no picture at all. What a frame shows is the ground on that ' +
+              'day, not what changed it.'),
       }),
     ])
   );

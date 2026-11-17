@@ -54,6 +54,9 @@ body:has(.db-main) .site-foot { display: none; }
 .db-head h1 { font-size: 1.35rem; margin: 0 0 6px; }
 .db-head p { font-size: 0.85rem; color: var(--ink-2); margin: 0 0 6px; line-height: 1.45; }
 .db-full { font-size: 0.82rem; font-weight: 600; }
+.db-eyebrow a { color: inherit; text-decoration: none; }
+.db-eyebrow a:hover { text-decoration: underline; }
+.db-share { margin-top: 8px; }
 
 .db-tabs {
   display: flex;

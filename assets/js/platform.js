@@ -57,6 +57,7 @@ import {
 import { fromDay, strip, toDay } from './strip.js';
 import { typeColor, typeRamp } from './theme.js';
 import { el, fill, params, url } from './ui.js';
+import { credit, shareBar, withParams } from './share.js';
 
 /** Where a reader asks for the records themselves. */
 const CONTACT = 'https://greensoutherners.org/contact-us';
@@ -360,10 +361,36 @@ export async function platformPage({ embed = false } = {}) {
       '.',
     ]);
 
+  /* The database as the reader has set it, the camera included: a link opens it
+   * full screen, an embed is the same view in a frame. A narrow frame's closed
+   * panel stays behind. */
+  const camera = () => {
+    try {
+      const c = map.getCenter();
+      return [c.lng.toFixed(4), c.lat.toFixed(4), map.getZoom().toFixed(2), Math.round(map.getPitch()), Math.round(map.getBearing())].join(',');
+    } catch {
+      return null;
+    }
+  };
+  const shareWhat = () => {
+    const here = withParams(location.href, {
+      embed: null,
+      view: camera(),
+      panel: state.panel === 'closed' ? null : state.panel === 'records' ? null : state.panel,
+      theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : null,
+    });
+    return {
+      title: 'South Lebanon in the 2026 war, recorded',
+      link: here,
+      embed: { src: withParams(here, { embed: '1' }), height: 940 },
+      date: (metaPayload.generated_at || '').slice(0, 10),
+    };
+  };
+
   fill(
     panel,
     el('header', { class: 'db-head' }, [
-      el('span', { class: 'db-eyebrow', text: 'Green Southerners · Database' }),
+      el('span', { class: 'db-eyebrow' }, [credit({ text: '', className: '' }), ' · Database']),
       el('h1', { text: 'South Lebanon in the 2026 war, recorded' }),
       el('p', {
         text: `What the corpus recorded since 1 March 2026, counted by town and by week: ${offered()}. Filter, search a town, play the timeline, and open a town for its figures.`,
@@ -382,6 +409,7 @@ export async function platformPage({ embed = false } = {}) {
             },
           })
         : null,
+      el('div', { class: 'db-share' }, [shareBar(shareWhat)]),
     ]),
     tabs,
     recordsTab,

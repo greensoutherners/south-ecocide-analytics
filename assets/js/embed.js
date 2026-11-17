@@ -60,8 +60,12 @@ import { swipe } from './compare.js';
 import { defaultDim, explorer } from './explore.js';
 import { timelapse } from './timelapse.js';
 import { countLabel, el, failure, fill, kindNoun, params } from './ui.js';
+import { FRAMED, ORG, shareBar, withParams } from './share.js';
 
 const SITE = 'https://greensoutherners.github.io/south-ecocide-analytics/';
+
+/** The data's date, for the credit line under a shared frame. */
+let dataDate = '';
 
 /* ------------------------------------------------------------------ height */
 
@@ -92,24 +96,54 @@ function reportHeight() {
 
 /* ------------------------------------------------------------------ frame */
 
-function frame({ title, subtitle, body, credit, link }) {
+/**
+ * The card every widget is drawn in: title, subtitle, the widget, and a foot
+ * with the credit, a link to the data and the two share buttons. `share.height`
+ * fixes the height a shared frame is given, for a widget whose picture is
+ * sized by the frame itself (a swipe or a time-lapse: their content height
+ * follows the frame, so measuring it would never settle).
+ */
+function frame({ title, subtitle, body, credit, link, share = {} }) {
   const root = el('div', { class: 'embed-root' }, [
     el('div', { class: 'embed-frame' }, [
       title ? el('p', { class: 'embed-title', text: title }) : null,
       subtitle ? el('p', { class: 'embed-sub', text: subtitle }) : null,
       ...[].concat(body),
       el('div', { class: 'embed-credit' }, [
-        el('span', { html: credit }),
-        el('a', { href: link || SITE, target: '_blank', rel: 'noopener', text: 'Explore the data →' }),
+        el('span', { class: 'gs-credit', html: credit }),
+        el('span', { class: 'embed-actions' }, [
+          el('a', { href: link || SITE, target: '_blank', rel: 'noopener', text: 'Explore the data →' }),
+          widgetShare(title, share),
+        ]),
       ]),
     ]),
   ]);
   return root;
 }
 
+/** A widget's share buttons: its own address, the frame height it needs, the data's date. */
+export function widgetShare(title, { height = 0 } = {}) {
+  return shareBar(
+    () => ({
+      title: title || document.title,
+      // The link opens the widget on its own page, in its card.
+      link: withParams(location.href, { bare: null }),
+      embed: {
+        src: location.href,
+        height: height || Math.ceil(document.documentElement.getBoundingClientRect().height) + 8,
+      },
+      date: dataDate,
+    }),
+    { align: 'right' }
+  );
+}
+
 function creditLine(metaPayload) {
   const stamp = metaPayload ? metaPayload.generated_at.slice(0, 10) : '';
-  return `Green Southerners team &middot; South Lebanon OSINT corpus &middot; data of ${stamp}`;
+  return (
+    `<a href="${ORG.url}" target="_blank" rel="noopener"><b>Green Southerners team</b></a> ` +
+    `&middot; South Lebanon OSINT corpus &middot; data of ${stamp}`
+  );
 }
 
 /* ------------------------------------------------------------------ entry */
@@ -120,12 +154,15 @@ export async function embed(kind) {
 
   document.body.classList.add('embed');
   if (query.bare === '1') document.body.classList.add('bare');
+  // Opened on its own rather than in a frame (a shared link): a page round the card.
+  if (!FRAMED) document.body.classList.add('standalone');
   if (query.theme === 'dark' || query.theme === 'light') setTheme(query.theme);
 
   const send = reportHeight();
 
   try {
     const metaPayload = await meta();
+    dataDate = metaPayload.generated_at.slice(0, 10);
     const builders = { chart, map: mapWidget, stat: statWidget, compare, pair: pairWidget, lanes: lanesWidget, explore, lapse: lapseWidget };
     const build = builders[kind] || chart;
     await build({ mount, query, meta: metaPayload });
@@ -462,12 +499,17 @@ async function lapseWidget({ mount, query, meta: metaPayload }) {
       mount,
       frame({
         title: query.title || manifest.title || `${manifest.town}, every chosen pass`,
+        // A sequence that names its source is not Sentinel-2 (Al-Mansouri's: Esri, then OnGeo).
         subtitle:
           query.subtitle ||
-          (frames.length ? `${frames.length} Sentinel-2 passes, ${dateLabel(frames[0].d)} to ${dateLabel(frames[frames.length - 1].d)}` : ''),
+          (frames.length
+            ? `${frames.length} ${manifest.source ? 'pictures' : 'Sentinel-2 passes'}, ` +
+              `${dateLabel(frames[0].d)} to ${dateLabel(frames[frames.length - 1].d)}`
+            : ''),
         body: [host],
         credit: creditLine(metaPayload),
         link: manifest.link || SITE,
+        share: { height: 1080 },
       })
     );
     timelapse(host, manifest, {
@@ -508,6 +550,7 @@ async function lapseWidget({ mount, query, meta: metaPayload }) {
       body: [host],
       credit: creditLine(metaPayload),
       link: `${SITE}pages/village.html?v=${town.id}`,
+      share: { height: 1080 },
     })
   );
   timelapse(host, manifest, {
@@ -568,11 +611,13 @@ async function compare({ mount, query, meta: metaPayload }) {
           text:
             'Drag the handle. The earlier date is when the archive release was published, ' +
             'on or after the day that picture was taken; the later one is when the aerial ' +
-            `picture was captured.${season}`,
+            `picture was captured.${season} Before: Esri, Maxar, Earthstar Geographics and the ` +
+            'GIS User Community. After: aerial imagery read for the village damage report.',
         }),
       ],
       credit: creditLine(metaPayload),
       link: `${SITE}pages/village.html?v=${town.id}`,
+      share: { height: 1080 },
     })
   );
 
@@ -625,6 +670,8 @@ async function pairWidget({ mount, query, meta: metaPayload }) {
       ],
       credit: creditLine(metaPayload),
       link: pair.link || SITE,
+      // A shaped pair sizes its picture to the frame, so it is given a frame of its own.
+      share: { height: pair.aspect ? 1040 : 1080 },
     })
   );
   const view = swipe(host, pair, { base: ROOT, marked: on });

@@ -47,6 +47,7 @@ import {
 import { monthsBetween, scrubber } from './scrubber.js';
 import { typeRamp } from './theme.js';
 import { countLabel, el, fill, kindNoun } from './ui.js';
+import { shareBar, withParams } from './share.js';
 
 /* The documented column each type opens on: the explorer's filter chips, and,
  * through `defaultDim`, what a type page or a chart embed groups by first. */
@@ -101,12 +102,18 @@ export async function explorer(mount, query, { credit, link }) {
   const views = query.view === 'chart' ? ['chart'] : query.view === 'map' ? ['map'] : ['chart', 'map'];
 
   const askedMap = query.map === 'points' ? 'towns' : query.map;
+  // A shared address carries the reader's chips (value), district and view (show);
+  // anything the data does not hold is dropped.
+  const known = (column, list) => {
+    const keys = new Set(ds.group(ds.all, column).map((g) => g.key));
+    return list.filter((v) => keys.has(v));
+  };
   const state = {
     from: ds.minDay,
     to: ds.maxDay,
-    value: [],
-    district: '',
-    view: views[0],
+    value: dim && query.value ? known(dim, String(query.value).split(',')) : [],
+    district: query.district ? known('district', [String(query.district)])[0] || '' : '',
+    view: views.includes(query.show) ? query.show : views[0],
     mapMode: TOWN_TYPES.has(ds.code)
       ? askedMap === 'districts'
         ? 'districts'
@@ -146,8 +153,24 @@ export async function explorer(mount, query, { credit, link }) {
         filterNote,
         visual,
         el('div', { class: 'embed-credit' }, [
-          el('span', { html: credit }),
-          el('a', { href: link, target: '_blank', rel: 'noopener', text: 'Open the full dashboard →' }),
+          el('span', { class: 'gs-credit', html: credit }),
+          el('span', { class: 'embed-actions' }, [
+            el('a', { href: link, target: '_blank', rel: 'noopener', text: 'Open the full dashboard →' }),
+            shareBar(() => {
+              // The widget as the reader has set it: its chips, district and view.
+              const here = withParams(location.href, {
+                value: state.value.join(','),
+                district: state.district,
+                show: views.length > 1 ? state.view : null,
+              });
+              return {
+                title: titleEl.textContent,
+                link: withParams(here, { bare: null }),
+                // It fits its chart or map to the frame it is given.
+                embed: { src: here, height: 860 },
+              };
+            }, { align: 'right' }),
+          ]),
         ]),
       ]),
     ])

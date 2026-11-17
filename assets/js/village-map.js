@@ -23,6 +23,7 @@ import { DATA, dateLabel, load } from './data.js';
 import { add, glMap, layer } from './gl.js';
 import { typeColor } from './theme.js';
 import { CONTACT_URL, el, fill, params } from './ui.js';
+import { credit, shareBar, withParams } from './share.js';
 
 /* ------------------------------------------------------------------ layers */
 
@@ -380,6 +381,26 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
   const weeks = [];
   for (let d = mondayOf(first); d <= lastWeek; d = addDays(d, 7)) weeks.push(d);
 
+  // The map as the reader has set it: its picture, layers, grey and dating colours. A link opens
+  // the town's map page, an embed the same map without the site's header.
+  const embedded = document.body.classList.contains('embed');
+  const defaults = ALL.filter((l) => l.on).map((l) => l.key).sort().join(',');
+  function shareWhat() {
+    const layers = [...state.on].sort().join(',');
+    const here = withParams(location.href, {
+      embed: null,
+      picture: state.picture === pictures[0].key ? null : state.picture,
+      layers: layers === defaults ? null : layers,
+      when: state.byWhen ? '1' : null,
+      grey: state.grey ? '1' : null,
+    });
+    return {
+      title: `${town.name}, every layer: the 2026 war`,
+      link: here,
+      embed: { src: withParams(here, { embed: '1' }), height: 900 },
+    };
+  }
+
   // The timeline is built once; a move of the cursor only changes classes, words and the slider's
   // value, so a drag is never cut short by the drawing it causes.
   const bars = [];
@@ -439,6 +460,7 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
         headText,
         el('span', { class: 'vm-time-note', text: 'Records counted by week from 1 March 2026. The slider also limits the map to what was first seen by then; changes that cannot be dated more closely stay on.' }),
         play,
+        el('span', { class: 'vm-share' }, [embedded ? credit() : null, shareBar(shareWhat, { align: 'right' })]),
       ]),
       el('div', { class: 'vm-lanes' }, [...lanes, el('div', { class: 'vm-lane vm-pics-lane' }, [el('span', { class: 'vm-lane-label' }, [el('b', { text: 'Sharp pictures' }), el('i', { text: 'OnGeo, 0.3 m' })]), el('div', { class: 'vm-ticks' }, pics)])]),
       el('div', { class: 'vm-slider' }, [slider]),

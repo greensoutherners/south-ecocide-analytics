@@ -40,6 +40,7 @@ import {
 } from './gl-layers.js';
 import { typeColor, typeRamp } from './theme.js';
 import { countLabel, el, fill, params, url } from './ui.js';
+import { credit, shareBar } from './share.js';
 
 /** A kind about a whole town shades it; every other kind is a mark per town. */
 const shaded = (k) => k.form === 'towns';
@@ -380,6 +381,19 @@ export async function storyPage({ embed = false, slug = null } = {}) {
         explore
           ? el('a', { class: 'st-explore', href: url(explore), ...away, text: step.exploreLabel || story.exploreLabel || 'Explore this place in the database' })
           : null,
+        // The story as the reader has it, at this step: its page as a link, the
+        // story alone as an embed. Embedded, it names Green Southerners itself.
+        el('div', { class: 'st-share' }, [
+          embed ? credit() : null,
+          shareBar(
+            () => ({
+              title: story.title,
+              link: url(`investigations/${name}.html?step=${at + 1}`),
+              embed: { src: url(`embed/story.html?story=${name}&step=${at + 1}`), height: 880 },
+            }),
+            { align: 'right' }
+          ),
+        ]),
       ])
     );
   }
