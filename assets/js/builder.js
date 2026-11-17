@@ -61,12 +61,14 @@ const DATABASE_VIEWS = [
   { value: 'focus=beaufort', label: 'Beaufort Castle and the ground around it' },
   { value: 'focus=litani&river=1', label: 'The Litani River' },
   { value: 'focus=273', label: 'Aitaroun' },
+  { value: 'focus=96', label: 'Al-Mansouri' },
 ];
 
 const STORIES = [
   { value: 'aitaroun', label: 'I.02 Aitaroun: a border town, before and after' },
   { value: 'beaufort', label: 'I.05 Beaufort Castle and the ground around it' },
   { value: 'litani', label: 'I.06 The Litani River Basin' },
+  { value: 'al-mansouri-orchards', label: 'I.07 Al-Mansouri: its houses, orchards and fields' },
 ];
 
 /** A frame's height when the widget is a whole application rather than a chart. */

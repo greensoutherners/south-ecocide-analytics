@@ -33,7 +33,8 @@ different values.
 ```
 index.html                 the catalogue: what exists, and where the data is
 platform.html              the database: every kind of record on one map, counted by town (Mapbox or MapLibre)
-investigations/            the investigations; I.02, I.05 and I.06 are told step by step
+investigations/            the investigations; I.02, I.05, I.06 and I.07 are told step by step
+  al-mansouri-map.html     one village on one map, every layer (village-map.js)
 pages/
   overview.html            every type, counted apart
   timeline.html            the war month by month, one lane per type
@@ -56,6 +57,7 @@ assets/
 data/                      the published figures, see "Refreshing the numbers"
   studio/                  the Village Studio's change layers, one file per town
   stories/                 the step-by-step investigations, written by build_stories
+  village-maps/<id>/       one village's map: its layers, its pictures and its weekly counts
 ```
 
 ### The database and the Mapbox token
@@ -81,6 +83,21 @@ dates. The outlines are drawn from the orders' words, not from their maps; see
 `docs/alr-region-areas.md` in the collection repository. In the address,
 `focus=regions` frames Beirut to the border, `shade=none` leaves the
 municipalities unshaded, `regions=0` hides the areas and `area=<key>` opens one.
+
+### A village on one map
+
+`investigations/al-mansouri-map.html` opens one village in full: its sharp pictures as the
+ground (OnGeo's 0.3 m pictures of 2026 as tiles under `assets/tiles/<town>/`, and Esri's
+Maxar pictures from before the war, loaded from the Wayback archive), every change readers
+found on them as a layer of its own (buildings destroyed and damaged, those on no pre-war
+map, when each building was first seen gone, orchards and fields lost, ground and roads
+bulldozed, burned ground by month), and the town's records counted week by week on a
+timeline that also limits the map to what was seen by then. Two pictures can be compared
+with a handle. The page holds no per-town code: `villageMap({ city })` reads
+`data/village-maps/<city>/`, written by `tools/publish/village_map.py` and
+`tools/publish/village_imagery.py` in the collection repository. Bulldozing, hidden
+elsewhere on the site, is shown on Al-Mansouri because the data owner asked for that town;
+the detonations reported there are counted by week like the other kinds.
 
 ### The time scrubber
 

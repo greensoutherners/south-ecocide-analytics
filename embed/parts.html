@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South Ecocide Analytics | every part of a picture</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<style>
+html,body{margin:0;padding:0;overflow-x:hidden}
+.pw{display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr);gap:16px;padding:12px;align-items:start}
+.pw-overview{position:relative;line-height:0}
+.pw-overview img{width:100%;height:auto;border-radius:8px;display:block}
+.pw-box{position:absolute;border:2px solid rgba(255,255,255,.85);background:transparent;cursor:pointer;padding:0;border-radius:2px}
+.pw-box span{position:absolute;left:4px;top:4px;background:rgba(0,0,0,.72);color:#fff;font:600 12px/1.4 Inter,sans-serif;padding:1px 5px;border-radius:4px}
+.pw-box.on{border-color:#ff7a00;box-shadow:inset 0 0 0 2px #ff7a00}
+.pw-box:hover{background:rgba(255,122,0,.15)}
+.pw-buttons{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.pw-chip{min-width:44px;justify-content:center}
+.pw-head{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin:0 0 8px;font-size:.92rem}
+.pw-head span{color:var(--ink-3);font-size:.82rem}
+.pw-note{margin-top:8px}
+@media (max-width:760px){.pw{grid-template-columns:minmax(0,1fr)}.pw-side{order:2}}
+</style>
+</head>
+<body class="embed">
+<div id="widget"></div>
+<script type="module">
+import { partsWidget } from '../assets/js/parts.js';
+partsWidget(document.getElementById('widget')).catch((err) => {
+  console.error(err);
+  document.getElementById('widget').textContent = 'The pictures did not load.';
+});
+</script>
+</body>
+</html>

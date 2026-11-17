@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Al-Mansouri, every layer: the 2026 war | South Ecocide Analytics</title>
+<meta name="description" content="One village opened in full: Al-Mansouri's sharp pictures of 2026 and before the war, every building, road and orchard read as changed on them, burned ground, and the fires, white phosphorus, displacement orders and detonations counted week by week.">
+<meta name="color-scheme" content="light">
+<meta property="og:title" content="Al-Mansouri, every layer: the 2026 war">
+<meta property="og:description" content="Al-Mansouri's sharp pictures and every change read on them, with the records of the 2026 war counted week by week.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/story.css">
+<link rel="stylesheet" href="../assets/css/village-map.css">
+</head>
+<body>
+<a class="skip" href="#vmap">Skip to the map</a>
+<main id="main" class="vm-main-page"><div id="vmap"></div></main>
+<script type="module">
+import { chrome } from '../assets/js/ui.js';
+import { meta } from '../assets/js/data.js';
+import { restoreTheme } from '../assets/js/theme.js';
+import { villageMap } from '../assets/js/village-map.js';
+restoreTheme();
+// In a post's frame (?embed=1) the map fills the frame with no site header.
+const embed = new URLSearchParams(location.search).get('embed') === '1';
+const fit = () => {
+  const head = document.querySelector('.site-head');
+  const root = document.querySelector('.vm');
+  if (root) root.style.setProperty('--vm-top', embed || !head ? '0px' : `${Math.round(head.getBoundingClientRect().height)}px`);
+};
+if (embed) document.body.classList.add('embed');
+else chrome('investigations', meta()).then(fit);
+villageMap({ city: 96, onFrame: fit }).then(fit);
+addEventListener('resize', fit);
+</script>
+</body>
+</html>

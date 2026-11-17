@@ -1,0 +1,115 @@
+/* One village, every layer: the panel of pictures and layers beside the map, the weekly
+ * timeline under it. On a narrow screen the panel becomes a drawer over the map. */
+
+.vm-main-page { padding: 0; }
+body:has(.vm) .site-foot { display: none; }
+.vm-loading { padding: 40px var(--pad); color: var(--ink-3); }
+
+.vm {
+  --vm-top: 58px;
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  height: calc(100vh - var(--vm-top));
+  height: calc(100dvh - var(--vm-top));
+  min-height: 560px;
+  background: var(--surface-1);
+  color: var(--ink-1);
+}
+
+.vm-panel {
+  min-height: 0;
+  overflow-y: auto;
+  border-right: 1px solid var(--hairline);
+  padding: 20px 20px 28px;
+  font-size: 0.9rem;
+}
+.vm-head h1 { font-size: 1.32rem; margin: 0; line-height: 1.2; }
+.vm-head p { color: var(--ink-2); line-height: 1.55; margin: 8px 0 0; }
+.vm-panel h2 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-3); margin: 22px 0 8px; }
+.vm-panel section { border-top: 1px solid var(--hairline); margin-top: 16px; }
+
+.vm-pics { display: grid; gap: 4px; }
+.vm-pic { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: start; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+.vm-pic:hover { background: var(--plane); }
+.vm-pic.on { background: var(--accent-wash); }
+.vm-pic b { display: block; font-weight: 600; font-size: 0.88rem; }
+.vm-pic i { display: block; font-style: normal; color: var(--ink-3); font-size: 0.76rem; }
+.vm-pic-controls { display: grid; gap: 8px; margin-top: 10px; font-size: 0.82rem; color: var(--ink-2); }
+.vm-range { display: flex; align-items: center; gap: 8px; }
+.vm-range input { flex: 1; }
+
+.vm-group { border: 0; padding: 0; margin: 0 0 14px; }
+.vm-group legend { font-weight: 650; font-size: 0.86rem; padding: 0; margin-bottom: 4px; }
+.vm-layer { display: grid; grid-template-columns: auto 18px 1fr auto; gap: 8px; align-items: center; padding: 4px 2px; cursor: pointer; }
+.vm-layer.empty { opacity: 0.5; cursor: default; }
+.vm-name { line-height: 1.3; }
+.vm-n { font-variant-numeric: tabular-nums; color: var(--ink-3); font-size: 0.78rem; }
+.vm-sw { width: 16px; height: 12px; border-radius: 3px; background: var(--c); display: inline-block; }
+.vm-sw-area { background: color-mix(in srgb, var(--c) 35%, transparent); box-shadow: inset 0 0 0 2px var(--c); }
+.vm-sw-line { height: 4px; border-radius: 2px; }
+.vm-sw-outline { background: transparent; border: 2px dashed var(--c); height: 10px; }
+.vm-when-toggle { display: block; margin: 8px 0 6px; font-size: 0.82rem; color: var(--ink-2); }
+.vm-when { display: grid; gap: 4px; font-size: 0.78rem; color: var(--ink-2); margin: 4px 0 0 22px; }
+.vm-when span { display: flex; align-items: center; gap: 6px; }
+.vm-when i { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+.vm-notes p { color: var(--ink-2); line-height: 1.55; margin: 0 0 10px; font-size: 0.84rem; }
+
+.vm-main { display: grid; grid-template-rows: minmax(0, 1fr) auto; min-width: 0; min-height: 0; }
+.vm-stage { position: relative; min-height: 0; overflow: hidden; }
+/* MapLibre's own sheet sets its container relative: these win over it by specificity. */
+.vm .vm-stage .vm-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vm .vm-stage .vm-compare { z-index: 2; pointer-events: none; }
+.vm-handle {
+  position: absolute; top: 0; bottom: 0; z-index: 3; width: 4px; margin-left: -2px; background: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35); cursor: ew-resize; touch-action: none;
+}
+.vm-handle::after {
+  content: '\2194'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 34px; height: 34px; border-radius: 50%; background: #fff; color: #222; display: grid; place-items: center;
+  font-size: 18px; box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+}
+.vm-credit {
+  position: absolute; left: 10px; top: 10px; z-index: 4; max-width: 60%;
+  background: rgba(20, 20, 19, 0.72); color: #fff; font-size: 0.74rem; padding: 4px 8px; border-radius: 6px;
+}
+.vm-panel-toggle { display: none; }
+.vm-pop .maplibregl-popup-content, .vm-pop .mapboxgl-popup-content { font-size: 0.82rem; line-height: 1.45; }
+
+.vm-timeline { border-top: 1px solid var(--hairline); padding: 8px 16px 8px; background: var(--surface-2); }
+.vm-time-head { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 6px; }
+.vm-time-head b { font-size: 0.86rem; }
+.vm-time-head .btn { padding: 3px 12px; font-size: 0.8rem; }
+.vm-time-note { color: var(--ink-3); font-size: 0.74rem; flex: 1 1 320px; line-height: 1.35; }
+.vm-lanes { display: grid; gap: 2px; }
+.vm-lane { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 10px; align-items: end; }
+.vm-lane-label { display: flex; gap: 6px; align-items: baseline; font-size: 0.74rem; line-height: 1.2; white-space: nowrap; overflow: hidden; }
+.vm-lane-label b { font-weight: 600; }
+.vm-lane-label i { font-style: normal; color: var(--ink-3); font-size: 0.68rem; }
+.vm-bars { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 2px; height: 20px; align-items: end;
+  border-bottom: 1px solid var(--hairline); }
+.vm-bar { display: block; height: var(--h); background: var(--c); border-radius: 2px 2px 0 0; min-height: 0; }
+.vm-bar.after { opacity: 0.22; }
+.vm-ticks { position: relative; height: 18px; border-bottom: 1px solid var(--hairline); }
+.vm-pic-tick { position: absolute; left: var(--x); transform: translateX(-50%); font-size: 0.68rem; color: var(--ink-2); white-space: nowrap; }
+.vm-pic-tick::before { content: ''; position: absolute; left: 50%; bottom: -1px; width: 1px; height: 6px; background: var(--ink-2); }
+.vm-slider { margin-left: 180px; }
+.vm-slider input { width: 100%; }
+
+@media (max-width: 860px) {
+  .vm { grid-template-columns: minmax(0, 1fr); }
+  .vm-panel {
+    position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; top: auto; height: 72vh; height: 72dvh;
+    transform: translateY(105%); transition: transform 0.25s ease; background: var(--surface-2);
+    border-right: 0; border-top: 1px solid var(--hairline); border-radius: 14px 14px 0 0; box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.2);
+    padding: 16px 16px 24px;
+  }
+  body.vm-open .vm-panel { transform: translateY(0); }
+  .vm-panel-toggle { display: inline-flex; position: absolute; right: 10px; bottom: 34px; z-index: 5; }
+  body.vm-open .vm-panel-toggle { position: fixed; bottom: calc(72vh + 8px); bottom: calc(72dvh + 8px); z-index: 31; }
+  .vm-lane { grid-template-columns: 96px minmax(0, 1fr); gap: 6px; }
+  .vm-lane-label i { display: none; }
+  .vm-slider { margin-left: 102px; }
+  .vm-timeline { padding: 8px 10px 10px; }
+  .vm-time-note { display: none; }
+  .vm-credit { max-width: calc(100% - 70px); }
+}

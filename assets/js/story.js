@@ -68,6 +68,23 @@ export async function storyPage({ embed = false, slug = null } = {}) {
     geo('landmarks').catch(() => empty),
     load('studio/index.json').catch(() => ({ labels: [], towns: [] })),
   ]);
+  // An area may name a file of its own (`src`, under data/) and the features of it
+  // it draws (`where`: property -> value or list of values), so a story can draw a
+  // village map's layers without copying them (the Al-Mansouri map, 2026-11-14).
+  const files = {};
+  await Promise.all(
+    Object.values(story.areas || {}).filter((a) => a.src).map(async (a) => {
+      try {
+        files[a.src] = files[a.src] || load(a.src);
+        const gj = await files[a.src];
+        const keep = (p) => Object.entries(a.where || {}).every(([k, v]) => (Array.isArray(v) ? v.includes(p[k]) : p[k] === v));
+        a.features = gj.features.filter((f) => keep(f.properties || {}));
+      } catch (err) {
+        console.warn(`${a.src} did not load`, err);
+        a.features = [];
+      }
+    })
+  );
   const sets = {};
   await Promise.all(
     KINDS.map(async (k) => {
@@ -157,13 +174,23 @@ export async function storyPage({ embed = false, slug = null } = {}) {
       id: 'st-areas-fill',
       type: 'fill',
       source: 'st-areas',
-      paint: { 'fill-color': ['get', 'color'], 'fill-opacity': 0.32 },
+      filter: ['==', ['geometry-type'], 'Polygon'],
+      paint: { 'fill-color': ['get', 'color'], 'fill-opacity': ['coalesce', ['get', 'fill'], 0.32] },
     });
     layer(m, {
       id: 'st-areas-line',
       type: 'line',
       source: 'st-areas',
-      paint: { 'line-color': ['get', 'color'], 'line-width': 1.8 },
+      filter: ['!=', ['geometry-type'], 'Point'],
+      paint: { 'line-color': ['get', 'color'], 'line-width': ['coalesce', ['get', 'width'], 1.8] },
+    });
+    // a building found on no pre-war map with no outline traced: its place only
+    layer(m, {
+      id: 'st-areas-point',
+      type: 'circle',
+      source: 'st-areas',
+      filter: ['==', ['geometry-type'], 'Point'],
+      paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 13, 2.5, 17, 7], 'circle-color': ['get', 'color'], 'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1 },
     });
   });
   const areaKeys = (step) => ((step.layers || {}).areas || []).filter((k) => story.areas && story.areas[k]);
@@ -261,7 +288,15 @@ export async function storyPage({ embed = false, slug = null } = {}) {
     region.features = step.region ? regionFeatures(step.region) : [];
     if (map.getSource('st-region')) map.getSource('st-region').setData(region);
     areaData.features = areaKeys(step).flatMap((k) =>
-      (story.areas[k].features || []).map((f) => ({ ...f, properties: { ...(f.properties || {}), color: story.areas[k].color || '#c98a00' } }))
+      (story.areas[k].features || []).map((f) => ({
+        ...f,
+        properties: {
+          ...(f.properties || {}),
+          color: story.areas[k].color || '#c98a00',
+          fill: story.areas[k].fill == null ? 0.32 : story.areas[k].fill,
+          width: story.areas[k].width || 1.8,
+        },
+      }))
     );
     if (map.getSource('st-areas')) map.getSource('st-areas').setData(areaData);
 
@@ -342,7 +377,9 @@ export async function storyPage({ embed = false, slug = null } = {}) {
             onclick: () => go(at === story.steps.length - 1 ? 0 : at + 1),
           }),
         ]),
-        explore ? el('a', { class: 'st-explore', href: url(explore), ...away, text: 'Explore this place in the database' }) : null,
+        explore
+          ? el('a', { class: 'st-explore', href: url(explore), ...away, text: step.exploreLabel || story.exploreLabel || 'Explore this place in the database' })
+          : null,
       ])
     );
   }

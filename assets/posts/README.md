@@ -13,6 +13,17 @@ website's own media library.
   (`castle-pair.json`, shown by `embed/pair.html`), and part of Arnoun on
   3 September 2026. A `photos.json` here (file, caption, credit) adds
   photographs to the Beaufort post.
+- `al-mansouri-orchards/`: Al-Mansouri. `parts/`: the OnGeo picture of 8 October
+  2026 (0.3 m) cut into a grid, each part beside the same ground on Esri World
+  Imagery from before the war (Wayback release 13192, Maxar, January to April
+  2023, the capture date of each part in its pair file), plain and with the
+  outlines readers found (`-outlined`): buildings destroyed and damaged, the
+  orchards, fields and trees outlined by hand, roads bulldozed. `index.json`
+  lists the parts for `embed/parts.html`. `sequence/`: the centre of the village
+  on every sharp picture, for `embed/lapse.html?src=`. `references.json`: what
+  was published about the detonations, shown through each platform's own embed
+  or as a link, never copied here. Written by `tools/publish/village_imagery.py`
+  and `tools/publish/build_stories.py` in the collection repository.
 - `litani/`: the Litani investigation, the reel's way: three stretches of the river on
   Sentinel-2 (21 October 2025 and 23 October 2026, Copernicus Browser) with the yellow
   boxes Green Southerners marked (`-marked`), the land-cover classification of the same days

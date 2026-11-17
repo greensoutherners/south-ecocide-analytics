@@ -64,11 +64,16 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
         'timeline that plays them, burned ground, the Village Studio’s damage and the relief ' +
         'in 3D.'),
       page('Investigations', 'investigations/',
-        'Investigations of a place, told step by step on the map: Aitaroun, Beaufort Castle and ' +
-        'the ground around it, and the Litani River.'),
-      page('I.02 Aitaroun', 'investigations/aitaroun.html',
-        'A border town two kilometres from the Blue Line, read building by building on sharp ' +
-        'satellite pictures.'),
+        'Investigations of a place, told step by step on the map: Al-Mansouri, Beaufort Castle and ' +
+        'the ground around it, the Litani River, and Aitaroun.'),
+      // Al-Mansouri stands where Aitaroun stood on this page (the data owner, 2026-11-17);
+      // Aitaroun stays in the investigations' own list.
+      page('I.07 Al-Mansouri', 'investigations/al-mansouri-orchards.html',
+        'A coastal town south of Tyre: its houses and when they went, the detonations reported week ' +
+        'after week, its orchards, fields and roads bulldozed, and its fires, white phosphorus and orders.'),
+      page('I.07 Al-Mansouri, the map', 'investigations/al-mansouri-map.html',
+        'The town on one map, every layer: its sharp pictures of 2026 and before the war, every change ' +
+        'read on them, and the records of the 2026 war counted week by week.'),
       page('I.05 Beaufort Castle', 'investigations/beaufort.html',
         'The ground within 5.5 km of the castle above the Litani: fires, white phosphorus, and ' +
         'the damage mapped in Yohmor and Zawtar El Sharqiyeh.'),

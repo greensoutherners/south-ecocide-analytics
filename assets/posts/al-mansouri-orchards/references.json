@@ -1,0 +1,79 @@
+{
+ "intro": "From late July to early October 2026, photographers, television crews and residents filmed the detonations in Al-Mansouri, mostly from the neighbouring village of Hanniyeh on the ridge to the north-east and from the shore of Tyre across the bay. A selection follows, each shown through its publisher's own page or player and credited to it. Green Southerners copied none of these pictures; what each shows is described in our words.",
+ "note": "These are what others published, cited as reports. The records of the corpus count detonation reports by week; the sharp pictures above say which houses went between which dates. Neither says which detonation brought down which house.",
+ "items": [
+  {
+   "title": "Twenty-five detonations in five hours",
+   "text": "Annahar's photographer Ahmad Mantash counted twenty-five detonations in five hours; the report's photographs and video show columns of grey and white dust rolling across the slope, and houses already flattened below them.",
+   "outlet": "Annahar",
+   "url": "https://www.annahar.com/lebanon/346243/بالصور-والفيديو---بلدة-المنصوري-تمحى-عن-الخريطة-عدسة-النهار-ترصد-25-تفجيرا-في-5-ساعات",
+   "date_words": "11 September 2026"
+  },
+  {
+   "title": "Residents watch drones drop explosives on their village",
+   "text": "Associated Press photographs by Hussein Malla, taken from Hanniyeh: residents filming the smoke over Al-Mansouri, and a drone carrying a box on a long line above a damaged house, which the agency's caption describes as explosives to be dropped on houses for detonation.",
+   "outlet": "Associated Press, via KSAT",
+   "url": "https://www.ksat.com/news/2026/09/11/residents-of-southern-lebanon-gather-to-watch-israeli-drones-drop-explosives-on-their-village/",
+   "date_words": "11 September 2026"
+  },
+  {
+   "title": "A drone releases packages over the slope",
+   "text": "A short video: a drone over the wooded ridge lets go of two packages, then explosions throw white and grey smoke up among the houses.",
+   "outlet": "Al Jazeera English",
+   "url": "https://www.aljazeera.com/video/newsfeed/2026/9/4/04-09-sv-israel-drone-bombs-mansouri-lb-fm",
+   "date_words": "4 September 2026"
+  },
+  {
+   "title": "The first moments after a large detonation",
+   "text": "Al-Araby TV's correspondent Edmond Sassine films the village minutes after a blast: a multi-storey house with collapsed floors, and dust still rising from a building that has just come down.",
+   "outlet": "Al-Araby TV on Telegram",
+   "url": "https://t.me/AlarabyTelevision/407703",
+   "embed": "AlarabyTelevision/407703",
+   "date_words": "9 September 2026"
+  },
+  {
+   "title": "Four detonations at once, filmed across the sea",
+   "text": "Filmed from the shore across the bay: four or more white plumes rise at the same moment from the coastal plain at the foot of the hills.",
+   "outlet": "Al-Araby TV on Telegram",
+   "url": "https://t.me/AlarabyTelevision/409123",
+   "embed": "AlarabyTelevision/409123",
+   "date_words": "13 September 2026"
+  },
+  {
+   "title": "Buildings pulverised",
+   "text": "An AFP photograph by Kawnat Haju: a huge tan cloud of dust rolls across the lower town, with gutted houses at its edge.",
+   "outlet": "L'Orient Today",
+   "url": "https://today.lorientlejour.com/article/1547035/israel-intensifies-attacks-on-mansouri-drone-strikes-injure-3-near-nabatieh.html",
+   "date_words": "9 September 2026"
+  },
+  {
+   "title": "A wall of dust across the slope",
+   "text": "Long-lens footage of many blasts at the same moment, sending a wall of grey and beige dust across a slope of ruined buildings under the wooded ridge. Reports that evening said the blast was heard in Tyre, nine kilometres away.",
+   "outlet": "Al-Araby TV on Telegram",
+   "url": "https://t.me/AlarabyTelevision/414720",
+   "embed": "AlarabyTelevision/414720",
+   "date_words": "28 September 2026"
+  },
+  {
+   "title": "Smoke over the town, seen from Hanniyeh",
+   "text": "A Reuters photograph: a long cloud of dust rolls along the slope after explosions; most of the houses below it are already destroyed.",
+   "outlet": "Asharq Al-Awsat English",
+   "url": "https://english.aawsat.com/node/5323707",
+   "date_words": "28 September 2026"
+  },
+  {
+   "title": "A demolition filmed, then placed on the map by others",
+   "text": "A video by the photographer Courtney Bonneau shows a sequence of detonations on the upper slope of the village. The open-source researcher franfran2424 placed the two houses it shows about 450 m south of the village centre, by matching the slope, the ridge and the gullies.",
+   "outlet": "Courtney Bonneau, and franfran2424's geolocation, on X",
+   "url": "https://x.com/franfran2424/status/2117944940739035641",
+   "date_words": "1 October 2026"
+  },
+  {
+   "title": "The army's own account",
+   "text": "The Israeli army published photographs of its reservists in the village and said they had destroyed more than six hundred sites there that it called terror infrastructure, among them a tunnel shaft under a house. This is the army's statement, reported as it was published.",
+   "outlet": "Maariv",
+   "url": "https://www.maariv.co.il/news/military/article-1371632",
+   "date_words": "28 September 2026"
+  }
+ ]
+}

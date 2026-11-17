@@ -107,3 +107,13 @@ body:has(.st-main) .site-foot { display: none; }
   /* top centre: the foot of a narrow map holds the scale and the credits */
   .st-date { top: 10px; bottom: auto; font-size: 0.72rem; }
 }
+
+/* Al-Mansouri: every part of the picture on a grid of buttons, one pair at a time; and what was
+ * published about the detonations, each beside its source. */
+.st-after .st-parts { margin: 12px 0 10px; max-width: 520px; }
+.st-part-buttons { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 14px; }
+.st-part-buttons .btn { min-width: 52px; justify-content: center; }
+.st-after .st-ref { margin: 10px 0 26px; }
+.st-after .st-ref iframe { background: transparent; }
+.st-after .st-ref figcaption { max-width: 72ch; }
+.st-after .st-ref-note { font-size: 0.82rem; color: var(--ink-3); }

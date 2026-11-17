@@ -64,6 +64,7 @@ const CONTACT = 'https://greensoutherners.org/contact-us';
 /** Towns with a written investigation, so a card can send a reader there. */
 const INVESTIGATIONS = {
   273: { title: 'Aitaroun: a border town before and after', path: 'investigations/aitaroun.html' },
+  96: { title: 'Al-Mansouri: its houses, orchards and fields', path: 'investigations/al-mansouri-orchards.html' },
   183: { title: 'Beaufort castle and the ground around it', path: 'investigations/beaufort.html' },
   215: { title: 'Beaufort castle and the ground around it', path: 'investigations/beaufort.html' },
   217: { title: 'Beaufort castle and the ground around it', path: 'investigations/beaufort.html' },
