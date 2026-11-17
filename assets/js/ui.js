@@ -169,6 +169,7 @@ export function footer(metaPayload) {
             'Documentation of the environmental and civilian harm of the war in ' +
             'South Lebanon. <a href="https://greensoutherners.org" rel="noopener">greensoutherners.org</a>',
         }),
+        el('p', { text: 'Research, data and analysis: the Green Southerners team.' }),
         el('p', { class: 'stamp', text: `Data last refreshed ${stamp}` }),
       ]),
       el('div', {}, [
