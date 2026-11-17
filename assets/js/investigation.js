@@ -71,6 +71,7 @@ import { typeRamp } from './theme.js';
 import { swipe } from './compare.js';
 import { timelapse } from './timelapse.js';
 import { monthsBetween } from './scrubber.js';
+import { shareCard, withParams } from './share.js';
 import { countLabel, el, kindNoun } from './ui.js';
 
 const SLUGS = {
@@ -510,6 +511,43 @@ class Stage {
   }
 }
 
+/* ------------------------------------------------------------------ share */
+
+/**
+ * The two share buttons for each investigation on the index.
+ *
+ * A link opens the investigation's own page. An embed shows the investigation
+ * alone with the Green Southerners credit: a story in its own widget
+ * (`embed/story.html?story=<page name>`), or a town's map (a `*-map.html` page)
+ * without the site's header (`?embed=1`), as each of those pages shares itself.
+ *
+ * Each card is one link from edge to edge, and a button inside a link is not a
+ * button, so the bar sits after the link in its list item: in a head row of the
+ * item's own, pulled up into the card's foot and only as wide as the buttons, so
+ * the rest of the card is still the link.
+ */
+function shareIndex(root) {
+  const cards = root.querySelectorAll('.inv-list > li > a.inv-item');
+  if (!cards.length) return;
+  // A card shown alone (only=<id>) gets share.js's credit line after it, inside
+  // `.inv`, whose paragraph rule would set the line's size: keep the credit's own.
+  if (document.documentElement.classList.contains('gs-only')) {
+    document.head.append(el('style', { text: '.inv .gs-only-credit { margin: 8px 0 0; font-size: 12px; line-height: 1.5; }' }));
+  }
+  for (const card of cards) {
+    const item = card.parentElement;
+    const name = new URL(card.href).pathname.split('/').pop().replace(/\.html$/, '');
+    if (!name) continue;
+    const title = (card.querySelector('h2')?.textContent || '').trim() || document.title;
+    const embed = /-map$/.test(name)
+      ? { src: withParams(card.href, { embed: '1' }), height: 900 }
+      : { src: withParams('embed/story.html', { story: name }), height: 880 };
+    item.append(el('div', { class: 'card-head', style: 'width:fit-content;margin:-18px 0 12px auto' }));
+    const bar = shareCard(item, name, () => ({ title, link: card.href, embed }));
+    if (bar) bar.setAttribute('aria-label', `Share ${title}`);
+  }
+}
+
 /* ------------------------------------------------------------------ page */
 
 /**
@@ -522,6 +560,10 @@ class Stage {
 export async function investigationPage() {
   const root = document.getElementById('investigation');
   if (!root) return;
+
+  // The index: each investigation's card shares that investigation, before any
+  // data loads, since the buttons need none.
+  shareIndex(root);
 
   const codes = new Set();
   const towns = new Set();

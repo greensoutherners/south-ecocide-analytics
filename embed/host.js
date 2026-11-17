@@ -21,6 +21,9 @@
 
   var ORIGIN = 'https://greensoutherners.github.io';
   var SELECTOR = 'iframe[src*="south-ecocide-analytics/embed/"]';
+  // A component of a page shared on its own (only=<id>) reports its height too;
+  // a frame that reports nothing (the database, a story) keeps the height it was given.
+  var SIZED = 'iframe[src*="south-ecocide-analytics/"]';
 
   function frames() {
     return Array.prototype.slice.call(document.querySelectorAll(SELECTOR));
@@ -35,7 +38,7 @@
     if (!data || data.type !== 'gsa:height' || typeof data.height !== 'number') return;
 
     var height = Math.max(120, Math.min(4000, Math.round(data.height)));
-    frames().forEach(function (frame) {
+    Array.prototype.slice.call(document.querySelectorAll(SIZED)).forEach(function (frame) {
       if (frame.contentWindow === event.source) {
         frame.style.height = height + 'px';
         frame.setAttribute('height', String(height));

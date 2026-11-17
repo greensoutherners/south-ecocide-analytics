@@ -39,17 +39,20 @@ export const SOUTH = [
 
 const BASEMAPS = {
   none: null,
+  // Esri's grey canvases: CARTO's tiles now answer with an "API key required" mark.
   light: {
-    url: 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      'Tiles &copy; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors and the GIS user community',
     maxZoom: 19,
+    maxNativeZoom: 16,
   },
   dark: {
-    url: 'https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
     attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      'Tiles &copy; Esri, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors and the GIS user community',
     maxZoom: 19,
+    maxNativeZoom: 16,
   },
   satellite: {
     url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
@@ -144,7 +147,13 @@ export function lebanonMap(el, { basemap = 'none', bounds = LEBANON, zoomSnap = 
     const spec = BASEMAPS[name === 'auto' ? (isDarkNow() ? 'dark' : 'light') : name];
     if (spec) {
       tiles = L()
-        .tileLayer(spec.url, { attribution: spec.attribution, maxZoom: spec.maxZoom, detectRetina: true })
+        .tileLayer(spec.url, {
+          attribution: spec.attribution,
+          maxZoom: spec.maxZoom,
+          maxNativeZoom: spec.maxNativeZoom || spec.maxZoom,
+          // The canvases stop at zoom 16; doubling them for a sharp screen would ask for 17.
+          detectRetina: !spec.maxNativeZoom,
+        })
         .addTo(map);
       tiles.bringToBack();
     }

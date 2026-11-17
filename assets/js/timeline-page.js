@@ -27,6 +27,7 @@ import {
   table,
   url,
 } from './ui.js';
+import { shareCard, withParams } from './share.js';
 
 export async function timelinePage() {
   const mount = document.getElementById('page');
@@ -37,13 +38,19 @@ export async function timelinePage() {
     await chrome('timeline', Promise.resolve(metaPayload));
     const types = summaryPayload.types.filter((t) => t.total > 0 && !t.frozen);
     const sets = await Promise.all(types.map((t) => dataset(t.slug)));
-    render(mount, { types, sets, warStart: summaryPayload.published_from || summaryPayload.war_start });
+    render(mount, {
+      types,
+      sets,
+      warStart: summaryPayload.published_from || summaryPayload.war_start,
+      // The data's date, for the credit line under a shared component.
+      dataDate: String((metaPayload && metaPayload.generated_at) || '').slice(0, 10),
+    });
   } catch (err) {
     fill(mount, failure(err));
   }
 }
 
-function render(mount, { types, sets, warStart }) {
+function render(mount, { types, sets, warStart, dataDate }) {
   const query = params();
 
   const months = monthRange(
@@ -73,6 +80,48 @@ function render(mount, { types, sets, warStart }) {
   const pickerHost = el('div', { class: 'card', style: 'margin-bottom:16px' });
   let scrub = null;
 
+  const lanesCard = card({
+    title: 'All types, month by month',
+    note:
+      'Click a month in any lane to read it out below. Each lane is scaled to its own ' +
+      'peak, which is why a quiet type is still legible, and why two lanes of the same ' +
+      'height do not mean the same number.',
+    body: [lanesEl],
+  });
+  // The lanes travel as their own widget, which draws the same chart. 430 px is
+  // the widget's own height at any frame width down to a phone's.
+  shareCard(lanesCard, 'lanes', () => ({
+    title: 'Every kind of record in the 2026 war, by month',
+    date: dataDate,
+    embed: { src: 'embed/lanes.html', height: 430 },
+  }));
+
+  /* The month is shared whole: the scrubber and the month it reads out. The
+   * panel is refilled on every move of the cursor, so the buttons sit in a head
+   * row of the section, which is built once, and the link and the embed carry
+   * the month on show. */
+  const monthSection = el('div', { class: 'section' }, [
+    el('div', { class: 'card-head', style: 'margin-bottom:14px' }, [
+      el('h2', { style: 'margin:0', text: 'One month, read across' }),
+    ]),
+    pickerHost,
+    monthPanel,
+  ]);
+  shareCard(monthSection, 'month', () => {
+    const here = new URL(location.href);
+    here.hash = '';
+    const page = withParams(here.href, { month: state.month, only: null, embed: null });
+    return {
+      title: `Records of each type in ${monthLabel(state.month)}, by town`,
+      date: dataDate,
+      link: `${page}#share-month`,
+      embed: {
+        src: withParams(page, { only: 'month' }),
+        height: Math.max(240, frameHeight(monthSection) + 64),
+      },
+    };
+  });
+
   mount.replaceChildren(
     el('div', {}, [
       el('h1', { text: 'Timeline' }),
@@ -85,24 +134,11 @@ function render(mount, { types, sets, warStart }) {
           '. Each lane carries its own scale; the counts are never added together.',
       }),
     ]),
-    el('div', { class: 'section' }, [
-      card({
-        title: 'All types, month by month',
-        note:
-          'Click a month in any lane to read it out below. Each lane is scaled to its own ' +
-          'peak, which is why a quiet type is still legible, and why two lanes of the same ' +
-          'height do not mean the same number.',
-        body: [lanesEl],
-      }),
-    ]),
-    el('div', { class: 'section' }, [
-      el('h2', { text: 'One month, read across' }),
-      pickerHost,
-      monthPanel,
-    ]),
+    el('div', { class: 'section' }, [lanesCard]),
+    monthSection,
     el('div', { class: 'section' }, [
       el('h2', { text: 'Each type on its own' }),
-      el('div', { class: 'grid cols-2' }, series.map(perType)),
+      el('div', { class: 'grid cols-2' }, series.map((s) => perType(s, dataDate))),
     ]),
     el('div', { class: 'section' }, [
       noteList([
@@ -129,6 +165,7 @@ function render(mount, { types, sets, warStart }) {
    * like as they happened: which types start when, and which months carry the
    * weight. */
   function drawPicker() {
+    const wanted = state.month;
     scrub = scrubber(
       pickerHost,
       months,
@@ -138,6 +175,9 @@ function render(mount, { types, sets, warStart }) {
       },
       { label: 'records' }
     );
+    // The scrubber opens on the last month. A month named in the address (a
+    // shared link, a reload) is then gone to with the scrubber's own goTo.
+    if (scrub && wanted !== state.month) scrub.goTo(wanted);
   }
 
   function drawMonth() {
@@ -211,18 +251,59 @@ function render(mount, { types, sets, warStart }) {
 
 /* ------------------------------------------------------------------ pieces */
 
-function perType(s) {
+function perType(s, date) {
   const chartEl = el('div', { class: 'chart short' });
+  // The head's second line: the Open link, and the share buttons beside it
+  // (never inside it). A line of its own, so every card of the grid keeps its
+  // chart at the same height whatever the length of its title.
+  const actions = el(
+    'span',
+    {
+      style:
+        'display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;' +
+        'gap:6px 10px;flex:1 0 100%',
+    },
+    [el('a', { href: url(`pages/${s.slug}.html`), style: 'font-size:.82rem', text: 'Open →' })]
+  );
   const node = card({
     title: s.label,
-    note: `${fmt(s.total)} records in all. Drag under the bars to zoom this lane alone.`,
+    note: `${fmt(s.total)} records in all. Point at a bar to read its month and count.`,
     body: [chartEl],
-    aside: el('a', { href: url(`pages/${s.slug}.html`), style: 'font-size:.82rem', text: 'Open →' }),
+    aside: actions,
   });
+  // The second line sits close under the title.
+  node.querySelector(':scope > .card-head').style.rowGap = '0';
+  // Each type travels as the chart widget, which draws the same bars. 370 px is
+  // the widget's own height at any frame width down to a phone's.
+  actions.append(
+    shareCard(node, `type-${s.slug}`, () => ({
+      title: `${s.label} in the 2026 war, by month`,
+      date,
+      embed: { src: `embed/chart.html?type=${s.slug}&chart=timeline&h=210`, height: 370 },
+    }))
+  );
   requestAnimationFrame(() => {
     timeline(chartEl).update(s.ds.series(s.ds.all, { grain: 'month' }), { grain: 'month' });
   });
   return node;
+}
+
+/**
+ * How tall a frame must be to show a component of this page alone. It is
+ * measured as the column of an article lays it out (a frame 640 px wide, less
+ * the page's side padding: the month's cards two to a row), not as this page
+ * does, so the cards do not end inside a scroll box; a wider frame keeps some
+ * white space under them.
+ */
+function frameHeight(node, width = 588) {
+  const copy = node.cloneNode(true);
+  copy.removeAttribute('id');
+  copy.removeAttribute('data-share-id');
+  copy.style.cssText = `position:absolute;left:-10000px;top:0;margin:0;width:${width}px;visibility:hidden`;
+  document.body.append(copy);
+  const height = Math.ceil(copy.getBoundingClientRect().height);
+  copy.remove();
+  return height;
 }
 
 function isoDay(ds, iso) {

@@ -15,7 +15,7 @@
  * across kinds.
  */
 
-import { dataset, fmt, geo, isoToDay, meta, summary } from './data.js';
+import { dataset, dateLabel, fmt, geo, isoToDay, meta, summary } from './data.js';
 import {
   adminLayer,
   autoScale,
@@ -30,6 +30,7 @@ import {
   villageLayer,
   zoneLayer,
 } from './maps.js';
+import { shareCard } from './share.js';
 import { palette, typeColor, typeRamp } from './theme.js';
 import {
   chrome,
@@ -56,13 +57,13 @@ export async function explorerPage() {
     await chrome('map', Promise.resolve(metaPayload));
     const types = summaryPayload.types.filter((t) => t.total > 0);
     const sets = await Promise.all(types.map((t) => dataset(t.slug)));
-    render(mount, { types, sets });
+    render(mount, { types, sets, dataDate: (metaPayload.generated_at || '').slice(0, 10) });
   } catch (err) {
     fill(mount, failure(err));
   }
 }
 
-function render(mount, { types, sets }) {
+function render(mount, { types, sets, dataDate }) {
   const query = params();
   const p = palette();
 
@@ -78,8 +79,19 @@ function render(mount, { types, sets }) {
   const mapEl = el('div', { class: 'map tall' });
   const typeChips = el('div', { class: 'chips' });
   const groundChips = el('div', { class: 'chips' });
-  const statRow = el('div', { class: 'grid cols-4', style: 'margin:16px 0' });
+  const statRow = el('div', { class: 'grid cols-4' });
   const controls = el('div', { class: 'controls' });
+
+  /* The figures and the map are each shared on their own. draw() refills the
+   * stat row, so the figures travel as a section made once round it; each
+   * head holds a title, which draw() sets, and the share buttons. */
+  const figuresTitle = el('h3');
+  const figures = el('section', { style: 'margin:16px 0' }, [
+    el('div', { class: 'card-head' }, [figuresTitle]),
+    statRow,
+  ]);
+  const mapTitle = el('h3');
+  const mapCard = el('div', { class: 'card' }, [el('div', { class: 'card-head' }, [mapTitle]), mapEl]);
 
   mount.replaceChildren(
     el('div', {}, [
@@ -106,8 +118,8 @@ function render(mount, { types, sets }) {
       groundChips,
       controls,
     ]),
-    statRow,
-    el('div', { class: 'card' }, [mapEl]),
+    figures,
+    mapCard,
     el('div', { class: 'section' }, [
       noteList([
         'A circle is a town, not an event. It sits at the town’s own point and counts the ' +
@@ -435,6 +447,7 @@ function render(mount, { types, sets }) {
 
     autoScale(map, scaled);
     fill(statRow, ...tiles.slice(0, 4));
+    drawTitles();
     drawShaded(shaded);
     drawLegend();
   }
@@ -569,6 +582,51 @@ function render(mount, { types, sets }) {
         });
     }
   }
+
+  /* ------------------------------------------------------------- sharing */
+
+  /** The period counted, as a title says it. */
+  function period() {
+    if (state.from && state.to) return `from ${dateLabel(state.from)} to ${dateLabel(state.to)}`;
+    if (state.from) return `from ${dateLabel(state.from)}`;
+    if (state.to) return `up to ${dateLabel(state.to)}`;
+    return 'in the 2026 war';
+  }
+
+  /* The heads name the kinds switched on and the period, so the figures or the
+   * map shared alone say what they count. */
+  function drawTitles() {
+    const on = types.filter((t) => state.types.includes(t.code));
+    const when = period();
+    if (on.length === 1) {
+      figuresTitle.textContent = `${on[0].label} ${when}`;
+      mapTitle.textContent = `${on[0].label} ${when}, by town`;
+      return;
+    }
+    const some = on.length && on.length < types.length ? `: ${on.map((t) => t.label).join(', ')}` : '';
+    figuresTitle.textContent = `Records ${when}, by kind`;
+    mapTitle.textContent = `Records ${when}, by town${some}`;
+  }
+
+  shareCard(figures, 'figures', () => {
+    // Embedded in a column narrower than this page, the tiles wrap two or three
+    // to a row and their text runs a line longer: the frame is made tall enough
+    // for two such rows.
+    const tall = (node) => node.getBoundingClientRect().height;
+    const tiles = [...statRow.children].map(tall);
+    const rows = tiles.length > 2 ? 2 : 1;
+    const wrapped = tall(figures) - tall(statRow) + rows * 1.1 * Math.max(0, ...tiles) + (rows - 1) * 16;
+    const height = Math.ceil(Math.max(tall(figures), wrapped)) + 64;
+    return { title: figuresTitle.textContent, height, date: dataDate };
+  });
+
+  shareCard(mapCard, 'map', () => ({
+    title: mapTitle.textContent,
+    // The map is 640 px tall on a wide page and shorter on a phone: the frame
+    // keeps the wide map's height wherever the share was asked from.
+    height: Math.max(Math.ceil(mapCard.getBoundingClientRect().height) + 64, 780),
+    date: dataDate,
+  }));
 
   drawTypeChips();
   drawGroundChips();

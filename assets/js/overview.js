@@ -29,6 +29,7 @@ import {
   table,
   url,
 } from './ui.js';
+import { shareCard } from './share.js';
 
 export async function overviewPage() {
   const mount = document.getElementById('page');
@@ -47,9 +48,11 @@ export async function overviewPage() {
   }
 }
 
-function render(mount, { summary: payload, villages: villagePayload }) {
+function render(mount, { meta: metaPayload, summary: payload, villages: villagePayload }) {
   const types = payload.types.filter((t) => t.total > 0);
   const live = types.filter((t) => !t.frozen);
+  // The data's date, for the credit line under a shared component.
+  const dataDate = (metaPayload && metaPayload.generated_at ? metaPayload.generated_at : '').slice(0, 10);
 
   /* The two figures that may legitimately cross types. A town is a town
    * whichever record names it, and the window is the window. */
@@ -72,7 +75,7 @@ function render(mount, { summary: payload, villages: villagePayload }) {
     }),
   ]);
 
-  const topStats = el('div', { class: 'grid cols-3', style: 'margin:20px 0 10px' }, [
+  const topStats = el('div', { class: 'grid cols-3' }, [
     stat({
       label: 'Towns and villages with a record',
       value: fmt(towns),
@@ -89,6 +92,9 @@ function render(mount, { summary: payload, villages: villagePayload }) {
       sub: 'each with its own window, its own sources and its own bar for a record',
     }),
   ]);
+  // The tiles sit in a holder of their own, whose head row takes the share
+  // buttons: a head row inside the grid would take one of its cells.
+  const figuresSection = el('div', { style: 'margin:20px 0 10px' }, [topStats]);
 
   const grid = el('div', { class: 'grid cols-3', style: 'margin-top:4px' });
   for (const type of types) grid.append(typeCard(type));
@@ -96,39 +102,62 @@ function render(mount, { summary: payload, villages: villagePayload }) {
   const lanesEl = el('div', { class: 'chart' });
   const measuresEl = el('div', { class: 'grid cols-3' });
 
+  /* Each section is made once and never replaced, so its share buttons stay put;
+   * they sit in its head row beside the heading, never inside a type card, which
+   * is a link. */
+  const kindsSection = el('div', { class: 'section' }, [
+    sectionHead('Each kind of record'),
+    grid,
+  ]);
+  const lanesSection = el('div', { class: 'section' }, [
+    sectionHead('Side by side, never stacked'),
+    card({
+      note:
+        'One lane per type, sharing a time axis. Each lane has its own scale, so a type ' +
+        'with three records a month is as legible as one with forty, and nothing about ' +
+        'the drawing invites adding them. Hover to read a month across every lane.',
+      body: [lanesEl],
+    }),
+  ]);
+  const measuresSection = el('div', { class: 'section' }, [
+    sectionHead('The measures that do add up'),
+    el('p', {
+      class: 'lede',
+      style: 'margin-bottom:14px',
+      text:
+        'Hectares of ground add up; counts of records do not become counts of events. ' +
+        'These are the only columns the corpus declares additive, each with the share ' +
+        'of its records that carry a figure at all.',
+    }),
+    measuresEl,
+  ]);
+  const tableSection = el('div', { class: 'section' }, [
+    sectionHead('The corpus at a glance'),
+    card({ body: [summaryTable(types)] }),
+  ]);
+
+  /* Share as link opens this page at the component; share as embed shows the
+   * component alone (only=<id>) with the Green Southerners credit under it. The
+   * lanes have a widget of their own, which their embed shows instead. */
+  const share = (node, id, title) =>
+    shareCard(node, id, () => ({ title, height: frameHeight(node), date: dataDate }));
+  share(figuresSection, 'figures', 'The South Lebanon corpus: towns, period and kinds of record');
+  share(kindsSection, 'kinds', 'Each kind of record in the South Lebanon corpus');
+  shareCard(lanesSection, 'lanes', () => ({
+    title: 'Every kind of record in the South Lebanon corpus, month by month',
+    embed: { src: 'embed/lanes.html', height: 430 },
+    date: dataDate,
+  }));
+  share(measuresSection, 'measures', 'The South Lebanon corpus: the measures that add up');
+  share(tableSection, 'table', 'The South Lebanon corpus at a glance');
+
   mount.replaceChildren(
     head,
-    topStats,
-    el('div', { class: 'section' }, [
-      el('h2', { text: 'Each kind of record' }),
-      grid,
-    ]),
-    el('div', { class: 'section' }, [
-      el('h2', { text: 'Side by side, never stacked' }),
-      card({
-        note:
-          'One lane per type, sharing a time axis. Each lane has its own scale, so a type ' +
-          'with three records a month is as legible as one with forty, and nothing about ' +
-          'the drawing invites adding them. Hover to read a month across every lane.',
-        body: [lanesEl],
-      }),
-    ]),
-    el('div', { class: 'section' }, [
-      el('h2', { text: 'The measures that do add up' }),
-      el('p', {
-        class: 'lede',
-        style: 'margin-bottom:14px',
-        text:
-          'Hectares of ground add up; counts of records do not become counts of events. ' +
-          'These are the only columns the corpus declares additive, each with the share ' +
-          'of its records that carry a figure at all.',
-      }),
-      measuresEl,
-    ]),
-    el('div', { class: 'section' }, [
-      el('h2', { text: 'The corpus at a glance' }),
-      card({ body: [summaryTable(types)] }),
-    ]),
+    figuresSection,
+    kindsSection,
+    lanesSection,
+    measuresSection,
+    tableSection,
     el('div', { class: 'section' }, [
       noteList([
         'No figure on this site is added across incident types. The corpus does not ' +
@@ -192,6 +221,41 @@ function render(mount, { summary: payload, villages: villagePayload }) {
 }
 
 /* ------------------------------------------------------------------ pieces */
+
+/**
+ * A section's heading in a head row, so the share buttons sit at its right. The
+ * row keeps the 14px under the heading that `.section > h2` gives it.
+ */
+function sectionHead(text) {
+  return el('div', { class: 'card-head', style: 'margin-bottom:14px' }, [
+    el('h2', { text, style: 'margin:0' }),
+  ]);
+}
+
+/**
+ * The height of a frame that shows this component alone. A frame keeps the
+ * height its embed code gives it, while the grids here wrap into more rows as
+ * they narrow, so this is the most the component takes on this screen or in a
+ * column 600, 760 or 1000px wide (as an article's usually is), with room for
+ * the credit line under it.
+ */
+function frameHeight(node) {
+  let tallest = node.getBoundingClientRect().height;
+  // Each width is the frame's less the page's side padding (`--pad`).
+  for (const width of [552, 704, 944]) {
+    const ghost = node.cloneNode(true);
+    ghost.removeAttribute('id');
+    ghost.removeAttribute('data-share-id');
+    ghost.setAttribute('aria-hidden', 'true');
+    // The frame does not show the share buttons.
+    for (const bar of ghost.querySelectorAll('.gs-share')) bar.remove();
+    ghost.style.cssText += `;position:absolute;left:-10000px;top:0;width:${width}px;visibility:hidden`;
+    document.body.append(ghost);
+    tallest = Math.max(tallest, ghost.getBoundingClientRect().height);
+    ghost.remove();
+  }
+  return Math.ceil(tallest) + 64;
+}
 
 function typeCard(type) {
   const node = el('a', { class: 'type-card', href: url(`pages/${type.slug}.html`) }, [

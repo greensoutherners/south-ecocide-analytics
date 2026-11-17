@@ -59,10 +59,69 @@ import {
   stat,
   url,
 } from './ui.js';
+import { shareCard } from './share.js';
 
 /* Columns that place a record rather than describe it: the choropleths' join
  * keys. A village page is already one place, so they are not broken down. */
 const PLACE_DIMS = new Set(['municipality', 'adm2']);
+
+/* The component an embed shows alone (`only=<id>`), if any. */
+const ALONE = new URLSearchParams(location.search).get('only') || '';
+
+/* A card head's right-hand group: what the head already held there, then the
+ * share bar, kept together when the head wraps. */
+const ASIDE =
+  'display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:6px 12px;margin-inline-start:auto';
+
+/**
+ * The two share buttons on one component of this page. Its title names the
+ * town. Shown alone in an embed, a component has no page heading above it, so
+ * its own heading becomes that title as well. `more()` adds what share.js
+ * takes besides the title (a height, or the widget to embed); `opts` go to
+ * the bar (`compact` in a crowded head).
+ */
+function shareOn(node, id, title, more = () => ({}), opts = {}) {
+  const bar = shareCard(node, id, () => ({ title, ...more() }), opts);
+  if (ALONE === id) {
+    const head = node.querySelector(':scope > .card-head');
+    const heading = head && head.querySelector(':scope > h3');
+    if (heading) heading.textContent = title;
+    else if (head) head.prepend(el('h3', { text: title }));
+  }
+  return bar;
+}
+
+/**
+ * The frame height an embed of a component needs in an article's column
+ * (about 720 px wide): measured on the component laid out at that width,
+ * since its tiles and breakdowns reflow, and a card in a grid row is
+ * stretched to its neighbour's height, so the page's own layout is no guide.
+ * A node already on the page is measured as a copy, without the inside of a
+ * chart or a map (their boxes keep the height the stylesheet gives them).
+ * 80 px more holds the page's paddings and the credit line under it.
+ */
+function frameHeight(node, width = 720) {
+  const pad = Math.min(28, Math.max(16, 0.04 * width)); // the page's side padding, --pad
+  let probe = node;
+  if (node.isConnected) {
+    probe = node.cloneNode(false);
+    for (const child of node.children) probe.append(child.cloneNode(!child.matches('.chart, .leaflet-container')));
+  }
+  probe.removeAttribute('id');
+  probe.removeAttribute('data-share-id');
+  Object.assign(probe.style, {
+    position: 'absolute',
+    left: '-10000px',
+    top: '0',
+    margin: '0',
+    visibility: 'hidden',
+    width: `${width - 2 * pad}px`,
+  });
+  document.body.append(probe);
+  const tall = probe.getBoundingClientRect().height;
+  probe.remove();
+  return Math.ceil(tall) + 80;
+}
 
 export async function villagePage() {
   const mount = document.getElementById('page');
@@ -197,33 +256,38 @@ function render(mount, { town, types, sets, towns, highRes }) {
   const kindsHost = el('div', { class: 'grid cols-2' });
   const lapseHost = el('section', { class: 'card' });
 
-  const tileRow = el('div', { class: 'grid cols-4', style: 'margin:18px 0' }, tiles);
+  const tileRow = el('div', { class: 'grid cols-4' }, tiles);
+  /* The scrubber refills the tiles on every move, so their share bar sits in a
+   * head of this wrapper, made once. */
+  const figures = el('section', { style: 'margin:18px 0' }, [
+    el('div', { class: 'card-head', style: 'margin-bottom:8px' }),
+    tileRow,
+  ]);
+
+  const compareCard = card({
+    title: 'The ground, before and after',
+    note: '',
+    body: [compareEl, compareBar, compareNote],
+  });
+  const lanesCard = card({
+    title: 'What is recorded here, month by month',
+    note:
+      'One lane per kind of record, each on its own scale. Counted apart, never added.',
+    body: [lanesEl],
+  });
+  const mapCard = card({
+    title: 'This town and the towns round it',
+    note: '',
+    body: [mapEl, mapNote],
+  });
 
   mount.replaceChildren(
     head,
     scrubHost,
-    tileRow,
-    el('div', { class: 'section' }, [
-      card({
-        title: 'The ground, before and after',
-        note: '',
-        body: [compareEl, compareBar, compareNote],
-      }),
-    ]),
+    figures,
+    el('div', { class: 'section' }, [compareCard]),
     el('div', { class: 'section' }, [lapseHost]),
-    el('div', { class: 'section grid cols-2' }, [
-      card({
-        title: 'What is recorded here, month by month',
-        note:
-          'One lane per kind of record, each on its own scale. Counted apart, never added.',
-        body: [lanesEl],
-      }),
-      card({
-        title: 'This town and the towns round it',
-        note: '',
-        body: [mapEl, mapNote],
-      }),
-    ]),
+    el('div', { class: 'section grid cols-2' }, [lanesCard, mapCard]),
     el('div', { class: 'section' }, [
       el('h2', { text: 'Each kind of record' }),
       kindsHost,
@@ -258,6 +322,24 @@ function render(mount, { town, types, sets, towns, highRes }) {
       contactNote(),
     ])
   );
+
+  /* ------------------------------------------------------------- share */
+
+  /* Each component carries its own two buttons. The swipe and the time-lapse
+   * embed their own widgets; the rest embed this page showing them alone. The
+   * kinds' cards are rebuilt by the scrubber, so kindCard makes their bars. */
+  shareOn(figures, 'figures', `${town.name}: records of each kind`, () => ({ height: frameHeight(figures) }));
+  if (highRes && highRes.compare) {
+    shareOn(compareCard, 'before-after', `${town.name}: before and after`, () => ({
+      embed: { src: `embed/compare.html?v=${town.id}`, height: 1080 },
+    }));
+  }
+  shareOn(lanesCard, 'lanes', `${town.name}: records of each kind, month by month`, () => ({
+    height: frameHeight(lanesCard),
+  }));
+  shareOn(mapCard, 'map', `${town.name} and the towns round it: records per town`, () => ({
+    height: frameHeight(mapCard),
+  }));
 
   /* ------------------------------------------------------------- lanes */
 
@@ -432,9 +514,10 @@ function render(mount, { town, types, sets, towns, highRes }) {
 /**
  * One kind of record at this town: how many, over which months, how much of
  * its measure, and how its records split by every documented column. All of
- * it counts; none of it is a record.
+ * it counts; none of it is a record. `shared` false leaves the share bar off
+ * (the copy an embed's height is measured on).
  */
-function kindCard(s, ds, sel, town) {
+function kindCard(s, ds, sel, town, shared = true) {
   const n = ds.size(sel);
   const months = ds.series(sel, { grain: 'month' }).filter((b) => b.n > 0);
   const span = months.length
@@ -472,18 +555,43 @@ function kindCard(s, ds, sel, town) {
     })
     .filter(Boolean);
 
-  return card({
-    title: s.label,
-    aside: el('a', {
+  const aside = el('div', { style: ASIDE }, [
+    el('a', {
       href: url(`pages/${s.slug}.html`),
       style: 'font-size:.82rem',
       text: 'Open the type →',
+      // In an embed, the type's page opens on its own rather than inside the frame.
+      target: ALONE ? '_blank' : null,
+      rel: ALONE ? 'noopener' : null,
     }),
+  ]);
+  const node = card({
+    title: s.label,
+    aside,
     body: [...lines, n ? el('div', { class: 'kind-dims' }, breakdowns) : null],
     note: n
       ? 'Counts by documented column, over the period chosen. Each split adds up to the count above.'
       : '',
   });
+
+  /* The bar is made with the card, so each rebuild by the scrubber carries it;
+   * compact, as it shares a narrow head with the title and the link. An embed
+   * shows the card over the whole period, as the page opens, so its frame is
+   * measured on that card. */
+  if (shared) {
+    aside.append(
+      shareOn(
+        node,
+        `kind-${s.slug}`,
+        `${town.name}: ${kindNoun(s.code, 2)}`,
+        () => ({
+          height: frameHeight(kindCard(s, ds, ds.select({ filters: townFilter(ds, town) }), town, false)),
+        }),
+        { compact: true }
+      )
+    );
+  }
+  return node;
 }
 
 /** A short ranked list with a bar under each value, for a card's breakdowns. */
@@ -632,16 +740,22 @@ async function buildTimelapse({ town, host }) {
   }
 
   const player = el('div');
+  const aside = el('div', { style: ASIDE }, [
+    el('span', {
+      style: 'font-size:.78rem;color:var(--ink-3)',
+      text: `${entry.frames} passes, ${dateLabel(entry.first)} to ${dateLabel(entry.last)}`,
+    }),
+  ]);
   fill(
     host,
-    el('div', { class: 'card-head' }, [
-      el('h3', { text: 'The same town, every clear pass' }),
-      el('span', {
-        style: 'font-size:.78rem;color:var(--ink-3)',
-        text: `${entry.frames} passes, ${dateLabel(entry.first)} to ${dateLabel(entry.last)}`,
-      }),
-    ]),
+    el('div', { class: 'card-head' }, [el('h3', { text: 'The same town, every clear pass' }), aside]),
     player
+  );
+  // Made once the sequence is known to exist: a town without one has no card.
+  aside.append(
+    shareOn(host, 'time-lapse', `${town.name}: every clear satellite pass`, () => ({
+      embed: { src: `embed/lapse.html?v=${town.id}`, height: 1080 },
+    }))
   );
   timelapse(player, manifest, { base, speed: 1000 });
 }

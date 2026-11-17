@@ -189,7 +189,7 @@ export function pageComponent(node, id, { title, height, date } = {}) {
   page.searchParams.delete('only');
   page.searchParams.delete('embed');
   page.hash = '';
-  const link = `${page.href}#share-${id}`;
+  const link = `${withParams(page.href, {})}#share-${id}`;
   const alone = withParams(page.href, { only: id });
   const tall = Math.ceil((node && node.getBoundingClientRect().height) || 0) + 64;
   return { title: title || document.title, link, embed: { src: alone, height: height || Math.max(240, tall) }, date };
@@ -385,6 +385,21 @@ export function onlyMode() {
   const start = () => {
     apply();
     watch.observe(document.body, { childList: true, subtree: true });
+    // In a frame, say how tall the component is, as the widgets do: a host page
+    // running embed/host.js then sizes the frame to it at any width.
+    if (FRAMED) {
+      const send = () => {
+        try {
+          const height = Math.ceil(document.documentElement.getBoundingClientRect().height);
+          parent.postMessage({ type: 'gsa:height', height, id: location.href }, '*');
+        } catch {
+          /* a host that does not listen: the fixed height stands */
+        }
+      };
+      new ResizeObserver(send).observe(document.documentElement);
+      addEventListener('load', send);
+      setTimeout(send, 1500);
+    }
   };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
   else start();
@@ -476,8 +491,8 @@ html.gs-only body { background: var(--surface-1, #fff); }
 html.gs-only .gs-only-keep { margin-top: 0 !important; margin-bottom: 0 !important; }
 html.gs-only .gs-only-keep[data-share-id], html.gs-only .grid > .gs-only-keep { grid-column: 1 / -1 !important; max-width: none !important; }
 html.gs-only main, html.gs-only .wrap { padding-top: 6px !important; padding-bottom: 6px !important; max-width: none !important; }
-.gs-only-credit { margin: 8px 0 0; font: 12px/1.5 Inter, system-ui, sans-serif; color: var(--ink-3, #828282); }
-.gs-only-credit a { color: inherit; }
+html.gs-only .gs-only-credit { margin: 8px 0 0; font: 12px/1.5 Inter, system-ui, sans-serif; color: var(--ink-3, #828282); }
+html.gs-only .gs-only-credit a { color: inherit; font-size: inherit; }
 @media print { .gs-share { display: none; } }
 `;
   document.head.append(style);

@@ -6,6 +6,7 @@
  */
 
 import { dateLabel, fmt, meta, summary } from './data.js';
+import { shareCard } from './share.js';
 import { chrome, contactNote, el, failure, fill, loading, table, url } from './ui.js';
 
 export async function aboutPage() {
@@ -24,6 +25,49 @@ export async function aboutPage() {
 function render(mount, { meta: metaPayload, summary: summaryPayload }) {
   const stamp = new Date(metaPayload.generated_at).toISOString().replace('T', ' ').slice(0, 16);
   const types = summaryPayload.types;
+  const dataDate = String(metaPayload.generated_at || '').slice(0, 10);
+
+  // The table of types travels on its own: a link opens this page at it, an
+  // embed shows it alone (only=types) with the Green Southerners credit under it.
+  // The section is built once, so the buttons sit in its head beside the h2.
+  const typesSection = el('div', { class: 'section', style: 'max-width:none' }, [
+    el('div', { class: 'card-head', style: 'margin-bottom:14px' }, [
+      el('h2', { text: 'The types, as published', style: 'margin:0' }),
+    ]),
+    el('div', { class: 'card' }, [
+      table(
+        [
+          'Type',
+          'Code',
+          { label: 'Records', num: true },
+          'Window',
+          'Declared additive measures',
+        ],
+        types.map((t) =>
+          el('tr', {}, [
+            el('td', {}, [el('a', { href: url(`pages/${t.slug}.html`), text: t.label })]),
+            el('td', { text: t.code }),
+            el('td', { class: 'num', text: fmt(t.total) }),
+            el('td', {
+              text: t.date_range[0]
+                ? `${dateLabel(t.date_range[0])} to ${dateLabel(t.date_range[1])}`
+                : 'n/a',
+            }),
+            el('td', {
+              text:
+                t.measures.map((m) => `${m.label} (${m.unit})`).join(', ') ||
+                'none, records are counted and nothing is summed',
+            }),
+          ])
+        )
+      ),
+    ]),
+  ]);
+  shareCard(typesSection, 'types', () => ({
+    title: 'The types of record, as published: counts, windows and additive measures',
+    height: frameHeight(typesSection),
+    date: dataDate,
+  }));
 
   mount.replaceChildren(
     el('div', { style: 'max-width:74ch' }, [
@@ -109,37 +153,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
       ]),
     ]),
 
-    el('div', { class: 'section', style: 'max-width:none' }, [
-      el('h2', { text: 'The types, as published' }),
-      el('div', { class: 'card' }, [
-        table(
-          [
-            'Type',
-            'Code',
-            { label: 'Records', num: true },
-            'Window',
-            'Declared additive measures',
-          ],
-          types.map((t) =>
-            el('tr', {}, [
-              el('td', {}, [el('a', { href: url(`pages/${t.slug}.html`), text: t.label })]),
-              el('td', { text: t.code }),
-              el('td', { class: 'num', text: fmt(t.total) }),
-              el('td', {
-                text: t.date_range[0]
-                  ? `${dateLabel(t.date_range[0])} to ${dateLabel(t.date_range[1])}`
-                  : 'n/a',
-              }),
-              el('td', {
-                text:
-                  t.measures.map((m) => `${m.label} (${m.unit})`).join(', ') ||
-                  'none, records are counted and nothing is summed',
-              }),
-            ])
-          )
-        ),
-      ]),
-    ]),
+    typesSection,
 
     el('div', { class: 'section', style: 'max-width:74ch' }, [
       el('h2', { text: 'Citing this' }),
@@ -186,4 +200,28 @@ function section(heading, paragraphs) {
     el('h2', { text: heading }),
     ...paragraphs.map((t) => el('p', { text: t })),
   ]);
+}
+
+/**
+ * The height of a frame that shows a section alone. A frame keeps the height its
+ * embed code gives it, and a narrow frame scrolls the table sideways under a bar
+ * of its own, so this is the most the section takes on this screen or in a column
+ * 600, 760 or 1000px wide (less the page's side padding), with room for the
+ * credit line under it.
+ */
+function frameHeight(node) {
+  let tallest = node.getBoundingClientRect().height;
+  for (const width of [552, 704, 944]) {
+    const ghost = node.cloneNode(true);
+    ghost.removeAttribute('id');
+    ghost.removeAttribute('data-share-id');
+    ghost.setAttribute('aria-hidden', 'true');
+    // The frame does not show the share buttons.
+    for (const bar of ghost.querySelectorAll('.gs-share')) bar.remove();
+    ghost.style.cssText += `;position:absolute;left:-10000px;top:0;margin:0;width:${width}px;visibility:hidden`;
+    document.body.append(ghost);
+    tallest = Math.max(tallest, ghost.getBoundingClientRect().height);
+    ghost.remove();
+  }
+  return Math.ceil(tallest) + 64;
 }

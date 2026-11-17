@@ -75,6 +75,7 @@ import {
   tableFor,
   syncURL,
 } from './ui.js';
+import { shareCard } from './share.js';
 
 /* Which map a type opens on.
  *
@@ -111,7 +112,7 @@ export async function typePage(slug) {
   }
 }
 
-function render(mount, { summary, ds }) {
+function render(mount, { meta: metaPayload, summary, ds }) {
   const query = params();
 
   /* ------------------------------------------------------------- state */
@@ -170,7 +171,10 @@ function render(mount, { summary, ds }) {
 
   const filterBar = el('div', { class: 'card', style: 'margin-bottom:18px' });
   const scrubHost = el('div', { class: 'card', style: 'margin-bottom:18px' });
-  const statRow = el('div', { class: 'grid cols-4', style: 'margin-bottom:18px' });
+  const statRow = el('div', { class: 'grid cols-4' });
+  // The tiles are refilled on every update and every tick of the play head,
+  // so they are shared through this wrapper, which is made once.
+  const figures = el('section', { 'aria-label': 'In figures', style: 'margin-bottom:18px' }, [statRow]);
 
   const timelineEl = el('div', { class: 'chart' });
   const byEl = el('div', { class: 'chart' });
@@ -180,7 +184,12 @@ function render(mount, { summary, ds }) {
   const townsEl = el('div', { class: 'chart tall' });
   const mapEl = el('div', { class: 'map' });
 
-  const byHead = el('div', { class: 'card-head' });
+  // The group-by card's title and count follow the chosen column, changed in
+  // place, so the share buttons beside them are never wiped by a refill.
+  const byTitle = el('h3');
+  const byCount = el('span', { style: 'font-size:.78rem;color:var(--ink-3)' });
+  const byAside = headAside([byCount]);
+  const byHead = el('div', { class: 'card-head' }, [byTitle, byAside]);
   const byTable = el('div');
   const locTable = el('div');
   const townsTable = el('div');
@@ -200,56 +209,189 @@ function render(mount, { summary, ds }) {
           'known by its village only. The map counts both at the town’s own point.',
     body: [locEl, locTable],
   });
-  const byPair = el('div', { class: 'section grid cols-2' }, [
-    el('section', { class: 'card' }, [byHead, byEl, byTable]),
+  const byCard = el('section', { class: 'card' }, [byHead, byEl, byTable]);
+  const byPair = el('div', { class: 'section grid cols-2' }, [byCard, locCard]);
+
+  const whenCard = card({
+    title: 'When',
+    note:
+      'Drag the handles under the bars to narrow every chart and the map on this ' +
+      'page to a period. An empty month is drawn as zero, because it is a finding.',
+    body: [timelineEl],
+  });
+  const splitCard = card({
+    title: 'Month by month, split',
+    note: 'Stacked by the column chosen above. Click a segment to filter by that value.',
+    body: [stackEl],
+  });
+  // buildMapModes refills the mode chips; the share buttons sit beside them.
+  const mapAside = headAside([el('div', { class: 'chips', id: 'map-modes' })]);
+  const mapCard = card({
+    title: 'Where',
+    note: '',
+    body: [mapEl, mapNote],
+    aside: mapAside,
+  });
+  const townsCard = card({
+    title: 'Towns',
+    note: 'Click a bar to filter the page to that town’s district.',
+    body: [townsEl, townsTable],
+  });
+  const weeksCard = card({
+    title: 'Week by week',
+    note:
+      'One row per month, one cell per week of the month. This is what a monthly bar ' +
+      'hides: whether a month came from one heavy week or from four ordinary ones. ' +
+      'The figures are counted by week, so no cell here is a single day.',
+    body: [calEl],
+  });
+
+  /* ------------------------------------------------------------- sharing */
+
+  /* Every component carries "Share as link" and "Share as embed" (the data
+   * owner, 2026-11-17). The link is this page's own address, which already
+   * holds the filters, landing on the component; the embed is that address
+   * showing the component alone with the Green Southerners credit under it
+   * (share.js). Each is wired once, on an element made once, so no refill
+   * takes the buttons away.
+   *
+   * A shared title names the type and what the component shows, then the
+   * filters it is drawn under, so a filtered figure is not quoted as the whole
+   * corpus. */
+  const dataDate = String((metaPayload && metaPayload.generated_at) || '').slice(0, 10);
+  const plural = kindNoun(ds.code, 2);
+  const firstYear = Number(
+    String((summary.date_range && summary.date_range[0]) || dayToISO(ds.epoch, ds.minDay)).slice(0, 4)
+  );
+  const what =
+    `${plural === 'records' ? summary.label : cap(plural)} ` +
+    (firstYear >= 2026 ? 'in the 2026 war' : 'in South Lebanon');
+
+  /** The chosen measure in words, "burned area (ha)", or '' while counting records. */
+  function measureWords() {
+    const m = measures.find((x) => x.k === state.measure);
+    if (!m) return '';
+    const name = m.label.charAt(0).toLowerCase() + m.label.slice(1);
+    return m.unit && m.unit !== 'count' ? `${name} (${m.unit})` : name;
+  }
+
+  /** "by month", or "burned area (ha) by month" while a measure is chosen. */
+  function measured(phrase) {
+    const m = measureWords();
+    if (!m) return phrase;
+    return `${m}${/^(by |week )/.test(phrase) ? ' ' : ', '}${phrase}`;
+  }
+
+  /* A column in words: "by cause", or "inside a protected area or not" for a
+   * column that only says yes or no. One label names a reason rather than
+   * what is shown, so a title says what its two values mean instead. */
+  const TITLE_WORDS = { shown_as: 'linked to an attack or in the yellow-line zone' };
+
+  function columnWords(key) {
+    if (TITLE_WORDS[key]) return { words: TITLE_WORDS[key], bare: true };
+    const label = ds.dimLabel(key);
+    const values = ds.dict[key] || [];
+    const bare =
+      values.length > 0 &&
+      values.every((v) => ['yes', 'no', 'unassessed', key, `not_${key}`].includes(v));
+    const words = label.charAt(0).toLowerCase() + label.slice(1);
+    return { words: bare ? `${words} or not` : words, bare };
+  }
+
+  function groupWords(key) {
+    const c = columnWords(key);
+    return c.bare ? c.words : `by ${c.words}`;
+  }
+
+  function splitWords(key) {
+    const c = columnWords(key);
+    return c.bare ? `by month, ${c.words}` : `by month and ${c.words}`;
+  }
+
+  /** "A", "A and B", "A, B and C". */
+  function listWords(items, joiner = 'and') {
+    return items.length > 1 ? `${items.slice(0, -1).join(', ')} ${joiner} ${items[items.length - 1]}` : items.join('');
+  }
+
+  /** The filters in force, " (Tyre district; 1 May 2026 to 31 May 2026)", or ''. */
+  function filtered({ district = true, value = true } = {}) {
+    const parts = [];
+    if (district && state.district.length) {
+      parts.push(`${listWords(state.district)} district${state.district.length === 1 ? '' : 's'}`);
+    }
+    if (value && state.by && state.value.length) {
+      const names = new Map(ds.options(state.by).map((o) => [o.value, o.label]));
+      const picked = listWords(
+        state.value.map((v) =>
+          v === '__none__' ? 'Not assessed' : v === '__other__' ? 'Other' : names.get(v) || v
+        ),
+        'or'
+      );
+      parts.push(TITLE_WORDS[state.by] ? picked : `${ds.dimLabel(state.by)}: ${picked}`);
+    }
+    if (state.from > ds.minDay || state.to < ds.maxDay) {
+      parts.push(
+        `${dateLabel(dayToISO(ds.epoch, state.from))} to ` +
+          `${dateLabel(dayToISO(ds.epoch, Math.max(state.to, state.from)))}`
+      );
+    }
+    return parts.length ? ` (${parts.join('; ')})` : '';
+  }
+
+  function mapTitle() {
+    // The burned ground follows the dates and no other filter.
+    if (state.mapMode === 'scars') return `${what}, map of burned ground${filtered({ district: false, value: false })}`;
+    const unit = { villages: 'municipality', districts: 'district' }[state.mapMode] || 'town';
+    const m = measureWords();
+    return `${what}, ${m ? `map of ${m} by ${unit}` : `map by ${unit}`}${filtered()}`;
+  }
+
+  /* The frame of the stat tiles. They reflow with the width of the page that
+   * holds the frame, so it is sized for three tiles a row, the row an article
+   * column gives them, where a tile's note takes three lines (140 px). */
+  function figuresHeight() {
+    const tiles = [...statRow.children];
+    const tallest = Math.max(0, ...tiles.map((t) => t.getBoundingClientRect().height));
+    const rows = Math.max(1, Math.ceil(tiles.length / 3));
+    return Math.max(240, Math.ceil(rows * Math.max(140, tallest + 12) + (rows - 1) * 16 + 64));
+  }
+
+  function shareOn(node, id, title, { aside = null, height = null } = {}) {
+    const bar = shareCard(node, id, () => ({
+      title: title(),
+      height: height ? height() : frameHeight(node),
+      date: dataDate || undefined,
+    }));
+    // Beside what the page refills in the head, never inside it.
+    if (aside && bar) aside.append(bar);
+  }
+
+  shareOn(figures, 'figures', () => `${what}, in figures${filtered()}`, { height: figuresHeight });
+  // The bars count the whole type whatever the filters, so the title names none.
+  shareOn(whenCard, 'when', () => `${what}, ${measured(`by ${state.grain}`)}`);
+  shareOn(byCard, 'by', () => `${what}, ${measured(groupWords(state.by))}${filtered()}`, { aside: byAside });
+  shareOn(
     locCard,
-  ]);
+    'placed',
+    () =>
+      `${what}, ${measured(locKey === 'geolocated' ? 'geolocated or not' : 'exact or approximate location')}` +
+      filtered()
+  );
+  shareOn(splitCard, 'split', () => `${what}, ${splitWords(state.by)}${filtered()}`);
+  shareOn(mapCard, 'where', mapTitle, { aside: mapAside });
+  shareOn(townsCard, 'towns', () => `${what}, ${measured('by town')}${filtered()}`);
+  shareOn(weeksCard, 'weeks', () => `${what}, ${measured('week by week')}${filtered()}`);
 
   mount.replaceChildren(
     head,
     filterBar,
     scrubHost,
-    statRow,
-    el('div', { class: 'grid' }, [
-      card({
-        title: 'When',
-        note:
-          'Drag the handles under the bars to narrow every chart and the map on this ' +
-          'page to a period. An empty month is drawn as zero, because it is a finding.',
-        body: [timelineEl],
-      }),
-    ]),
+    figures,
+    el('div', { class: 'grid' }, [whenCard]),
     byPair,
-    el('div', { class: 'section grid' }, [
-      card({
-        title: 'Month by month, split',
-        note: 'Stacked by the column chosen above. Click a segment to filter by that value.',
-        body: [stackEl],
-      }),
-    ]),
-    el('div', { class: 'section grid' }, [
-      card({
-        title: 'Where',
-        note: '',
-        body: [mapEl, mapNote],
-        aside: el('div', { class: 'chips', id: 'map-modes' }),
-      }),
-    ]),
-    el('div', { class: 'section grid cols-2' }, [
-      card({
-        title: 'Towns',
-        note: 'Click a bar to filter the page to that town’s district.',
-        body: [townsEl, townsTable],
-      }),
-      card({
-        title: 'Week by week',
-        note:
-          'One row per month, one cell per week of the month. This is what a monthly bar ' +
-          'hides: whether a month came from one heavy week or from four ordinary ones. ' +
-          'The figures are counted by week, so no cell here is a single day.',
-        body: [calEl],
-      }),
-    ]),
+    el('div', { class: 'section grid' }, [splitCard]),
+    el('div', { class: 'section grid' }, [mapCard]),
+    el('div', { class: 'section grid cols-2' }, [townsCard, weeksCard]),
     el('div', { class: 'section' }, [
       noteList(summary.caveats, { frozen: summary.frozen }),
       contactNote(),
@@ -713,11 +855,8 @@ function render(mount, { summary, ds }) {
     locCard.style.display = showLoc ? '' : 'none';
     byPair.className = showLoc ? 'section grid cols-2' : 'section grid';
 
-    fill(
-      byHead,
-      el('h3', { text: dimLabel }),
-      el('span', { style: 'font-size:.78rem;color:var(--ink-3)', text: `${groups.length} values` })
-    );
+    byTitle.textContent = dimLabel;
+    byCount.textContent = `${groups.length} values`;
 
     if (charts.by) charts.by.dispose();
     byEl.replaceChildren();
@@ -764,7 +903,10 @@ function render(mount, { summary, ds }) {
     charts.stack.update(ds.seriesBy(selection, state.by, { grain: 'month', limit: 6 }));
 
     /* --- towns --- */
-    const topTowns = towns.slice(0, 18);
+    // The bars carry the measure the reader chose (the list above carries the
+    // type's first one, for the table), so a second measure is read for them.
+    const barTowns = state.measure && state.measure !== townMeasure ? ds.towns(selection, { measure: state.measure }) : towns;
+    const topTowns = barTowns.slice(0, 18);
     charts.towns.update(topTowns, {
       measure: state.measure,
       unit: unitOf(state.measure),
@@ -872,4 +1014,36 @@ function endOf(key) {
 
 function cap(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+/** The right side of a card head: what the page refills there, then the share buttons. */
+function headAside(children) {
+  return el(
+    'div',
+    { style: 'display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:8px 12px' },
+    children
+  );
+}
+
+/* The height of the frame a shared card is embedded in. The card is measured
+ * on what it holds, not on the box it is drawn in: beside a taller card in a
+ * grid row it is stretched to that card's height. A table the reader opened is
+ * left out, since a frame opens with them closed. The rest is room for the
+ * credit line under the card and for its text to wrap in a narrower frame. */
+function frameHeight(node) {
+  const box = node.getBoundingClientRect();
+  const css = getComputedStyle(node);
+  let bottom = box.top;
+  for (const child of node.children) {
+    const r = child.getBoundingClientRect();
+    if (!r.width && !r.height) continue;
+    bottom = Math.max(bottom, r.bottom + (parseFloat(getComputedStyle(child).marginBottom) || 0));
+  }
+  let height = bottom - box.top + (parseFloat(css.paddingBottom) || 0) + (parseFloat(css.borderBottomWidth) || 0);
+  for (const open of node.querySelectorAll('details[open]')) {
+    const summary = open.querySelector(':scope > summary');
+    height -= open.getBoundingClientRect().height - (summary ? summary.getBoundingClientRect().height : 0);
+  }
+  // 66 px hold the credit line and the frame's margins; the rest is for wrapping.
+  return Math.max(240, Math.ceil(height) + 112);
 }

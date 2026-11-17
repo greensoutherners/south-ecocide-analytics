@@ -655,7 +655,7 @@ export function lanes(el) {
         },
         axisPointer: { link: [{ xAxisIndex: 'all' }], lineStyle: { color: p.axis } },
         grid: series.map((_, i) => ({
-          left: 120,
+          left: laneLeft(series, el),
           right: 56,
           top: top + i * laneHeight,
           height: laneHeight - 16,
@@ -727,6 +727,24 @@ export function lanes(el) {
       chart.resize();
     }
   });
+}
+
+/**
+ * Room for the lanes' names on the left: the widest name or sub-line, measured,
+ * so a long name ("Forced Displacement Orders") never runs into its first bar.
+ * At least 120 px, and never more than 45% of the chart.
+ */
+function laneLeft(series, el) {
+  const ctx = document.createElement('canvas').getContext('2d');
+  const font = 'Inter, system-ui, -apple-system, "Segoe UI", sans-serif';
+  let widest = 0;
+  for (const s of series) {
+    ctx.font = `600 12px ${font}`;
+    widest = Math.max(widest, ctx.measureText(s.label).width);
+    ctx.font = `10px ${font}`;
+    widest = Math.max(widest, ctx.measureText(`${fmt(s.total)} records · peak ${fmt(Math.max(0, ...s.counts))}/month`).width);
+  }
+  return Math.round(Math.max(120, Math.min(widest + 18, (el.clientWidth || 600) * 0.45)));
 }
 
 /* ------------------------------------------------------------------ spark */

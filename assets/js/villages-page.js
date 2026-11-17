@@ -27,6 +27,12 @@ import {
   syncURL,
   url,
 } from './ui.js';
+import { shareCard } from './share.js';
+
+/* `only=<id>`: one component of this page shown alone, in a frame on another
+ * page (share.js). Read once, before the page rewrites its own address, and
+ * kept in that address so a reloaded frame still shows the component alone. */
+const ONLY = new URLSearchParams(location.search).get('only') || '';
 
 export async function villagesPage() {
   const mount = document.getElementById('page');
@@ -45,16 +51,18 @@ export async function villagesPage() {
       (pictures.villages || []).filter((v) => v.compare).map((v) => v.city_id)
     );
     const withLapse = new Set((lapses.towns || []).map((t) => t.city_id));
-    render(mount, { summary: summaryPayload, payload, withSwipe, withLapse });
+    render(mount, { meta: metaPayload, summary: summaryPayload, payload, withSwipe, withLapse });
   } catch (err) {
     fill(mount, failure(err));
   }
 }
 
-function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse }) {
+function render(mount, { meta: metaPayload, summary: summaryPayload, payload, withSwipe, withLapse }) {
   const query = params();
   const types = summaryPayload.types.filter((t) => t.total > 0);
   const towns = payload.towns;
+  // The day the data was built, named in the credit of an embedded component.
+  const dataDate = ((metaPayload && metaPayload.generated_at) || '').slice(0, 10);
 
   const state = {
     q: query.q || '',
@@ -105,8 +113,23 @@ function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse 
     draw();
   });
 
-  const statRow = el('div', { class: 'grid cols-4', style: 'margin:18px 0' });
-  const tableHost = el('div', { class: 'card' });
+  // Both components are made once here and never replaced, so their share
+  // buttons stay put: each draw refills only the row of figures and the
+  // register's count and table.
+  const statRow = el('div', { class: 'grid cols-4' });
+  const figures = el('section', { style: 'margin:18px 0' }, [statRow]);
+  const countEl = el('h3');
+  const tableBody = el('div');
+  const tableHost = el('div', { class: 'card' }, [
+    el('div', { class: 'card-head' }, [
+      countEl,
+      el('span', {
+        style: 'font-size:.78rem;color:var(--ink-3)',
+        text: types.map((t) => `${t.code} = ${t.label}`).join(' · '),
+      }),
+    ]),
+    tableBody,
+  ]);
 
   mount.replaceChildren(
     el('div', {}, [
@@ -120,7 +143,7 @@ function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse 
           'we looked for rather than what happened.',
       }),
     ]),
-    statRow,
+    figures,
     el('div', { class: 'card', style: 'margin-bottom:16px' }, [
       el('div', { class: 'controls' }, [
         el('div', { class: 'field' }, [el('label', { text: 'Search', for: 'v-q' }), searchEl]),
@@ -162,8 +185,43 @@ function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse 
     ])
   );
 
+  /* --- sharing: a link to each component, or the code that embeds it --- */
+  // What the reader has narrowed the towns to, named in a shared title.
+  const scope = () => {
+    const parts = [];
+    if (state.district) parts.push(`${state.district.trim()} district`);
+    if (state.q.trim()) parts.push(`matching "${state.q.trim()}"`);
+    return parts.length ? `, ${parts.join(', ')}` : '';
+  };
+  // A frame narrower than this page wraps the five figures onto more rows:
+  // the frame has room for two rows of them at least.
+  const figuresHeight = () => {
+    const tile = Math.max(0, ...[...statRow.children].map((n) => n.getBoundingClientRect().height));
+    const shown = figures.getBoundingClientRect().height;
+    return Math.ceil(Math.max(shown, 2 * tile + 16)) + 96;
+  };
+  // A frame of 800 px holds any register down to a phone's width: the table
+  // scrolls inside 70% of the frame's height (its own cap). A short register
+  // is sized to itself, with room for the names and the key that wrap in a
+  // narrower frame.
+  const registerHeight = () => {
+    const wrap = tableBody.querySelector('.table-wrap');
+    if (wrap && wrap.scrollHeight > wrap.clientHeight + 1) return 800;
+    return Math.min(800, Math.ceil(tableHost.getBoundingClientRect().height) + 160);
+  };
+  shareCard(figures, 'figures', () => ({
+    title: `Towns with a record of each kind${scope()}`,
+    height: figuresHeight(),
+    date: dataDate,
+  }));
+  shareCard(tableHost, 'register', () => ({
+    title: `Village register${scope()}: records of each kind, town by town`,
+    height: registerHeight(),
+    date: dataDate,
+  }));
+
   function draw() {
-    syncURL(state, ['q', 'district', 'sort']);
+    syncURL({ ...state, only: ONLY }, ['q', 'district', 'sort', 'only']);
 
     const needle = state.q.trim().toLowerCase();
     let rows = towns.filter((t) => {
@@ -228,7 +286,13 @@ function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse 
     const body = rows.map((t) =>
       el('tr', {}, [
         el('td', { class: 'name' }, [
-          el('a', { href: url(`pages/village.html?v=${t.id}`), text: t.name || `#${t.id}` }),
+          // Shown alone in a frame, a town opens in a new tab, not in the frame.
+          el('a', {
+            href: url(`pages/village.html?v=${t.id}`),
+            target: ONLY ? '_blank' : null,
+            rel: ONLY ? 'noopener' : null,
+            text: t.name || `#${t.id}`,
+          }),
           t.name_ar
             ? el('span', { style: 'color:var(--ink-3);margin-inline-start:7px', text: t.name_ar })
             : null,
@@ -270,15 +334,9 @@ function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse 
       ])
     );
 
+    countEl.textContent = `${fmt(rows.length)} town${rows.length === 1 ? '' : 's'}`;
     fill(
-      tableHost,
-      el('div', { class: 'card-head' }, [
-        el('h3', { text: `${fmt(rows.length)} town${rows.length === 1 ? '' : 's'}` }),
-        el('span', {
-          style: 'font-size:.78rem;color:var(--ink-3)',
-          text: types.map((t) => `${t.code} = ${t.label}`).join(' · '),
-        }),
-      ]),
+      tableBody,
       el('div', { class: 'table-wrap', style: 'max-height:70vh' }, [
         el('table', { class: 'data' }, [el('thead', {}, [head]), el('tbody', {}, body)]),
       ]),
