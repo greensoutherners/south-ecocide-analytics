@@ -16,7 +16,7 @@
  "before_source": "Esri World Imagery (Wayback release 13192), Maxar picture of 7 April 2023",
  "after_source": "OnGeo Intelligence, picture of 8 October 2026, 0.3 m",
  "ground_m": 812,
- "note": "Red: buildings destroyed; orange: buildings damaged; yellow: orchards, fields and trees outlined as lost; violet: roads bulldozed. Read by Green Southerners on these pictures. The thin red dashed line on the later picture is OnGeo's own: the edge of the area its report covers.",
+ "note": "Red: buildings destroyed or damaged; yellow: orchards, fields and trees outlined as lost; violet: roads bulldozed. Read by Green Southerners on these pictures. The thin red dashed line on the later picture is OnGeo's own: the edge of the area its report covers.",
  "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/al-mansouri-orchards.html",
  "bounds": [
   35.187324,

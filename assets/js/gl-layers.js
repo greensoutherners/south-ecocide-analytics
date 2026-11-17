@@ -1156,8 +1156,11 @@ function centroid(geometry) {
  * never drawn.
  */
 export const STUDIO_STYLE = {
+  // One category online: a building destroyed or damaged (the export merges the
+  // Studio's two labels into building_hit). The two older keys draw the same.
+  building_hit: { color: '#c81e3a', group: 'Buildings' },
   building_destroyed: { color: '#c81e3a', group: 'Buildings' },
-  building_damaged: { color: '#f08c00', group: 'Buildings' },
+  building_damaged: { color: '#c81e3a', group: 'Buildings' },
   building_changed_s2: { color: '#9b5de5', group: 'Buildings' },
   building_prior: { color: '#8d7b6f', group: 'Before the 2026 war' },
   road_damaged: { color: '#d68be0', group: 'Roads' },

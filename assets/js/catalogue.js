@@ -76,12 +76,11 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
         'the ground around it, the Litani River, and Aitaroun.'),
       // Al-Mansouri stands where Aitaroun stood on this page (the data owner, 2026-11-17);
       // Aitaroun stays in the investigations' own list.
+      // The town's map is part of its investigation page, not a card of its own (2026-11-17).
       page('I.07 Al-Mansouri', 'investigations/al-mansouri-orchards.html',
         'A coastal town south of Tyre: its houses and when they went, the detonations reported week ' +
-        'after week, its orchards, fields and roads bulldozed, and its fires, white phosphorus and orders.'),
-      page('I.07 Al-Mansouri, the map', 'investigations/al-mansouri-map.html',
-        'The town on one map, every layer: its sharp pictures of 2026 and before the war, every change ' +
-        'read on them, and the records of the 2026 war counted week by week.'),
+        'after week, its orchards, fields and roads bulldozed, its fires, white phosphorus and orders, ' +
+        'and the town on one map with every layer.'),
       page('I.05 Beaufort Castle', 'investigations/beaufort.html',
         'The ground within 5.5 km of the castle above the Litani: fires, white phosphorus, and ' +
         'the damage mapped in Yohmor and Zawtar El Sharqiyeh.'),

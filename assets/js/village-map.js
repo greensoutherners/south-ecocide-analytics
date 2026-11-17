@@ -44,6 +44,9 @@ function whenList(info) {
   ];
 }
 
+/** A building destroyed or damaged: one category online (the older keys still read the same). */
+const HIT = new Set(['building_hit', 'building_destroyed', 'building_damaged']);
+
 /**
  * Every layer, in drawing order within its group. `src` is the file, `match`
  * picks its features, `kind` how it is drawn. A layer whose features are all
@@ -53,10 +56,9 @@ const LAYERS = [
   {
     group: 'Houses and other buildings',
     items: [
-      { key: 'destroyed', label: 'Destroyed', src: 'buildings', color: '#c81e3a', kind: 'fill',
-        match: (p) => p.k === 'building_destroyed' && !p.added, on: true },
-      { key: 'damaged', label: 'Damaged', src: 'buildings', color: '#f08c00', kind: 'fill',
-        match: (p) => p.k === 'building_damaged' && !p.added, on: true },
+      // One category online: destroyed or damaged (the published data carries building_hit).
+      { key: 'hit', label: 'Destroyed or damaged', src: 'buildings', color: '#c81e3a', kind: 'fill',
+        match: (p) => HIT.has(p.k) && !p.added, on: true },
       { key: 'added', label: 'Destroyed or damaged, on no pre-war map', src: 'buildings', color: '#ff2e63', kind: 'fill', ring: true,
         match: (p) => Boolean(p.added), on: true },
       { key: 's2', label: 'Changed, seen from space only (Sentinel-2)', src: 'buildings', color: '#9b5de5', kind: 'fill',
@@ -68,7 +70,7 @@ const LAYERS = [
   {
     group: 'Bulldozed land and roads',
     items: [
-      { key: 'orchards', label: 'Orchards, fields and trees lost (outlined by hand)', src: 'land', color: '#ffd400', kind: 'area',
+      { key: 'orchards', label: 'Orchards, fields and trees lost', src: 'land', color: '#ffd400', kind: 'area',
         match: (p) => p.k === 'orchards_outlined', on: true },
       { key: 'bulldozed', label: 'Bulldozed ground, read on the 2026 pictures', src: 'land', color: '#ff7a00', kind: 'area',
         match: (p) => p.k === 'bulldozed_counted', on: true },
@@ -259,8 +261,7 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
   }
   const whenColour = ['match', ['get', 'w'], ...WHEN.flatMap((w) => [w.key, w.color]), '#9c8f86'];
   function whenCount(key) {
-    return files.buildings.features.filter((f) => (f.properties || {}).w === key
-      && ['building_destroyed', 'building_damaged'].includes(f.properties.k)).length;
+    return files.buildings.features.filter((f) => (f.properties || {}).w === key && HIT.has(f.properties.k)).length;
   }
 
   function installLayers(m) {
@@ -270,7 +271,7 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
       add(m, id, { type: 'geojson', data: dataFor(l) });
       const vis = state.on.has(l.key) ? 'visible' : 'none';
       if (l.kind === 'fill' || l.kind === 'area') {
-        const byWhen = l.src === 'buildings' && state.byWhen && ['destroyed', 'damaged', 'added'].includes(l.key);
+        const byWhen = l.src === 'buildings' && state.byWhen && ['hit', 'added'].includes(l.key);
         layer(m, {
           id: `${id}-fill`, type: 'fill', source: id, layout: { visibility: vis },
           filter: ['==', ['geometry-type'], 'Polygon'],
@@ -517,7 +518,7 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
         const id = `vm-${l.key}-${part}`;
         if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', state.on.has(l.key) ? 'visible' : 'none');
       }
-      if (l.src === 'buildings' && ['destroyed', 'damaged', 'added'].includes(l.key)) {
+      if (l.src === 'buildings' && ['hit', 'added'].includes(l.key)) {
         const colour = state.byWhen ? whenColour : l.color;
         if (map.getLayer(`vm-${l.key}-fill`)) map.setPaintProperty(`vm-${l.key}-fill`, 'fill-color', colour);
         if (map.getLayer(`vm-${l.key}-line`)) map.setPaintProperty(`vm-${l.key}-line`, 'line-color', l.ring ? '#ffffff' : colour);

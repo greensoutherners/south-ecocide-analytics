@@ -1,5 +1,5 @@
 {
- "made": "2026-11-17T05:46:07+00:00",
+ "made": "2026-11-17T08:28:07+00:00",
  "published_from": "2026-03-01",
  "town": {
   "id": 96,
@@ -114,14 +114,13 @@
   ]
  },
  "counts": {
-  "building_destroyed": 1110,
-  "building_damaged": 151,
+  "building_hit": 1261,
   "building_changed_s2": 39,
   "building_prior": 10,
   "added_studio": 32,
   "road_bulldozed": 357,
-  "road_razed_ground": 9,
   "road_damaged": 7,
+  "road_razed_ground": 9,
   "track": 5,
   "forest_removed": 2,
   "orchard_removed": 1,
