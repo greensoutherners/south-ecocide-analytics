@@ -1,0 +1,40 @@
+{
+ "town": "Al-Mansouri",
+ "title": "The village through 2026",
+ "size": 1000,
+ "frames": [
+  {
+   "d": "2023-04-07",
+   "f": "20230407.jpg",
+   "source": "Esri World Imagery (Wayback 13192), Maxar"
+  },
+  {
+   "d": "2026-05-23",
+   "f": "20260523.jpg",
+   "source": "OnGeo Intelligence, 0.3 m"
+  },
+  {
+   "d": "2026-08-10",
+   "f": "20260810.jpg",
+   "source": "OnGeo Intelligence, 0.3 m"
+  },
+  {
+   "d": "2026-08-19",
+   "f": "20260819.jpg",
+   "source": "OnGeo Intelligence, 0.3 m"
+  },
+  {
+   "d": "2026-10-08",
+   "f": "20261008.jpg",
+   "source": "OnGeo Intelligence, 0.3 m"
+  }
+ ],
+ "source": "Before the war: Esri World Imagery (Maxar). 2026: OnGeo Intelligence, 0.3 m.",
+ "bounds": [
+  35.205422,
+  33.171086,
+  35.213578,
+  33.177914
+ ],
+ "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/al-mansouri-orchards.html"
+}

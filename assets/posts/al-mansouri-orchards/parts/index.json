@@ -1,0 +1,141 @@
+{
+ "town": "Al-Mansouri",
+ "parts": [
+  {
+   "name": "A1",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-a1.json",
+   "bounds": [
+    35.187324,
+    33.175518,
+    35.196036,
+    33.182809
+   ],
+   "centre": [
+    35.19168,
+    33.179164
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "A2",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-a2.json",
+   "bounds": [
+    35.196036,
+    33.175518,
+    35.204747,
+    33.182809
+   ],
+   "centre": [
+    35.200392,
+    33.179164
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "A3",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-a3.json",
+   "bounds": [
+    35.204747,
+    33.175518,
+    35.213459,
+    33.182809
+   ],
+   "centre": [
+    35.209103,
+    33.179164
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "B1",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-b1.json",
+   "bounds": [
+    35.187324,
+    33.16823,
+    35.196036,
+    33.175522
+   ],
+   "centre": [
+    35.19168,
+    33.171876
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "B2",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-b2.json",
+   "bounds": [
+    35.196036,
+    33.16823,
+    35.204747,
+    33.175522
+   ],
+   "centre": [
+    35.200392,
+    33.171876
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "B3",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-b3.json",
+   "bounds": [
+    35.204747,
+    33.16823,
+    35.213459,
+    33.175522
+   ],
+   "centre": [
+    35.209103,
+    33.171876
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "C1",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-c1.json",
+   "bounds": [
+    35.187324,
+    33.160941,
+    35.196036,
+    33.168234
+   ],
+   "centre": [
+    35.19168,
+    33.164588
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "C2",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-c2.json",
+   "bounds": [
+    35.196036,
+    33.160941,
+    35.204747,
+    33.168234
+   ],
+   "centre": [
+    35.200392,
+    33.164588
+   ],
+   "ground_m": 812
+  },
+  {
+   "name": "C3",
+   "file": "assets/posts/al-mansouri-orchards/parts/al-mansouri-c3.json",
+   "bounds": [
+    35.204747,
+    33.160941,
+    35.213459,
+    33.168234
+   ],
+   "centre": [
+    35.209103,
+    33.164588
+   ],
+   "ground_m": 812
+  }
+ ],
+ "overview": "assets/posts/al-mansouri-orchards/parts/al-mansouri-parts-index.jpg"
+}
