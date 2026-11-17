@@ -730,3 +730,32 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
   .ref-list li { font-size: 8.4pt; padding: 1.1mm 0; }
   .ref-url { color: var(--ink-2); }
 }
+
+/* The other edition, as buttons (the data owner, 2026-11-17: "make it clear like
+ * a button"): an outlined button in the header beside Download PDF, and a box
+ * on the cover to read or download the other edition. Print keeps the plain
+ * entry in the cover's list instead. */
+.btn-edition { border-color: var(--accent); color: var(--accent-ink); background: var(--surface); }
+.btn-edition:hover { background: var(--accent-wash, #eaf4ec); border-color: var(--accent-ink); }
+.edition-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin: 22px 0 6px;
+  padding: 16px 18px;
+  border: 1px solid var(--hairline);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: var(--accent-wash, #eaf4ec);
+}
+.edition-text { display: flex; flex-direction: column; gap: 4px; max-width: 52ch; }
+.edition-text b { font-size: 1rem; color: var(--ink-1); }
+.edition-text span { font-size: 0.9rem; color: var(--ink-2); line-height: 1.45; }
+.edition-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.print-only { display: none; }
+@media print {
+  .print-only { display: block; }
+  .edition-box { display: none !important; }
+}
