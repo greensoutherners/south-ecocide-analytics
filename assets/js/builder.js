@@ -15,6 +15,7 @@ import { dataset, meta, summary, timelapseIndex, villages } from './data.js';
 import { defaultDim } from './explore.js';
 import { TOWN_KINDS } from './maps.js';
 import { chrome, el, failure, fill, loading, params, syncURL, url } from './ui.js';
+import { embedCode, published } from './share.js';
 
 const WIDGETS = {
   database: {
@@ -54,8 +55,7 @@ const WIDGETS = {
 const DATABASE_VIEWS = [
   { value: '', label: 'Every kind of record' },
   { value: 'types=BRN', label: 'Fires from attacks' },
-  // Detonations are hidden for now (the data owner, 2026-11-06). To show them
-  // again: { value: 'types=DET&shade=DET', label: 'Detonations and demolitions' }.
+  { value: 'types=DET&shade=DET', label: 'Detonations and demolitions' },
   { value: 'types=WPB', label: 'White phosphorus' },
   { value: 'types=ALR&shade=ALR', label: 'Displacement orders' },
   { value: 'focus=beaufort', label: 'Beaufort Castle and the ground around it' },
@@ -73,6 +73,12 @@ const STORIES = [
 
 /** A frame's height when the widget is a whole application rather than a chart. */
 const APP_HEIGHT = { database: 940, story: 880 };
+
+/* The height a snippet gives a widget whose picture follows the frame's own
+ * height (a swipe, a time-lapse, the explorer fitting its chart): its content
+ * height would never settle, so it gets the height it was designed for. The
+ * other widgets get the height their preview reports. */
+const FIXED_HEIGHT = { ...APP_HEIGHT, explore: 860, compare: 1080, lapse: 1080 };
 
 const CONTROL_SETS = [
   { value: 'time,dim,district', label: 'Timeline and every filter' },
@@ -111,6 +117,9 @@ export async function builderPage() {
 function render(mount, { meta: metaPayload, summary: summaryPayload, villages: villagePayload }) {
   const query = params();
   const types = summaryPayload.types.filter((t) => t.total > 0);
+  // The content height the preview last reported, for the snippet's frame, and the preview itself.
+  let measured = 0;
+  let shown = null;
 
   const state = {
     widget: query.widget || 'chart',
@@ -563,14 +572,26 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
     });
 
     // The same height handshake the host snippet performs, so the preview
-    // proves the handshake works and not just that the chart draws.
+    // proves the handshake works and not just that the chart draws. The height
+    // it reports is the one the snippet then gives the frame.
+    let redraw = null;
     const onMessage = (event) => {
       if (event.source !== frame.contentWindow) return;
       const data = event.data;
       if (data && data.type === 'gsa:height' && typeof data.height === 'number') {
-        frame.style.height = `${Math.max(120, Math.min(4000, Math.round(data.height)))}px`;
+        const height = Math.max(120, Math.min(4000, Math.round(data.height)));
+        frame.style.height = `${height}px`;
+        if (!FIXED_HEIGHT[state.widget] && Math.abs(height - measured) > 4) {
+          measured = height;
+          clearTimeout(redraw);
+          redraw = setTimeout(() => drawSnippet(href), 300);
+        }
       }
     };
+    measured = 0;
+    // The widget's own title, read from the preview once it has drawn (same site).
+    frame.addEventListener('load', () => setTimeout(() => drawSnippet(href), 1500));
+    shown = frame;
     window.addEventListener('message', onMessage);
 
     fill(
@@ -592,12 +613,22 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
   }
 
   function drawSnippet(href) {
-    const iframe =
-      `<iframe src="${href}"\n` +
-      `        style="width:100%;border:0;display:block;height:${APP_HEIGHT[state.widget] || state.h || 460}px"\n` +
-      `        title="${state.title || 'South Ecocide Analytics'}"\n` +
-      `        loading="lazy" scrolling="no"></iframe>`;
-    const script = `<script src="${url('embed/host.js')}" async><\/script>`;
+    // The frame and, under it, the line that names Green Southerners as the
+    // source: the same code every component's "Share as embed" gives.
+    let drawn = '';
+    try {
+      const doc = shown && shown.contentDocument;
+      drawn = (doc && doc.querySelector('.embed-title, .st-head h1, .db-head h1')?.textContent) || '';
+    } catch {
+      drawn = '';
+    }
+    const iframe = embedCode({
+      src: href,
+      title: state.title || drawn.trim() || WIDGETS[state.widget]?.label || 'South Ecocide Analytics',
+      height: FIXED_HEIGHT[state.widget] || (measured ? measured + 8 : 460),
+      link: href,
+    });
+    const script = `<script src="${published('embed/host.js')}" async><\/script>`;
 
     fill(
       snippetHost,

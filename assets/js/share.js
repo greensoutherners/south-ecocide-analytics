@@ -157,9 +157,12 @@ export function shareBar(get, { compact = false, className = '', align = 'left' 
 
 /**
  * Put a share bar in a card's head (made if the card has none), for a
- * component of a page. The component gets `data-share-id`, so `only=<id>` can
- * show it alone; `get` returns { title, height? } and the rest is the page's
- * own address. Returns the bar.
+ * component of a page. The component gets `data-share-id` and the id
+ * `share-<id>`, so `only=<id>` shows it alone and `#share-<id>` lands on it.
+ * `get()` returns { title, height?, date? }; by default the link is the page's
+ * own address (its filters) with the anchor, and the embed is the page with
+ * `only=<id>`. A component that has a widget of its own returns `embed: { src,
+ * height }` (and may return `link`) to share that instead. Returns the bar.
  */
 export function shareCard(card, id, get, opts = {}) {
   if (!card) return null;
@@ -171,7 +174,11 @@ export function shareCard(card, id, get, opts = {}) {
     card.prepend(head);
   }
   head.querySelector(':scope > .gs-share')?.remove();
-  const bar = shareBar(() => pageComponent(card, id, get()), { compact: true, align: 'right', ...opts });
+  const bar = shareBar(() => {
+    const g = get() || {};
+    const base = pageComponent(card, id, g);
+    return { ...base, ...(g.link ? { link: g.link } : {}), ...(g.embed ? { embed: g.embed } : {}) };
+  }, { align: 'right', ...opts });
   head.append(bar);
   return bar;
 }
@@ -402,6 +409,11 @@ export function landOnAnchor() {
   setTimeout(look, 300);
 }
 
+// Every page that loads this module honours `only=` and `#share-<id>`, before its
+// own scripts rewrite the address.
+onlyMode();
+landOnAnchor();
+
 /* ------------------------------------------------------------------ looks */
 
 const ICONS = {
@@ -458,9 +470,11 @@ function injectStyle() {
 .gs-credit-line a { color: inherit; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 .gs-share-head { display: flex; justify-content: flex-end; }
 .card-head .gs-share { margin-inline-start: auto; }
+[data-share-id] { scroll-margin-top: 84px; }
 html.gs-only .site-head, html.gs-only .site-foot, html.gs-only .gs-only-hide, html.gs-only .card-head .gs-share { display: none !important; }
 html.gs-only body { background: var(--surface-1, #fff); }
 html.gs-only .gs-only-keep { margin-top: 0 !important; margin-bottom: 0 !important; }
+html.gs-only .gs-only-keep[data-share-id], html.gs-only .grid > .gs-only-keep { grid-column: 1 / -1 !important; max-width: none !important; }
 html.gs-only main, html.gs-only .wrap { padding-top: 6px !important; padding-bottom: 6px !important; max-width: none !important; }
 .gs-only-credit { margin: 8px 0 0; font: 12px/1.5 Inter, system-ui, sans-serif; color: var(--ink-3, #828282); }
 .gs-only-credit a { color: inherit; }
