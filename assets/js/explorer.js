@@ -99,10 +99,11 @@ function render(mount, { types, sets, dataDate }) {
       el('p', {
         class: 'lede',
         text:
-          'Every kind of record the corpus holds, counted by town on one map of Lebanon. ' +
+          'Every kind of record on this site, counted by town on one map of Lebanon. ' +
           'Switch the kinds on and off, and put the ground layers underneath. Each circle is a ' +
           'town at its own point, its area growing with the records that name it; displacement ' +
-          'orders shade the municipality they name. The map holds no single record.',
+          'orders, detonations and demolitions shade the municipality they name. The map holds ' +
+          'no single record.',
       }),
     ]),
     el('div', { class: 'card', style: 'margin:16px 0' }, [
@@ -125,14 +126,16 @@ function render(mount, { types, sets, dataDate }) {
         'A circle is a town, not an event. It sits at the town’s own point and counts the ' +
           'records that name the town in the period chosen; its area grows with the count, ' +
           'so a town twice the area holds twice the records.',
-        'Displacement orders name a town, not a spot in it, so the municipality they name is ' +
-          'shaded, darker with more orders. A municipality with none is left unshaded, which ' +
-          'is not a finding that nothing happened there.',
+        'Displacement orders name a town, not a spot in it, and a detonation or demolition is ' +
+          'published at its village only, so both shade the municipality they name, darker ' +
+          'with more records; with both on, one shades and the other outlines. A municipality ' +
+          'with no record is left unshaded, which is not a finding that nothing happened there.',
         'Village territories are Voronoi cells of locality points, drawn dashed because ' +
           'they are not cadastral or administrative boundaries and no line on that layer ' +
           'should be read as one.',
-        'Presence zones are a place, not a finding. A town falling inside one is a spatial ' +
-          'fact about where it is, not a statement about what happened there.',
+        'The yellow-line zone is the ground the Israeli army declared a security zone in the ' +
+          '2026 war. It is a place, not a finding: a town falling inside it is a spatial fact ' +
+          'about where it is, not a statement about what happened there.',
         'Burned ground is measured on Sentinel-2 passes either side of a fire and merged by ' +
           'the month the fires began, so it follows the dates chosen. It says the ground ' +
           'burned, not what lit it.',
@@ -210,8 +213,8 @@ function render(mount, { types, sets, dataDate }) {
         ),
     },
     villages: {
-      label: 'Fire search territories',
-      note: 'the corpus’s own approximate cells, not boundaries',
+      label: 'Village territories',
+      note: 'approximate cells round each locality point, not boundaries',
       load: () => geo('villages').then((g) => villageLayer(g)),
     },
     scars: {
@@ -222,8 +225,8 @@ function render(mount, { types, sets, dataDate }) {
       dated: true,
     },
     zones: {
-      label: 'Presence zones',
-      note: 'a place, not a finding',
+      label: 'Yellow-line zone',
+      note: 'declared by the Israeli army; a place, not a finding',
       load: () => geo('zones').then((g) => zoneLayer(g)),
     },
     // No Key Biodiversity Area layer: the KBA Partnership's licence restricts

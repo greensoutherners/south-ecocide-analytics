@@ -96,7 +96,10 @@ const LAYERS = [
         match: (p) => p.k === 'municipality', on: true },
       { key: 'zone', label: 'The yellow-line zone the Israeli army declared', src: 'context', color: '#f2c200', kind: 'outline',
         match: (p) => p.k === 'zone', on: false },
-      { key: 'area', label: 'The ground the damage report read', src: 'context', color: '#6b6b6b', kind: 'outline',
+      // Every counting area in the Village Studio is the village and the ground within 1.5 km
+      // of its built-up area (the Studio's own definition of the label, measured 2026-11-17 on
+      // all 11 towns). A town whose area is drawn otherwise needs its own words, from its data.
+      { key: 'area', label: 'The area read on the pictures: the village and the ground within 1.5 km of its built-up area', src: 'context', color: '#6b6b6b', kind: 'outline',
         match: (p) => p.k === 'counting_area', on: false },
     ],
   },
@@ -362,9 +365,9 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
       el('section', {}, [el('h2', { text: 'Layers' }), ...groups]),
       el('section', { class: 'vm-notes' }, [
         el('h2', { text: 'How to read it' }),
-        el('p', { text: 'A change is drawn where readers found it on two pictures, and dated by those pictures: it happened between them. The map says where and when it was first seen, never why or by whom.' }),
+        el('p', { text: 'A change is drawn where it was found on two pictures, and dated by those pictures: it happened between them. The map says where and when it was first seen, never why or by whom.' }),
         el('p', { text: 'Fires, white phosphorus, displacement orders and detonations are counted by week at the town, never one by one: the corpus places most of them at the town, not at a house.' }),
-        el('p', { text: 'Buildings on no pre-war map were found on the pictures by independent readers and checked by more readers before they were drawn.' }),
+        el('p', { text: 'Buildings on no pre-war map were found on the pictures and confirmed by further independent readings before they were drawn.' }),
         el('p', {}, ['The records themselves are not published. To access them, ', el('a', { href: CONTACT_URL, target: '_blank', rel: 'noopener', text: 'contact Green Southerners' }), '.']),
       ]),
     );
@@ -621,7 +624,7 @@ function describe(l, p) {
           ? `Fires that started in ${dateLabel(p.d).replace(/^1 /, '')}.`
           : '';
   const ground = p.gr === 'cleared' ? ' On the newest picture the plot is scraped clear.' : p.gr === 'rubble' ? ' On the newest picture rubble lies where it stood.' : '';
-  const extra = p.added ? ' It is on no map of the buildings from before the war: readers found it on the pictures.' : '';
+  const extra = p.added ? ' It is on no map of the buildings from before the war: it was found on the pictures.' : '';
   const size = p.ha ? ` About ${p.ha >= 1 ? p.ha.toFixed(1) : p.ha.toFixed(2)} ha.` : p.km ? ` About ${(p.km * 1000).toFixed(0)} m.` : '';
   return `<b>${escapeHtml(l ? l.label : '')}</b><br>${escapeHtml(span + ground + extra + size)}`;
 }

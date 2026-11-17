@@ -44,7 +44,12 @@ const WIDGETS = {
   },
   stat: { label: 'Figures', note: 'One to three headline numbers, with their denominators.' },
   lanes: { label: 'All types', note: 'Every record type month by month, in separate lanes.' },
-  compare: { label: 'Before and after', note: 'One village, two dated satellite releases, with a slider.' },
+  compare: {
+    label: 'Before and after',
+    note:
+      'One village before and after on a slider: two satellite pictures, the earlier dated by ' +
+      'its archive release and the later by the day it was taken.',
+  },
   lapse: {
     label: 'Time-lapse',
     note: 'One town, every clear Sentinel-2 pass in order, one a second, with the date on each frame.',
@@ -54,7 +59,7 @@ const WIDGETS = {
 /** What the database opens on: its kinds of record, or a place. */
 const DATABASE_VIEWS = [
   { value: '', label: 'Every kind of record' },
-  { value: 'types=BRN', label: 'Fires from attacks' },
+  { value: 'types=BRN', label: 'Fires' },
   { value: 'types=DET&shade=DET', label: 'Detonations and demolitions' },
   { value: 'types=WPB', label: 'White phosphorus' },
   { value: 'types=ALR&shade=ALR', label: 'Displacement orders' },
@@ -358,7 +363,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
           'Ground layer',
           [
             { value: '', label: 'None' },
-            { value: 'villages', label: 'Fire search territories' },
+            { value: 'villages', label: 'Village territories (approximate)' },
             { value: 'scars', label: 'Burned ground' },
             { value: 'villages,scars', label: 'Territories and burned ground' },
           ],
@@ -601,11 +606,15 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
         el('a', { href, target: '_blank', rel: 'noopener', style: 'font-size:.82rem', text: 'Open on its own →' }),
       ]),
       frame,
+      // The database and a story post no height (embed/host.js leaves their
+      // frames as given), so their note says so instead.
       el('p', {
         class: 'card-note',
-        text:
-          'The frame below is sizing itself through the same message the host snippet ' +
-          'listens for, so this previews the handshake as well as the chart.',
+        text: APP_HEIGHT[state.widget]
+          ? 'The frame above keeps the height it is given: the database and the step-by-step ' +
+            'investigation do not report their own height, so the snippet gives them a fixed one.'
+          : 'The frame above sizes itself with the same message the host snippet listens for, ' +
+            'so this preview also shows that the automatic height works.',
       })
     );
 
@@ -692,11 +701,11 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
 
   function setupCard() {
     return el('div', { class: 'note' }, [
-      el('b', { text: 'Before the first embed goes live' }),
+      el('b', { text: 'Before embedding on a site' }),
       el('ul', {}, [
         el('li', {
           text:
-            'Add the host snippet once to greensoutherners.org so embeds can size ' +
+            'Add the host snippet once to the site that holds the embeds, so they can size ' +
             'themselves. It touches nothing else on the page and ignores messages from ' +
             'any other origin.',
         }),

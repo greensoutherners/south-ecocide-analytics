@@ -395,13 +395,19 @@ export function failure(err) {
    * that failed names the file it wanted; anything else is this code's fault
    * and should say so.
    */
-  const isFetch = /(fetch|NetworkError|Failed to fetch|\d{3} )/i.test(message) || /\.(json|geojson)/.test(message);
+  const isFetch = /\b(fetch|NetworkError|Failed to fetch|\d{3} )/i.test(message) || /\.(json|geojson)\b/.test(message);
+
+  // Only a copy of the site opened straight from disk is told how to serve it:
+  // a browser blocks those reads, and whoever made the copy is the one reading.
+  const fromDisk = typeof location !== 'undefined' && location.protocol === 'file:';
 
   return el('div', { class: 'error' }, [
     el('b', { text: isFetch ? 'The data did not load. ' : 'This page hit an error. ' }),
     isFetch
-      ? `It reads JSON from ${DATA.href}. Opened straight from disk a browser will ` +
-        'block that, so serve the folder over HTTP instead. '
+      ? fromDisk
+        ? `It reads JSON from ${DATA.href}. Opened straight from disk a browser will ` +
+          'block that, so serve the folder over HTTP instead. '
+        : 'Check the connection and reload the page. '
       : 'The figures are fine; the page that draws them is not. ',
     el('code', { text: message }),
   ]);

@@ -220,7 +220,11 @@ function render(mount, { town, types, sets, towns, highRes }) {
       class: 'lede',
       text:
         `${town.district || 'District not recorded'}, ${town.governorate || ''}` +
-        (town.population ? ` · population ${fmt(town.population)} (CAS)` : '') +
+        // OpenStreetMap's population tag, else Wikidata's (scripts/fill_city_geo.py):
+        // estimates of mixed dates, so the page says so rather than naming one source.
+        (town.population
+          ? ` · population ${fmt(town.population)} (an estimate from open sources, not a census)`
+          : '') +
         // Months, not days: the published figures hold no single record's date.
         (town.first
           ? town.first.slice(0, 7) === town.last.slice(0, 7)
@@ -418,6 +422,12 @@ function render(mount, { town, types, sets, towns, highRes }) {
   }
 
   const townKinds = types.filter((t) => TOWN_KINDS.has(t.code)).map((t) => t.label.toLowerCase());
+  // Two labels are set off by commas, as a label may hold an "and" of its own:
+  // "forced displacement orders, and detonations and demolitions, are ...".
+  const townKindsText =
+    townKinds.length > 1
+      ? `${townKinds.slice(0, -1).join(', ')}, and ${townKinds[townKinds.length - 1]},`
+      : townKinds.join('');
   function noteMap() {
     mapNote.textContent =
       (drawnKinds.length
@@ -426,8 +436,8 @@ function render(mount, { town, types, sets, towns, highRes }) {
           'places no single event. '
         : 'No kind of record held here is drawn as circles. ') +
       (townKinds.length
-        ? `${capitalise(townKinds.join(' and '))} are about the whole town, so they are ` +
-          'counted above and in the lanes rather than drawn.'
+        ? `${capitalise(townKindsText)} are placed at the town as a whole, not at a spot in ` +
+          'it, so they are counted above and in the lanes rather than drawn.'
         : '');
   }
   drawMarks();
@@ -635,9 +645,11 @@ async function buildCompare({ town, compareEl, compareBar, compareNote, highRes 
     compareEl.replaceChildren(
       el('p', {
         class: 'loading',
+        // Not "read for damage": 10 of the 23 villages with a pair (2026-11-17) have no
+        // damage reading. A pair needs only the village's 2026 high-resolution picture.
         text:
-          'No before-and-after pair has been built for this village yet. They are made ' +
-          'from the high-resolution imagery the village damage reports were read on.',
+          'There is no before-and-after pair for this village. Pairs exist only for ' +
+          'villages with a high-resolution picture from 2026.',
       })
     );
     compareBar.remove();
@@ -696,7 +708,7 @@ async function buildCompare({ town, compareEl, compareBar, compareNote, highRes 
    * difference is strong enough that saying so once is not enough.
    */
   const season = pair.seasonal
-    ? '<b>These two were flown in different seasons.</b> The difference in how green ' +
+    ? '<b>These two were taken in different seasons.</b> The difference in how green ' +
       'the ground is, is the time of year and not damage. '
     : '';
 
@@ -706,13 +718,13 @@ async function buildCompare({ town, compareEl, compareBar, compareNote, highRes 
     'keys once it has focus. ' +
     `<b>${dateLabel(pair.before_label)}</b> is the day the archive release was published, ` +
     'which is on or after the day that picture was taken; ' +
-    `<b>${dateLabel(pair.after_label)}</b> is the day the aerial picture was captured. ` +
+    `<b>${dateLabel(pair.after_label)}</b> is the day the later picture was captured. ` +
     season +
     'Read the buildings and the roads: a roof that has become a grey scatter is the ' +
     'change this corpus records. What is visible here is the ground changing, which is ' +
     'not by itself a statement of what changed it. ' +
     '<span style="opacity:.8">Before: Esri, Maxar, Earthstar Geographics and the GIS User ' +
-    'Community. After: aerial imagery read for the village damage report.</span>';
+    'Community. After: OnGeo Intelligence.</span>';
 }
 
 /** The satellite sequence, when one has been built for this town. */

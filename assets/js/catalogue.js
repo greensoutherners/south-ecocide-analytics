@@ -47,8 +47,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
         text:
           'Published figures from the Green Southerners OSINT corpus of the war in South ' +
           'Lebanon: statistics, not records, counted by week, by town and by every documented ' +
-          'column. Every page here is a static page of HTML and JavaScript: no server, no ' +
-          'database, nothing to go down.',
+          'column.',
       }),
       el('p', {
         style: 'font-size:.88rem;color:var(--ink-3)',
@@ -63,15 +62,15 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
       page('Ecocide, Domicide and Ethnocide in South Lebanon', 'report/',
         'Our research report on the 2026 war, 1 March to 14 October 2026: the displacement orders, ' +
         'white phosphorus, fires and detonations of houses, their pattern, the method behind every ' +
-        'figure, and why they qualify as ecocide, domicide and ethnocide. Draft, under review; ' +
-        'with a PDF.'),
+        'figure, and why it reads them as consistent with the descriptive elements of ecocide, ' +
+        'domicide and ethnocide. Draft, under review; with a PDF.'),
     ]),
 
     group('The database and the investigations', [
       page('Database', 'platform.html',
         'Every kind of record on one map from 1 March 2026, counted by town: the filters, the ' +
-        'timeline that plays them, burned ground, the Village Studio’s damage and the relief ' +
-        'in 3D.'),
+        'timeline that plays them, burned ground, the relief in 3D and the damage mapped on ' +
+        'satellite pictures in a sample of towns.'),
       page('Investigations', 'investigations/',
         'Investigations of a place, told step by step on the map: Al-Mansouri, Beaufort Castle and ' +
         'the ground around it, the Litani River, and Aitaroun.'),
@@ -93,23 +92,24 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
 
     group('Start here', [
       page('Overview', 'pages/overview.html',
-        'Every kind of record the corpus holds, counted apart, with the measures that do ' +
+        'Every kind of record on this site, counted apart, with the measures that do ' +
         'add up and the lane chart that shows them side by side.'),
       page('Method and limits', 'pages/about.html',
         'How a record is made, what its location means, what is never done here, and how ' +
         'to cite a figure. Read before quoting anything.'),
       page('Embed builder', 'embed/',
-        'Pick a widget, watch the real preview, copy the snippet. This is the page the ' +
-        'social team works from.', true),
+        'Pick a widget, watch the real preview, copy the snippet to put it in an article or ' +
+        'a post.', true),
     ]),
 
     group('Cross-cutting pages', [
       page('Timeline', 'pages/timeline.html',
-        'The whole war month by month, every type on its own lane. Click a month to read ' +
+        'The 2026 war month by month, every type on its own lane. Click a month to read ' +
         'it out across all types at once.'),
       page('Map', 'pages/map.html',
-        'Every kind of record counted by town on one map of Lebanon, with village ' +
-        'territories, burned ground and presence zones as switchable ground layers.'),
+        'Every kind of record counted by town on one map of Lebanon, with switchable ground ' +
+        'layers: municipalities, approximate village territories, burned ground and the ' +
+        'yellow-line zone the Israeli army declared.'),
       page('Villages', 'pages/villages.html',
         `All ${fmt(villagePayload.towns.length)} towns the corpus names, searchable and ` +
         'sortable by any single type. No total column.'),

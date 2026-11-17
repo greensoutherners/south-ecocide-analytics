@@ -16,6 +16,6 @@
  "before_source": "Copernicus Sentinel-2 L2A, true colour, 10 m (Copernicus Browser)",
  "after_source": "the same",
  "ground_m": 1010,
- "note": "The yellow boxes are the places Green Southerners marked on these pictures.",
+ "note": "The yellow boxes mark places where Green Southerners read a change in the ground between the two passes.",
  "link": "https://greensoutherners.github.io/south-ecocide-analytics/investigations/litani.html"
 }

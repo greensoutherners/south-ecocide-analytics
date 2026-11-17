@@ -397,7 +397,7 @@ async function statWidget({ mount, query, meta: metaPayload }) {
       );
     } else if (key === 'towns') {
       const towns = ds.towns(selection).filter((t) => t.name !== 'No town recorded');
-      tiles.push(tile('Towns affected', fmt(towns.length), '', `with at least one ${info.label.toLowerCase()} record`));
+      tiles.push(tile('Towns affected', fmt(towns.length), '', `with at least one ${kindNoun(ds.code, 1)}`));
     } else {
       const measure = ds.measures.find((m) => m.k === key);
       if (!measure) continue;
@@ -582,8 +582,9 @@ async function compare({ mount, query, meta: metaPayload }) {
       mount,
       el('div', { class: 'error' }, [
         el('b', { text: `No before and after pair for ${town.name}. ` }),
-        'They are built from the high-resolution imagery the village damage reports were ' +
-          'read on, which covers part of the corpus.',
+        // Not "read for damage": 10 of the 23 villages with a pair (2026-11-17) were
+        // never read for damage. A pair needs only the village's 2026 high-resolution picture.
+        'Pairs exist only for villages with a high-resolution picture from 2026.',
       ])
     );
     return;
@@ -591,7 +592,7 @@ async function compare({ mount, query, meta: metaPayload }) {
 
   const host = el('div');
   const season = pair.seasonal
-    ? ' The two were flown in different seasons, so the difference in how green the ' +
+    ? ' The two were taken in different seasons, so the difference in how green the ' +
       'ground is, is the time of year and not damage: read the buildings.'
     : '';
 
@@ -610,9 +611,9 @@ async function compare({ mount, query, meta: metaPayload }) {
           style: 'margin-top:8px',
           text:
             'Drag the handle. The earlier date is when the archive release was published, ' +
-            'on or after the day that picture was taken; the later one is when the aerial ' +
-            `picture was captured.${season} Before: Esri, Maxar, Earthstar Geographics and the ` +
-            'GIS User Community. After: aerial imagery read for the village damage report.',
+            'on or after the day that picture was taken; the later date is the day the second ' +
+            `picture was taken.${season} Before: Esri, Maxar, Earthstar Geographics and the ` +
+            'GIS User Community. After: OnGeo Intelligence.',
         }),
       ],
       credit: creditLine(metaPayload),

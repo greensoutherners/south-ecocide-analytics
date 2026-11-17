@@ -137,10 +137,10 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, payload, wi
       el('p', {
         class: 'lede',
         text:
-          'Every town and village the corpus holds at least one record for. The columns ' +
-          'are counted apart and there is no total column: the corpus collects ' +
-          `${fmt(types.length)} specific kinds of record, so adding a row would measure what ` +
-          'we looked for rather than what happened.',
+          'Every town and village named by at least one record counted on this site. The ' +
+          'columns are counted apart and there is no total column: the site counts ' +
+          `${fmt(types.length)} specific kinds of record, so adding up a row would measure ` +
+          'what we looked for rather than what happened.',
       }),
     ]),
     figures,

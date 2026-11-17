@@ -128,8 +128,8 @@ function render(mount, { types, sets, warStart, dataDate }) {
       el('p', {
         class: 'lede',
         text:
-          'Every kind of record the corpus holds, month by month, on one axis and in ' +
-          'separate lanes. The war opens on ' +
+          'Every kind of record on this site, month by month, on one axis and in ' +
+          'separate lanes. The figures of the 2026 war start on ' +
           dateLabel(warStart) +
           '. Each lane carries its own scale; the counts are never added together.',
       }),

@@ -393,7 +393,7 @@ export async function platformPage({ embed = false } = {}) {
       el('span', { class: 'db-eyebrow' }, [credit({ text: '', className: '' }), ' · Database']),
       el('h1', { text: 'South Lebanon in the 2026 war, recorded' }),
       el('p', {
-        text: `What the corpus recorded since 1 March 2026, counted by town and by week: ${offered()}. Filter, search a town, play the timeline, and open a town for its figures.`,
+        text: `What Green Southerners recorded since 1 March 2026, counted by town and by week: ${offered()}. Filter, search a town, play the timeline, and open a town for its figures.`,
       }),
       keep.length ? el('p', { class: 'db-keep', text: keepLabel() }) : null,
       embed
@@ -674,7 +674,7 @@ export async function platformPage({ embed = false } = {}) {
           ? toggleRow('scars', 'Burned ground', 'the ground the fires burned, measured on Sentinel-2 and merged by the month each fire began; drawn for the months the dates reach, whatever the filters', scars)
           : null,
         !locked || state.layers.studio || keep.length
-          ? toggleRow('studio', 'Damage mapped in the Village Studio', `buildings and roads read on sharp pictures in ${studioIndex.towns.length} towns, from the day each change was first seen`, studio)
+          ? toggleRow('studio', 'Damage mapped village by village', `buildings and roads read on sharp pictures and on Sentinel-2 in ${studioIndex.towns.length} towns, from the day each change was first seen`, studio)
           : null,
         studioList,
         state.kinds.has('ALR')
@@ -687,7 +687,7 @@ export async function platformPage({ embed = false } = {}) {
       ]),
       el('div', { class: 'db-block' }, [
         el('h2', { text: 'The land, before the war' }),
-        toggleRow('eco', 'Wildlife and trees, recorded 2023 to 2024', 'Green Southerners field records of 22 animals and 11 trees and shrubs, before this war, each drawn as its species', eco),
+        toggleRow('eco', 'Wildlife and trees, recorded 2023 to 2024', 'Green Southerners field records of 22 animal species and 11 species of trees and shrubs, made before this war, each drawn as its species', eco),
         ecoKey(),
         toggleRow('cover', 'Land use and land cover, 2025', 'Impact Observatory, Microsoft and Esri, from Sentinel-2 at 10 m', cover),
         toggleRow('water', 'Water', 'rivers, streams, canals, lakes and reservoirs; OpenStreetMap', water),
@@ -702,20 +702,20 @@ export async function platformPage({ embed = false } = {}) {
     aboutTab,
     el('div', { class: 'db-block db-prose' }, [
       el('h2', { text: 'What the database holds' }),
-      el('p', { text: 'Green Southerners recorded the war of 2026 in South Lebanon from 1 March 2026, from satellites, footage, press reporting and official statements. The page shows statistics, never single records: fires, white phosphorus attacks and displacement orders, each counted by town and by week. Everything on the map belongs to the 2026 war, except the wildlife and trees layer, recorded in 2023 and 2024, and the land cover of 2025, which show the land before it.' }),
+      el('p', { text: 'Green Southerners recorded the war of 2026 in South Lebanon from 1 March 2026, from satellites, footage, press reporting and official statements. The page shows statistics, never single records: fires, white phosphorus attacks, displacement orders, and detonations and demolitions, each counted by town and by week. Everything on the map belongs to the 2026 war, except the wildlife and trees layer, recorded in 2023 and 2024, and the land cover of 2025, which show the land before it.' }),
       contactNote('db-contact-about'),
       el('h3', { text: 'How to read it' }),
       el('ul', {}, [
         el('li', { text: 'Each kind of record is collected and counted apart. The database never adds two kinds together: the corpus does not collect every kind of attack, so a combined total would claim a completeness it does not have.' }),
         el('li', { text: "Each mark on the map is a town, at the town's own point, sized by the records there in the dates chosen: its area grows with their number. A mark places the town, not an event in it. Fires are circles and white phosphorus attacks are diamonds; open a town for its figures." }),
         el('li', { text: 'Records are counted by week, so the dates chosen take in whole weeks: a week is counted when its first day falls inside them.' }),
-        el('li', { text: 'Displacement orders name a town, so they shade the whole municipality, darker with more orders. A municipality with no order is left unshaded: not having a record is not the same as nothing having happened.' }),
+        el('li', { text: 'Displacement orders name a town, and a detonation or demolition is published at its village only, so both shade the whole municipality, darker with more records. With both on, one kind shades the municipalities and the other outlines those where it has records; choose which under Shade municipalities by. A municipality with no record is left unshaded: not having a record is not the same as nothing having happened.' }),
         el('li', { text: "Some displacement orders name no town but a whole region: everyone south of the Zahrani or the Litani, Beirut's southern suburbs, Tyre with its camps, the sea off Tyre. Each region is a violet area with a dashed edge, drawn from the orders' words, because the maps the orders came with are not held. Its orders are counted on the area by week, and on a town only where an order names the town too." }),
         el('li', { text: 'Fires: every fire the corpus links to an Israeli military attack (an attack documented at the same town on a day of the fire, or a source that names it), and every fire in the yellow-line zone or in Arnoun, Kfar Tebnit, Yohmor and the two Zawtars round Beaufort Castle with no attack linked. A town says how many of its fires are which. No attack linked is not a finding that none happened.' }),
         el('li', { text: 'Burned ground is the ground the fires burned, measured on Sentinel-2 and merged by the month each fire began. It is drawn for every fire in the months the dates reach, whatever the filters.' }),
       ]),
       el('h3', { text: 'Sources' }),
-      el('p', { text: 'Municipal boundaries: OCHA Lebanon, Common Operational Dataset. Fire detections: NASA FIRMS. Burn scars and imagery: Copernicus Sentinel-2. The Litani, the Zahrani, water, places and Beaufort Castle: OpenStreetMap contributors (ODbL). Land cover 2025: Impact Observatory, Microsoft and Esri (CC BY 4.0). Wildlife and trees: Green Southerners, 2023 to 2024. Base map: Mapbox, or OpenFreeMap and OpenStreetMap where Mapbox is not configured. Relief: Mapbox or AWS Terrain Tiles.' }),
+      el('p', { text: 'Municipal boundaries: OCHA Lebanon, Common Operational Dataset. Fire detections: NASA FIRMS. Burn scars and imagery: Copernicus Sentinel-2. The Litani, the Zahrani, water, places and Beaufort Castle: OpenStreetMap contributors (ODbL). Land cover 2025: Impact Observatory, Microsoft and Esri (CC BY 4.0). Wildlife and trees: Green Southerners, 2023 to 2024. ' + baseCredit(handle.kind) }),
       el('p', { class: 'db-note' }, [
         `Data of ${dateLabel(metaPayload.generated_at.slice(0, 10))}. `,
         el('a', { href: url('pages/about.html'), ...away, text: 'Method and limits' }),
@@ -1374,7 +1374,7 @@ export async function platformPage({ embed = false } = {}) {
       items.push(el('div', { class: 'key' }, [el('span', { class: 'mark outline', style: `border-color:${typeColor(view.other)}` }), el('span', { text: `outlined: ${KIND[view.other].short.toLowerCase()}` })]));
     }
     if (state.layers.scars && state.kinds.has('BRN')) items.push(el('div', { class: 'key' }, [el('span', { class: 'mark area', style: `background:${typeColor('BRN')}66` }), el('span', { text: 'burned ground, by month' })]));
-    if (state.layers.studio) items.push(el('div', { class: 'key wide' }, [el('span', { class: 'mark area', style: 'background:#c81e3a' }), el('span', { text: 'damage mapped in the Studio (zoom in)' })]));
+    if (state.layers.studio) items.push(el('div', { class: 'key wide' }, [el('span', { class: 'mark area', style: 'background:#c81e3a' }), el('span', { text: `damage mapped village by village, in ${studioIndex.towns.length} towns (zoom in)` })]));
     if (regions.on && regions.count) {
       items.push(el('div', { class: 'key wide' }, [el('span', { class: 'mark area region' }), el('span', { text: 'an order to a whole region, drawn from its words' })]));
     }
@@ -1435,9 +1435,11 @@ export async function platformPage({ embed = false } = {}) {
       return;
     }
     bannerEl.hidden = false;
-    bannerEl.textContent = `Not yet collected in these dates: ${before
-      .map((k) => `${k.short.toLowerCase()} (from ${dateLabel(fromDay(sets[k.code].minDay + toDay(sets[k.code].epoch)))})`)
-      .join(', ')}. Before a collection begins the corpus has not looked, which is not the same as nothing having happened.`;
+    // The day given is the first published week of the kind, not the start of its
+    // collection: fires were collected all along.
+    bannerEl.textContent = `No published record in these dates: ${before
+      .map((k) => `${k.short.toLowerCase()} (the first is in the week of ${dateLabel(fromDay(sets[k.code].minDay + toDay(sets[k.code].epoch)))})`)
+      .join(', ')}. That is not the same as nothing having happened.`;
   }
 
   /* ---------------------------------------------------------------- url */
@@ -1530,6 +1532,15 @@ function noun(code, n) {
 
 function capital(s) {
   return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+}
+
+/** Who the base maps come from, for the library that drew them (gl.js): Mapbox's own
+ * tiles where config.js holds a token, the open tiles otherwise. The map's own credit
+ * line says the same. */
+function baseCredit(kind) {
+  return kind === 'mapbox'
+    ? 'Base map: Mapbox and OpenStreetMap contributors (ODbL). Satellite base: Mapbox and Maxar. Relief: Mapbox.'
+    : 'Base map: OpenFreeMap and OpenStreetMap contributors (ODbL). Satellite base: Esri, Maxar, Earthstar Geographics. Relief: AWS Terrain Tiles.';
 }
 
 /** A day number back to the Monday of its week (day 0, 1 January 1970, was a Thursday). */

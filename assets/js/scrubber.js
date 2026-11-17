@@ -198,9 +198,7 @@ export function scrubber(host, months, onChange, { mode = 'cumulative', label = 
       el('div', { class: 'scrub-track' }, [range, ticks]),
       el('p', {
         class: 'scrub-note',
-        text:
-          'Press play to run the whole period. Everything on this page follows the ' +
-          'cursor: the figures, the charts and the map.',
+        text: 'Press play to run the whole period, a month at a time.',
       }),
     ])
   );

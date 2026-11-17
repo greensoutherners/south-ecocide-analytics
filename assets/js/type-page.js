@@ -204,9 +204,10 @@ function render(mount, { meta: metaPayload, summary, ds }) {
       locKey === 'geolocated'
         ? 'Geolocated: placed on the ground from footage, a satellite detection or a burn ' +
           'scar. Not geolocated: the village is known and the spot is not. The map counts ' +
-          'both at the town’s own point.'
+          'both by town or by district, and places no single record.'
         : 'Exact: placed by a sensor, a measured outline or a visual match. Approximate: ' +
-          'known by its village only. The map counts both at the town’s own point.',
+          'known by its village only. The map counts both by town or by district, and ' +
+          'places no single record.',
     body: [locEl, locTable],
   });
   const byCard = el('section', { class: 'card' }, [byHead, byEl, byTable]);
@@ -216,7 +217,8 @@ function render(mount, { meta: metaPayload, summary, ds }) {
     title: 'When',
     note:
       'Drag the handles under the bars to narrow every chart and the map on this ' +
-      'page to a period. An empty month is drawn as zero, because it is a finding.',
+      'page to a period. An empty month is drawn as zero: there is no record of this kind ' +
+      'in it, which is not evidence that nothing happened.',
     body: [timelineEl],
   });
   const splitCard = card({
@@ -673,8 +675,8 @@ function render(mount, { meta: metaPayload, summary, ds }) {
         // The boundary join has not been exported. Say so rather than drawing
         // an empty country, which would read as "no records anywhere".
         mapNote.textContent =
-          'This view needs the official boundary codes, which are not in this data ' +
-          'snapshot. Re-export with the boundaries fetched.';
+          'This view needs the official boundary codes, which this data snapshot does not ' +
+          'carry. Choose Towns for the counts by town.';
         return;
       }
 
@@ -716,7 +718,7 @@ function render(mount, { meta: metaPayload, summary, ds }) {
           state.measure ? labelOf(state.measure) : 'Records',
           village
             ? 'Unshaded means no record of this kind names it, not that nothing happened there.'
-            : 'Unshaded means outside the collection area, not zero.',
+            : 'Unshaded means no record of this kind falls in it, not that nothing happened there.',
           ramp
         )
       ).addTo(map);
@@ -726,10 +728,10 @@ function render(mount, { meta: metaPayload, summary, ds }) {
         ? `${fmt(shaded)} of ${fmt(shapes.features.length)} Lebanese municipalities carry a ` +
           'record of this kind. An unshaded municipality is one no record of this kind ' +
           'names, which is not a finding that nothing happened there. The scale is ' +
-          'square-rooted, because a few places carry most of the corpus.'
-        : 'A district with no shade is outside the collection area, not a district with ' +
-          'no incidents. The scale is square-rooted, because a few districts carry most ' +
-          'records.';
+          'square-rooted, because a few places carry far more records than most.'
+        : 'A district with no shade holds no record of this kind, which is not a finding ' +
+          'that it had no incidents. The scale is square-rooted, because a few districts ' +
+          'carry most records.';
     } else if (state.mapMode === 'scars') {
       try {
         const burned = await geo('burned');

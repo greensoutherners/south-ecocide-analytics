@@ -84,9 +84,10 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
         'Material is collected from Telegram channels, the Lebanese press, official ' +
           'statements, and from satellites directly: NASA FIRMS thermal detections, ' +
           'Copernicus Sentinel-2 imagery and Copernicus EFFIS burnt-area polygons. Fires ' +
-          'run the opposite way to everything else: a satellite sees heat, the heat is ' +
-          'clustered into an event, and the event becomes a record. Everything else begins ' +
-          'with a human report.',
+          'are collected both ways: a satellite sees heat, the heat is clustered into an ' +
+          'event and the event becomes a record, and a fire reported in the press or on ' +
+          'Telegram, or outlined as burnt ground by Copernicus EFFIS, becomes a record too. ' +
+          'Everything else begins with a human report.',
         'A report becomes a record only after a person has read it against a match rule ' +
           'that is deliberately narrow. The rule refuses, among other things, daily ' +
           'bulletins that merely list a village beside an unrelated word, operations ' +
@@ -94,12 +95,14 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
           'ordinary Arabic words.',
         'Each record is then given sources, which are archived and hashed so a citation ' +
           'stays checkable after the original post is deleted.',
-        'Fires are published here where the corpus links them to an Israeli military ' +
-          'attack (an attack documented at the same town on a day of the fire, or a source ' +
-          'that names the attack), and where they burned in the yellow-line zone or round ' +
-          'Beaufort Castle, whatever lit them. The cause given is the attack: white ' +
+        'Fires are published here where they are linked to an Israeli military attack ' +
+          '(an attack documented at the same town on a day of the fire, or a source that ' +
+          'names the attack), and where they burned in the yellow-line zone (the security ' +
+          'zone the Israeli army declared in the south) or round Beaufort Castle, whatever ' +
+          'lit them. Where an attack is linked, the cause given is the attack: white ' +
           'phosphorus, an incendiary munition, illumination flares, or a fire lit by an ' +
-          'explosion.',
+          'explosion. A fire with no attack linked is given as Unidentified, which means no ' +
+          'attack is documented there on its days, not that none happened.',
       ]),
 
       section('What is published, and what is not', [
@@ -120,8 +123,9 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
           'ground add up. A count of records does not become a count of events.',
         'A record marked as a duplicate of another is excluded from every figure on this ' +
           'site, and is kept in the database rather than deleted.',
-        'Absence is never published as a finding. A district with no shade on a map is ' +
-          'outside the collection area; a town missing from the register is a town no ' +
+        'Absence is never published as a finding. A district or a municipality with no ' +
+          'shade on a map is one no record of that kind names, whether or not the ' +
+          'collection reached it; a town missing from the village register is a town no ' +
           'record names. Neither is a statement that nothing happened there.',
       ]),
 
@@ -133,7 +137,8 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
           '(placed by a sensor, a measured outline or a visual match) or an approximate one ' +
           '(known by its village only). For white phosphorus the same split reads as ' +
           'geolocated or not.',
-        'Displacement orders are records about a whole town, so the maps shade the ' +
+        'Displacement orders are records about a whole town, and detonations and ' +
+          'demolitions are published at their village only, so the maps shade the ' +
           'municipality they name.',
         'Burned ground is measured on Sentinel-2 passes either side of a fire and merged by ' +
           'the month the fires began, so it can be filtered by date and by nothing else.',
@@ -144,8 +149,8 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
 
       section('What the imagery shows', [
         'The before-and-after pictures on a village page pair an earlier archive picture ' +
-          'with a later aerial picture read for the village damage report. Each is dated in ' +
-          'its own label.',
+          'with a later high-resolution satellite picture from OnGeo Intelligence. Each is ' +
+          'dated in its own label.',
         'An archive release date is the day the imagery was published, which is on or after ' +
           'the day it was captured. It dates the publication, not the overflight.',
         'The pictures show that ground changed between two dates. They do not by themselves ' +

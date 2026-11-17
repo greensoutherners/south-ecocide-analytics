@@ -65,13 +65,13 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
     .reverse()[0];
 
   const head = el('div', {}, [
-    el('h1', { text: 'What the corpus holds' }),
+    el('h1', { text: 'What is published here' }),
     el('p', {
       class: 'lede',
       text:
-        `The corpus holds ${fmt(types.length)} kinds of record, collected from satellites, ` +
-        'social media, the Lebanese press and official statements. They are counted apart, ' +
-        'and on this site they are never added together.',
+        `This site publishes figures on ${fmt(types.length)} kinds of record, collected from ` +
+        'satellites, social media, the Lebanese press and official statements. They are ' +
+        'counted apart and never added together.',
     }),
   ]);
 
@@ -164,8 +164,8 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
           'collect every kind of attack, so a combined total would state a completeness ' +
           'it cannot claim.',
         'A count of records is not a count of events. One fire may be recorded once from ' +
-          'a satellite and once from a report, and the corpus folds those together when it ' +
-          'can prove they are the same fire, but a record is still a record, not an event.',
+          'a satellite and once from a report; the two are merged into one record when they ' +
+          'are found to be the same fire, but a record is still a record, not an event.',
         'Fires are counted here only where the corpus links them to an Israeli military ' +
           'attack (an attack documented at the same town on a day of the fire, or a source ' +
           'that names the attack), or where they burned in the yellow-line zone or round ' +
@@ -331,7 +331,8 @@ function summaryTable(types) {
     el('p', {
       class: 'card-note',
       text:
-        'There is no total row, and that is deliberate: see the note at the foot of this page.',
+        'There is no total row: no figure is added across kinds of record (see the note at ' +
+        'the foot of this page).',
     }),
   ]);
 }
