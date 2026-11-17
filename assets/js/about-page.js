@@ -106,7 +106,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
       ]),
 
       section('What is published, and what is not', [
-        'This site publishes statistics, not records. Each kind of record is counted by ' +
+        'This site publishes statistics, not records. Each category of record is counted by ' +
           'week, by town and by every documented column, with the measures that add up. No ' +
           'record, record number or single location is published.',
         'A week here runs from Monday, and is cut at the turn of a month so every month ' +
@@ -116,7 +116,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
 
       section('What is never done here', [
         'No figure is added across incident types. The corpus collects a few specific ' +
-          'kinds of record, each over its own window and from its own sources. A combined ' +
+          'categories of record, each over its own window and from its own sources. A combined ' +
           'total would measure what we looked for rather than what happened, and whoever ' +
           'quoted it would be quoting an artefact of our collection.',
         'No column is summed unless the corpus declares it additive. Hectares of burned ' +
@@ -124,7 +124,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload }) {
         'A record marked as a duplicate of another is excluded from every figure on this ' +
           'site, and is kept in the database rather than deleted.',
         'Absence is never published as a finding. A district or a municipality with no ' +
-          'shade on a map is one no record of that kind names, whether or not the ' +
+          'shade on a map is one no record in that category names, whether or not the ' +
           'collection reached it; a town missing from the village register is a town no ' +
           'record names. Neither is a statement that nothing happened there.',
       ]),

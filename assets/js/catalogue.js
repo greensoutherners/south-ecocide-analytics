@@ -71,7 +71,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
 
     group('The database and the investigations', [
       page('Database', 'platform.html',
-        'Every kind of record on one map from 1 March 2026, counted by town: the filters, the ' +
+        'Every category of record on one map from 1 March 2026, counted by town: the filters, the ' +
         'timeline that plays them, burned ground, the relief in 3D and the damage mapped on ' +
         'satellite pictures in a sample of towns.'),
       page('Investigations', 'investigations/',
@@ -94,7 +94,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
 
     group('Start here', [
       page('Overview', 'pages/overview.html',
-        'Every kind of record on this site, counted apart, with the measures that do ' +
+        'Every category of record on this site, counted apart, with the measures that do ' +
         'add up and the lane chart that shows them side by side.'),
       page('Method and limits', 'pages/about.html',
         'How a record is made, what its location means, what is never done here, and how ' +
@@ -109,7 +109,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
         'The 2026 war month by month, every type on its own lane. Click a month to read ' +
         'it out across all types at once.'),
       page('Map', 'pages/map.html',
-        'Every kind of record counted by town on one map of Lebanon, with switchable ground ' +
+        'Every category of record counted by town on one map of Lebanon, with switchable ground ' +
         'layers: municipalities, approximate village territories, burned ground and the ' +
         'yellow-line zone the Israeli army declared.'),
       page('Villages', 'pages/villages.html',

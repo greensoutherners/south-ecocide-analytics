@@ -99,8 +99,8 @@ function render(mount, { types, sets, dataDate }) {
       el('p', {
         class: 'lede',
         text:
-          'Every kind of record on this site, counted by town on one map of Lebanon. ' +
-          'Switch the kinds on and off, and put the ground layers underneath. Each circle is a ' +
+          'Every category of record on this site, counted by town on one map of Lebanon. ' +
+          'Switch the categories on and off, and put the ground layers underneath. Each circle is a ' +
           'town at its own point, its area growing with the records that name it; displacement ' +
           'orders, detonations and demolitions shade the municipality they name. The map holds ' +
           'no single record.',
@@ -551,7 +551,7 @@ function render(mount, { types, sets, dataDate }) {
     typeLegend = legend(
       `<b>Records</b>${keys}` +
         (circles
-          ? '<div style="margin-top:6px;font-size:.7rem;opacity:.8">One circle per town and kind, at ' +
+          ? '<div style="margin-top:6px;font-size:.7rem;opacity:.8">One circle per town and category, at' +
             'the town’s own point. Area grows with the count.</div>'
           : '')
     ).addTo(map);
@@ -607,7 +607,7 @@ function render(mount, { types, sets, dataDate }) {
       return;
     }
     const some = on.length && on.length < types.length ? `: ${on.map((t) => t.label).join(', ')}` : '';
-    figuresTitle.textContent = `Records ${when}, by kind`;
+    figuresTitle.textContent = `Records ${when}, by category`;
     mapTitle.textContent = `Records ${when}, by town${some}`;
   }
 

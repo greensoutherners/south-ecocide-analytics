@@ -276,7 +276,7 @@ function render(mount, { town, types, sets, towns, highRes }) {
   const lanesCard = card({
     title: 'What is recorded here, month by month',
     note:
-      'One lane per kind of record, each on its own scale. Counted apart, never added.',
+      'One lane per category of record, each on its own scale. Counted apart, never added.',
     body: [lanesEl],
   });
   const mapCard = card({
@@ -293,7 +293,7 @@ function render(mount, { town, types, sets, towns, highRes }) {
     el('div', { class: 'section' }, [lapseHost]),
     el('div', { class: 'section grid cols-2' }, [lanesCard, mapCard]),
     el('div', { class: 'section' }, [
-      el('h2', { text: 'Each kind of record' }),
+      el('h2', { text: 'Each category of record' }),
       kindsHost,
     ]),
     neighbours.length
@@ -315,9 +315,9 @@ function render(mount, { town, types, sets, towns, highRes }) {
       : null,
     el('div', { class: 'section' }, [
       noteList([
-        'The counts on this page are never added together. Each kind of record was ' +
+        'The counts on this page are never added together. Each category of record was ' +
           'collected over its own window from its own sources.',
-        'The site publishes statistics, not records: each kind is counted here by month and ' +
+        'The site publishes statistics, not records: each category is counted here by month and ' +
           'by every documented column, and the map counts records by town.',
         'The before and after pictures are dated in their own labels. What they show is ' +
           'ground that changed between two pictures; it does not, by itself, show what ' +
@@ -332,13 +332,13 @@ function render(mount, { town, types, sets, towns, highRes }) {
   /* Each component carries its own two buttons. The swipe and the time-lapse
    * embed their own widgets; the rest embed this page showing them alone. The
    * kinds' cards are rebuilt by the scrubber, so kindCard makes their bars. */
-  shareOn(figures, 'figures', `${town.name}: records of each kind`, () => ({ height: frameHeight(figures) }));
+  shareOn(figures, 'figures', `${town.name}: records in each category`, () => ({ height: frameHeight(figures) }));
   if (highRes && highRes.compare) {
     shareOn(compareCard, 'before-after', `${town.name}: before and after`, () => ({
       embed: { src: `embed/compare.html?v=${town.id}`, height: 1080 },
     }));
   }
-  shareOn(lanesCard, 'lanes', `${town.name}: records of each kind, month by month`, () => ({
+  shareOn(lanesCard, 'lanes', `${town.name}: records in each category, month by month`, () => ({
     height: frameHeight(lanesCard),
   }));
   shareOn(mapCard, 'map', `${town.name} and the towns round it: records per town`, () => ({
@@ -416,7 +416,7 @@ function render(mount, { town, types, sets, towns, highRes }) {
       // Kept short: the map is small, and the card's note says the rest.
       markLegend = legend(
         `<b>Records per town</b>${keys}<div style="margin-top:5px;font-size:.7rem;opacity:.8">` +
-          'One circle per town and kind. Area grows with the count.</div>'
+          'One circle per town and category. Area grows with the count.</div>'
       ).addTo(map);
     }
   }
@@ -431,10 +431,10 @@ function render(mount, { town, types, sets, towns, highRes }) {
   function noteMap() {
     mapNote.textContent =
       (drawnKinds.length
-        ? 'Each circle is a town, at the town’s own point, one colour per kind of record, its ' +
+        ? 'Each circle is a town, at the town’s own point, one colour per category of record, its ' +
           'area growing with the records that name the town. The map counts by town and ' +
           'places no single event. '
-        : 'No kind of record held here is drawn as circles. ') +
+        : 'No category of record held here is drawn as circles. ') +
       (townKinds.length
         ? `${capitalise(townKindsText)} are placed at the town as a whole, not at a spot in ` +
           'it, so they are counted above and in the lanes rather than drawn.'

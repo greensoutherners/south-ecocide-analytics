@@ -22,7 +22,7 @@ const WIDGETS = {
     label: 'Database, with the map',
     note:
       'The database in a frame: the map, its filters and the timeline, counted by town. ' +
-      'Choose the kinds of record it opens on, or a place.',
+      'Choose the categories of record it opens on, or a place.',
   },
   story: {
     label: 'Investigation, step by step',
@@ -58,7 +58,7 @@ const WIDGETS = {
 
 /** What the database opens on: its kinds of record, or a place. */
 const DATABASE_VIEWS = [
-  { value: '', label: 'Every kind of record' },
+  { value: '', label: 'Every category of record' },
   { value: 'types=BRN', label: 'Fires' },
   { value: 'types=DET&shade=DET', label: 'Detonations and demolitions' },
   { value: 'types=WPB', label: 'White phosphorus' },

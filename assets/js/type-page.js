@@ -217,8 +217,8 @@ function render(mount, { meta: metaPayload, summary, ds }) {
     title: 'When',
     note:
       'Drag the handles under the bars to narrow every chart and the map on this ' +
-      'page to a period. An empty month is drawn as zero: there is no record of this kind ' +
-      'in it, which is not evidence that nothing happened.',
+      'page to a period. An empty month is drawn as zero: it holds no record in this category, ' +
+      'which is not evidence that nothing happened.',
     body: [timelineEl],
   });
   const splitCard = card({
@@ -717,8 +717,8 @@ function render(mount, { meta: metaPayload, summary, ds }) {
           layer.__peak,
           state.measure ? labelOf(state.measure) : 'Records',
           village
-            ? 'Unshaded means no record of this kind names it, not that nothing happened there.'
-            : 'Unshaded means no record of this kind falls in it, not that nothing happened there.',
+            ? 'Unshaded means no record in this category names it, not that nothing happened there.'
+            : 'Unshaded means no record in this category falls in it, not that nothing happened there.',
           ramp
         )
       ).addTo(map);
@@ -726,10 +726,10 @@ function render(mount, { meta: metaPayload, summary, ds }) {
       const shaded = Object.keys(counts).length;
       mapNote.textContent = village
         ? `${fmt(shaded)} of ${fmt(shapes.features.length)} Lebanese municipalities carry a ` +
-          'record of this kind. An unshaded municipality is one no record of this kind ' +
+          'record in this category. An unshaded municipality is one no record in this category ' +
           'names, which is not a finding that nothing happened there. The scale is ' +
           'square-rooted, because a few places carry far more records than most.'
-        : 'A district with no shade holds no record of this kind, which is not a finding ' +
+        : 'A district with no shade holds no record in this category, which is not a finding ' +
           'that it had no incidents. The scale is square-rooted, because a few districts ' +
           'carry most records.';
     } else if (state.mapMode === 'scars') {

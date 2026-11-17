@@ -91,7 +91,7 @@ function render(mount, { types, sets, warStart, dataDate }) {
   // The lanes travel as their own widget, which draws the same chart. 430 px is
   // the widget's own height at any frame width down to a phone's.
   shareCard(lanesCard, 'lanes', () => ({
-    title: 'Every kind of record in the 2026 war, by month',
+    title: 'Every category of record in the 2026 war, by month',
     date: dataDate,
     embed: { src: 'embed/lanes.html', height: 430 },
   }));
@@ -128,7 +128,7 @@ function render(mount, { types, sets, warStart, dataDate }) {
       el('p', {
         class: 'lede',
         text:
-          'Every kind of record on this site, month by month, on one axis and in ' +
+          'Every category of record on this site, month by month, on one axis and in ' +
           'separate lanes. The figures of the 2026 war start on ' +
           dateLabel(warStart) +
           '. Each lane carries its own scale; the counts are never added together.',
@@ -144,9 +144,9 @@ function render(mount, { types, sets, warStart, dataDate }) {
       noteList([
         'The lanes share a time axis and nothing else. A tall bar in one lane and a tall ' +
           'bar in another are different measurements of different things.',
-        'A month with no bar is a month with no record of that kind. For most types that ' +
+        'A month with no bar is a month with no record in that category. For most types that ' +
           'means nothing was collected, which is not the same as nothing happening.',
-        'Each kind was collected over its own window and from its own sources, so a ' +
+        'Each category was collected over its own window and from its own sources, so a ' +
           'difference between two lanes can be a difference in collection, not in events.',
       ]),
     ])

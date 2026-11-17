@@ -97,7 +97,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, payload, wi
 
   const sortEl = el('select', { id: 'v-sort' });
   const sortOptions = [
-    { value: 'types', label: 'Kinds of record held' },
+    { value: 'types', label: 'Categories of record held' },
     { value: 'pictures', label: 'Has pictures' },
     { value: 'name', label: 'Name' },
     { value: 'first', label: 'Earliest record' },
@@ -139,7 +139,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, payload, wi
         text:
           'Every town and village named by at least one record counted on this site. The ' +
           'columns are counted apart and there is no total column: the site counts ' +
-          `${fmt(types.length)} specific kinds of record, so adding up a row would measure ` +
+          `${fmt(types.length)} specific categories of record, so adding up a row would measure ` +
           'what we looked for rather than what happened.',
       }),
     ]),
@@ -170,7 +170,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, payload, wi
       noteList([
         'A town appears here because a record names it. A town that does not appear is a ' +
           'town no record names, which is not the same as a town that was not touched.',
-        'Columns are never added across a row. Each counts a different kind of record, ' +
+        'Columns are never added across a row. Each counts a different category of record, ' +
           'collected over a different window and held to a different bar for what counts ' +
           'as a record.',
         'The fire column counts every fire the corpus links to an Israeli military attack ' +
@@ -210,12 +210,12 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, payload, wi
     return Math.min(800, Math.ceil(tableHost.getBoundingClientRect().height) + 160);
   };
   shareCard(figures, 'figures', () => ({
-    title: `Towns with a record of each kind${scope()}`,
+    title: `Towns with a record in each category${scope()}`,
     height: figuresHeight(),
     date: dataDate,
   }));
   shareCard(tableHost, 'register', () => ({
-    title: `Village register${scope()}: records of each kind, town by town`,
+    title: `Village register${scope()}: records in each category, town by town`,
     height: registerHeight(),
     date: dataDate,
   }));
@@ -342,7 +342,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, payload, wi
       ]),
       el('p', {
         class: 'card-note',
-        text: 'There is no total column. A dot means no record of that kind names this town.',
+        text: 'There is no total column. A dot means no record in that category names this town.',
       })
     );
   }

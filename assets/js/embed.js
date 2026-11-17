@@ -460,7 +460,7 @@ async function lanesWidget({ mount, query, meta: metaPayload }) {
   fill(
     mount,
     frame({
-      title: query.title || 'Every kind of record, month by month',
+      title: query.title || 'Every category of record, month by month',
       subtitle: query.subtitle || 'Each lane has its own scale. The counts are never added together.',
       body: [node],
       credit: creditLine(metaPayload),

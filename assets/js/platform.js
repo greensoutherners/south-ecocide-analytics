@@ -495,9 +495,9 @@ export async function platformPage({ embed = false } = {}) {
     }
     fill(
       kindsHost,
-      el('h2', { text: 'Kinds of record' }),
+      el('h2', { text: 'Categories of record' }),
       el('div', { class: 'db-kinds' }, rows),
-      el('p', { class: 'db-note', text: 'Each kind counted apart, in the dates the timeline shows, and never added together.' }),
+      el('p', { class: 'db-note', text: 'Each category counted apart, in the dates the timeline shows, and never added together.' }),
       shadeRow
     );
   }
@@ -550,7 +550,7 @@ export async function platformPage({ embed = false } = {}) {
     fill(
       filtersHost,
       el('h2', { text: 'Filter' }),
-      groups.length ? groups : el('p', { class: 'db-note', text: 'Choose a kind of record to filter it.' })
+      groups.length ? groups : el('p', { class: 'db-note', text: 'Choose a category of record to filter it.' })
     );
   }
 
@@ -706,10 +706,10 @@ export async function platformPage({ embed = false } = {}) {
       contactNote('db-contact-about'),
       el('h3', { text: 'How to read it' }),
       el('ul', {}, [
-        el('li', { text: 'Each kind of record is collected and counted apart. The database never adds two kinds together: the corpus does not collect every kind of attack, so a combined total would claim a completeness it does not have.' }),
+        el('li', { text: 'Each category of record is collected and counted apart. The database never adds two categories together: the corpus does not collect every type of attack, so a combined total would claim a completeness it does not have.' }),
         el('li', { text: "Each mark on the map is a town, at the town's own point, sized by the records there in the dates chosen: its area grows with their number. A mark places the town, not an event in it. Fires are circles and white phosphorus attacks are diamonds; open a town for its figures." }),
         el('li', { text: 'Records are counted by week, so the dates chosen take in whole weeks: a week is counted when its first day falls inside them.' }),
-        el('li', { text: 'Displacement orders name a town, and a detonation or demolition is published at its village only, so both shade the whole municipality, darker with more records. With both on, one kind shades the municipalities and the other outlines those where it has records; choose which under Shade municipalities by. A municipality with no record is left unshaded: not having a record is not the same as nothing having happened.' }),
+        el('li', { text: 'Displacement orders name a town, and a detonation or demolition is published at its village only, so both shade the whole municipality, darker with more records. With both on, one category shades the municipalities and the other outlines those where it has records; choose which under Shade municipalities by. A municipality with no record is left unshaded: not having a record is not the same as nothing having happened.' }),
         el('li', { text: "Some displacement orders name no town but a whole region: everyone south of the Zahrani or the Litani, Beirut's southern suburbs, Tyre with its camps, the sea off Tyre. Each region is a violet area with a dashed edge, drawn from the orders' words, because the maps the orders came with are not held. Its orders are counted on the area by week, and on a town only where an order names the town too." }),
         el('li', { text: 'Fires: every fire the corpus links to an Israeli military attack (an attack documented at the same town on a day of the fire, or a source that names it), and every fire in the yellow-line zone or in Arnoun, Kfar Tebnit, Yohmor and the two Zawtars round Beaufort Castle with no attack linked. A town says how many of its fires are which. No attack linked is not a finding that none happened.' }),
         el('li', { text: 'Burned ground is the ground the fires burned, measured on Sentinel-2 and merged by the month each fire began. It is drawn for every fire in the months the dates reach, whatever the filters.' }),
@@ -1020,8 +1020,8 @@ export async function platformPage({ embed = false } = {}) {
       fields.length ? el('dl', { class: 'db-card-fields' }, fields.flatMap(([a, b]) => [el('dt', { text: a }), el('dd', { text: b })])) : null,
       blocks.length
         ? el('div', { class: 'db-sums' }, blocks)
-        : el('p', { class: 'db-note', text: 'Nothing of the kinds shown is recorded at this town in these dates.' }),
-      el('p', { class: 'db-note', text: 'Counted per kind, by week, in the dates the timeline shows. The kinds are never added together.' }),
+        : el('p', { class: 'db-note', text: 'Nothing in the categories shown is recorded at this town in these dates.' }),
+      el('p', { class: 'db-note', text: 'Counted per category, by week, in the dates the timeline shows. The categories are never added together.' }),
       links.length ? el('div', { class: 'db-card-links' }, links) : null,
       contactNote()
     );
@@ -1194,7 +1194,7 @@ export async function platformPage({ embed = false } = {}) {
       props.name_ar ? el('p', { class: 'db-card-ar', lang: 'ar', dir: 'rtl', text: props.name_ar }) : null,
       blocks.length
         ? el('div', { class: 'db-sums' }, blocks)
-        : el('p', { class: 'db-note', text: 'No record of the kinds shown names this municipality in these dates.' }),
+        : el('p', { class: 'db-note', text: 'No record in the categories shown names this municipality in these dates.' }),
       here.length
         ? el('div', { class: 'db-place-towns' }, [
             el('span', { class: 'db-label', text: here.length === 1 ? 'Its town' : 'Its towns' }),
@@ -1220,8 +1220,8 @@ export async function platformPage({ embed = false } = {}) {
       el('p', {
         class: 'db-note',
         text: inside.length
-          ? 'Counted per kind, by week, in the dates the timeline shows. The kinds are not added together. An order to a whole region is counted on its area, and here only if it names this town too.'
-          : 'Counted per kind, by week, in the dates the timeline shows. The kinds are not added together.',
+          ? 'Counted per category, by week, in the dates the timeline shows. The categories are not added together. An order to a whole region is counted on its area, and here only if it names this town too.'
+          : 'Counted per category, by week, in the dates the timeline shows. The categories are not added together.',
       }),
       town ? el('div', { class: 'db-card-links' }, [el('a', { href: url(`pages/village.html?v=${town.id}`), ...away, text: `${town.name}: everything recorded there` })]) : null,
       contactNote()

@@ -542,7 +542,7 @@ export function choropleth(
             ? format
               ? format(v)
               : `${fmt(v)} ${unit || label}`
-            : `<span style="opacity:.7">no record of this kind</span>`),
+            : `<span style="opacity:.7">no record in this category</span>`),
         { sticky: true }
       );
       lyr.on('mouseover', () => lyr.setStyle({ weight: 2, color: p.ink2 }));
@@ -599,7 +599,7 @@ export function rampLegendHTML(peak, label, note = null, steps = null) {
     `<b>${label}</b><div class="ramp">${ramp}</div>` +
     `<div class="ramp-ends"><span>1</span><span>${fmt(peak)}</span></div>` +
     `<div style="margin-top:5px;font-size:.7rem;opacity:.8">${
-      note || 'Unshaded means no record of this kind names it, not that nothing happened there.'
+      note || 'Unshaded means no record in this category names it, not that nothing happened there.'
     }</div>`
   );
 }

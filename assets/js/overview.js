@@ -69,7 +69,7 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
     el('p', {
       class: 'lede',
       text:
-        `This site publishes figures on ${fmt(types.length)} kinds of record, collected from ` +
+        `This site publishes figures on ${fmt(types.length)} categories of record, collected from ` +
         'satellites, social media, the Lebanese press and official statements. They are ' +
         'counted apart and never added together.',
     }),
@@ -87,7 +87,7 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
       sub: first ? `${dateLabel(first)} to ${dateLabel(last)}` : 'no dated records',
     }),
     stat({
-      label: 'Kinds of record',
+      label: 'Categories of record',
       value: String(types.length),
       sub: 'each with its own window, its own sources and its own bar for a record',
     }),
@@ -106,7 +106,7 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
    * they sit in its head row beside the heading, never inside a type card, which
    * is a link. */
   const kindsSection = el('div', { class: 'section' }, [
-    sectionHead('Each kind of record'),
+    sectionHead('Each category of record'),
     grid,
   ]);
   const lanesSection = el('div', { class: 'section' }, [
@@ -141,10 +141,10 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
    * lanes have a widget of their own, which their embed shows instead. */
   const share = (node, id, title) =>
     shareCard(node, id, () => ({ title, height: frameHeight(node), date: dataDate }));
-  share(figuresSection, 'figures', 'The South Lebanon corpus: towns, period and kinds of record');
-  share(kindsSection, 'kinds', 'Each kind of record in the South Lebanon corpus');
+  share(figuresSection, 'figures', 'The South Lebanon corpus: towns, period and categories of record');
+  share(kindsSection, 'kinds', 'Each category of record in the South Lebanon corpus');
   shareCard(lanesSection, 'lanes', () => ({
-    title: 'Every kind of record in the South Lebanon corpus, month by month',
+    title: 'Every category of record in the South Lebanon corpus, month by month',
     embed: { src: 'embed/lanes.html', height: 430 },
     date: dataDate,
   }));
@@ -161,7 +161,7 @@ function render(mount, { meta: metaPayload, summary: payload, villages: villageP
     el('div', { class: 'section' }, [
       noteList([
         'No figure on this site is added across incident types. The corpus does not ' +
-          'collect every kind of attack, so a combined total would state a completeness ' +
+          'collect every type of attack, so a combined total would state a completeness ' +
           'it cannot claim.',
         'A count of records is not a count of events. One fire may be recorded once from ' +
           'a satellite and once from a report; the two are merged into one record when they ' +
@@ -331,7 +331,7 @@ function summaryTable(types) {
     el('p', {
       class: 'card-note',
       text:
-        'There is no total row: no figure is added across kinds of record (see the note at ' +
+        'There is no total row: no figure is added across categories of record (see the note at ' +
         'the foot of this page).',
     }),
   ]);

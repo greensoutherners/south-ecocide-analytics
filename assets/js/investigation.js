@@ -334,7 +334,7 @@ class Stage {
   async renderMap(s, token) {
     const code = s.type;
     if (!this.facts.sets.get(code) && !SLUGS[code]) {
-      this.canvas.replaceChildren(el('p', { class: 'loading', text: 'This kind of record is not published.' }));
+      this.canvas.replaceChildren(el('p', { class: 'loading', text: 'This category of record is not published.' }));
       return;
     }
     const ds = this.facts.sets.get(code) || (await dataset(SLUGS[code]));
@@ -433,7 +433,7 @@ class Stage {
 
   async renderChart(s, token) {
     if (!this.facts.sets.get(s.type) && !SLUGS[s.type]) {
-      this.canvas.replaceChildren(el('p', { class: 'loading', text: 'This kind of record is not published.' }));
+      this.canvas.replaceChildren(el('p', { class: 'loading', text: 'This category of record is not published.' }));
       return;
     }
     const ds = this.facts.sets.get(s.type) || (await dataset(SLUGS[s.type]));
