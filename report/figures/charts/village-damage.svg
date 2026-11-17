@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-labelledby="desc">
-<desc id="desc">Horizontal bars for 10 towns, sorted by buildings destroyed: the buildings in each town's own territory first seen destroyed (dark) and damaged (light) on satellite pictures between 1 March to 14 October 2026. Beside each bar, the two counts, and the share of the mapped buildings of the town and the ground round it seen destroyed, damaged or changed on the newest pictures, at any date.</desc>
+<desc id="desc">Horizontal bars for 10 towns, sorted by buildings destroyed: the buildings in each town's own territory first seen destroyed (dark) and damaged (light) on satellite pictures between 1 March to 14 October 2026. Beside each bar, the two counts.</desc>
 <style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
 <rect width="1000" height="470" fill="#ffffff"/>
 <g class="back">
@@ -15,26 +15,26 @@
 <line x1="16" y1="414" x2="982" y2="414" stroke="#f0f0ef" stroke-width="1"/>
 </g>
 <g class="marks">
-<rect x="162" y="81" width="415.54" height="20" fill="#d9202f"/>
-<rect x="162" y="115" width="297.36" height="20" fill="#d9202f"/>
-<rect x="162" y="149" width="166.47" height="20" fill="#d9202f"/>
-<rect x="162" y="183" width="141.48" height="20" fill="#d9202f"/>
-<rect x="162" y="217" width="91.5" height="20" fill="#d9202f"/>
-<rect x="162" y="251" width="75.4" height="20" fill="#d9202f"/>
-<rect x="162" y="285" width="56.76" height="20" fill="#d9202f"/>
-<rect x="162" y="319" width="25.42" height="20" fill="#d9202f"/>
-<rect x="162" y="353" width="21.18" height="20" fill="#d9202f"/>
-<rect x="162" y="387" width="20.33" height="20" fill="#d9202f"/>
-<rect x="577.54" y="81" width="58.46" height="20" fill="#ee9ba1"/>
-<rect x="459.36" y="115" width="14.4" height="20" fill="#ee9ba1"/>
-<rect x="328.47" y="149" width="37.28" height="20" fill="#ee9ba1"/>
-<rect x="303.48" y="183" width="11.01" height="20" fill="#ee9ba1"/>
-<rect x="253.5" y="217" width="10.59" height="20" fill="#ee9ba1"/>
-<rect x="237.4" y="251" width="18.21" height="20" fill="#ee9ba1"/>
-<rect x="218.76" y="285" width="5.08" height="20" fill="#ee9ba1"/>
-<rect x="187.42" y="319" width="3.39" height="20" fill="#ee9ba1"/>
-<rect x="183.18" y="353" width="6.78" height="20" fill="#ee9ba1"/>
-<rect x="182.33" y="387" width="3.81" height="20" fill="#ee9ba1"/>
+<rect x="162" y="81" width="559.32" height="20" fill="#d9202f"/>
+<rect x="162" y="115" width="400.25" height="20" fill="#d9202f"/>
+<rect x="162" y="149" width="224.07" height="20" fill="#d9202f"/>
+<rect x="162" y="183" width="190.43" height="20" fill="#d9202f"/>
+<rect x="162" y="217" width="159.64" height="20" fill="#d9202f"/>
+<rect x="162" y="251" width="101.49" height="20" fill="#d9202f"/>
+<rect x="162" y="285" width="76.4" height="20" fill="#d9202f"/>
+<rect x="162" y="319" width="34.21" height="20" fill="#d9202f"/>
+<rect x="162" y="353" width="28.51" height="20" fill="#d9202f"/>
+<rect x="162" y="387" width="27.37" height="20" fill="#d9202f"/>
+<rect x="721.32" y="81" width="78.68" height="20" fill="#ee9ba1"/>
+<rect x="562.25" y="115" width="19.39" height="20" fill="#ee9ba1"/>
+<rect x="386.07" y="149" width="50.17" height="20" fill="#ee9ba1"/>
+<rect x="352.43" y="183" width="14.82" height="20" fill="#ee9ba1"/>
+<rect x="321.64" y="217" width="21.1" height="20" fill="#ee9ba1"/>
+<rect x="263.49" y="251" width="24.52" height="20" fill="#ee9ba1"/>
+<rect x="238.4" y="285" width="6.84" height="20" fill="#ee9ba1"/>
+<rect x="196.21" y="319" width="4.56" height="20" fill="#ee9ba1"/>
+<rect x="190.51" y="353" width="9.12" height="20" fill="#ee9ba1"/>
+<rect x="189.37" y="387" width="5.13" height="20" fill="#ee9ba1"/>
 </g>
 <g class="over">
 <line x1="162" y1="74" x2="162" y2="414" stroke="#c3c2b7" stroke-width="1"/>
@@ -45,52 +45,38 @@
 <text x="178" y="62" font-size="13.5" fill="#4b4e4c">Destroyed</text>
 <rect x="267.08" y="51.64" width="11" height="11" rx="1.5" fill="#ee9ba1"/>
 <text x="283.08" y="62" font-size="13.5" fill="#4b4e4c">Damaged</text>
-<text x="720" y="62" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Destroyed</text>
-<text x="804" y="62" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Damaged</text>
-<text x="982" y="17" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Share of mapped buildings</text>
-<text x="982" y="32" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">hit on the newest pictures</text>
-<text x="982" y="47" font-size="12.5" fill="#4b4e4c" text-anchor="end">any date, town and</text>
-<text x="982" y="62" font-size="12.5" fill="#4b4e4c" text-anchor="end">1.5 km round it</text>
+<text x="890" y="62" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Destroyed</text>
+<text x="982" y="62" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Damaged</text>
 <text x="150" y="95.59" font-size="13.5" fill="#1f2220" text-anchor="end">Bint Jbeil</text>
-<text x="720" y="95.59" font-size="13" font-weight="700" text-anchor="end" class="tn">981</text>
-<text x="804" y="95.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">138</text>
-<text x="982" y="95.59" font-size="13" font-weight="700" text-anchor="end" class="tn">63%</text>
+<text x="890" y="95.59" font-size="13" font-weight="700" text-anchor="end" class="tn">981</text>
+<text x="982" y="95.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">138</text>
 <text x="150" y="129.59" font-size="13.5" fill="#1f2220" text-anchor="end">Aitaroun</text>
-<text x="720" y="129.59" font-size="13" font-weight="700" text-anchor="end" class="tn">702</text>
-<text x="804" y="129.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">34</text>
-<text x="982" y="129.59" font-size="13" font-weight="700" text-anchor="end" class="tn">73%</text>
+<text x="890" y="129.59" font-size="13" font-weight="700" text-anchor="end" class="tn">702</text>
+<text x="982" y="129.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">34</text>
 <text x="150" y="163.59" font-size="13.5" fill="#1f2220" text-anchor="end">Aynata</text>
-<text x="720" y="163.59" font-size="13" font-weight="700" text-anchor="end" class="tn">393</text>
-<text x="804" y="163.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">88</text>
-<text x="982" y="163.59" font-size="13" font-weight="700" text-anchor="end" class="tn">68%</text>
+<text x="890" y="163.59" font-size="13" font-weight="700" text-anchor="end" class="tn">393</text>
+<text x="982" y="163.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">88</text>
 <text x="150" y="197.59" font-size="13.5" fill="#1f2220" text-anchor="end">At-Tiri</text>
-<text x="720" y="197.59" font-size="13" font-weight="700" text-anchor="end" class="tn">334</text>
-<text x="804" y="197.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">26</text>
-<text x="982" y="197.59" font-size="13" font-weight="700" text-anchor="end" class="tn">59%</text>
+<text x="890" y="197.59" font-size="13" font-weight="700" text-anchor="end" class="tn">334</text>
+<text x="982" y="197.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">26</text>
 <text x="150" y="231.59" font-size="13.5" fill="#1f2220" text-anchor="end">Al-Mansouri</text>
-<text x="720" y="231.59" font-size="13" font-weight="700" text-anchor="end" class="tn">216</text>
-<text x="804" y="231.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">25</text>
-<text x="982" y="231.59" font-size="13" font-weight="700" text-anchor="end" class="tn">52%</text>
+<text x="890" y="231.59" font-size="13" font-weight="700" text-anchor="end" class="tn">280</text>
+<text x="982" y="231.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">37</text>
 <text x="150" y="265.59" font-size="13.5" fill="#1f2220" text-anchor="end">Kounine</text>
-<text x="720" y="265.59" font-size="13" font-weight="700" text-anchor="end" class="tn">178</text>
-<text x="804" y="265.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">43</text>
-<text x="982" y="265.59" font-size="13" font-weight="700" text-anchor="end" class="tn">60%</text>
+<text x="890" y="265.59" font-size="13" font-weight="700" text-anchor="end" class="tn">178</text>
+<text x="982" y="265.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">43</text>
 <text x="150" y="299.59" font-size="13.5" fill="#1f2220" text-anchor="end">Yohmor</text>
-<text x="720" y="299.59" font-size="13" font-weight="700" text-anchor="end" class="tn">134</text>
-<text x="804" y="299.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">12</text>
-<text x="982" y="299.59" font-size="13" font-weight="700" text-anchor="end" class="tn">42%</text>
+<text x="890" y="299.59" font-size="13" font-weight="700" text-anchor="end" class="tn">134</text>
+<text x="982" y="299.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">12</text>
 <text x="150" y="333.59" font-size="13.5" fill="#1f2220" text-anchor="end">Beit Yahoun</text>
-<text x="720" y="333.59" font-size="13" font-weight="700" text-anchor="end" class="tn">60</text>
-<text x="804" y="333.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">8</text>
-<text x="982" y="333.59" font-size="13" font-weight="700" text-anchor="end" class="tn">40%</text>
+<text x="890" y="333.59" font-size="13" font-weight="700" text-anchor="end" class="tn">60</text>
+<text x="982" y="333.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">8</text>
 <text x="150" y="367.59" font-size="13.5" fill="#1f2220" text-anchor="end">Yaroun</text>
-<text x="720" y="367.59" font-size="13" font-weight="700" text-anchor="end" class="tn">50</text>
-<text x="804" y="367.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">16</text>
-<text x="982" y="367.59" font-size="13" font-weight="700" text-anchor="end" class="tn">43%</text>
+<text x="890" y="367.59" font-size="13" font-weight="700" text-anchor="end" class="tn">50</text>
+<text x="982" y="367.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">16</text>
 <text x="150" y="401.59" font-size="13.5" fill="#1f2220" text-anchor="end">Maroun al-Ras</text>
-<text x="720" y="401.59" font-size="13" font-weight="700" text-anchor="end" class="tn">48</text>
-<text x="804" y="401.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">9</text>
-<text x="982" y="401.59" font-size="13" font-weight="700" text-anchor="end" class="tn">64%</text>
+<text x="890" y="401.59" font-size="13" font-weight="700" text-anchor="end" class="tn">48</text>
+<text x="982" y="401.59" font-size="13" fill="#4b4e4c" text-anchor="end" class="tn">9</text>
 <text x="16" y="444" font-size="12.5" fill="#828282">Not drawn: buildings where only Sentinel-2's 10 m pixels saw the ground change, with no sharp pair. Zawtar El Sharqiyeh, read on Sentinel-2 alone, is left out.</text>
 </g>
 </svg>

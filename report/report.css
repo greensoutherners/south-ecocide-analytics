@@ -9,7 +9,9 @@
  * Print (and the pre-built PDF): A4, the draft notice at the top of every page,
  * a running footer with the title and the page number, the cover and the
  * contents on pages of their own, each chapter from a new page, figures, tables
- * and callouts never split, no navigation chrome.
+ * and callouts never split (the executive summary, taller than a page, breaks
+ * between its points; a table of several groups breaks between groups), no
+ * navigation chrome.
  *
  * The page is built by tools/research_report/build.py (alarms repository); the
  * markup each class styles is described in tools/research_report/README.md.
@@ -391,6 +393,7 @@ sup.ref a:hover { text-decoration: underline; }
 
 .fig { margin: 2.2em 0; }
 .fig img { display: block; width: 100%; height: auto; }
+.fig-open { display: block; cursor: zoom-in; }
 .fig.photo img, .fig.map img { border-radius: 6px; border: 1px solid var(--hairline); }
 .fig.narrow img { max-width: 520px; margin: 0 auto; }
 
@@ -437,6 +440,7 @@ sup.ref a:hover { text-decoration: underline; }
 .tbl tbody tr:last-child td, .tbl tbody tr:last-child th { border-bottom: 1.5px solid var(--ink-1); }
 .tbl tbody th { font-weight: 600; }
 .tbl .num { text-align: right; white-space: nowrap; }
+.tbl thead th.num { white-space: normal; }  /* long numeric headers wrap; nowrap stays on the numbers (td.num, tbody th.num), or a too-wide table makes Chrome shrink the whole PDF */
 .tbl tfoot td { font-size: 0.8rem; color: var(--ink-3); padding-top: 8px; }
 .tbl th:first-child, .tbl td:first-child { padding-inline-start: 0; }
 .tbl th:last-child, .tbl td:last-child { padding-inline-end: 0; }
@@ -488,7 +492,7 @@ sup.ref a:hover { text-decoration: underline; }
 }
 
 .callout[data-label]::before { content: attr(data-label); }
-.callout h4 { margin: 0 0 6px; font-size: 1.02rem; font-weight: 650; line-height: 1.3; }
+.callout .callout-title { margin: 0 0 6px; font-size: 1.02rem; font-weight: 650; line-height: 1.3; }
 .callout p, .callout li { font-size: 0.95rem; line-height: 1.62; }
 .callout ul, .callout ol { margin: 0 0 0.8em; padding-inline-start: 1.2em; }
 .callout > :last-child { margin-bottom: 0; }
@@ -499,7 +503,7 @@ sup.ref a:hover { text-decoration: underline; }
 
 .callout.definition { border-left-color: var(--ink-1); background: var(--plane); }
 .callout.definition:not([data-label])::before { content: "Definition"; }
-.callout.definition h4 { font-size: 1.1rem; }
+.callout.definition .callout-title { font-size: 1.1rem; }
 
 .callout.summary {
   border: 1px solid var(--accent-line);
@@ -548,9 +552,15 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
   .toc-num { min-width: 2.6em; }
 }
 
-/* a wide table scrolls on a phone; its caption stays on screen above it */
+/* a table wider than the column scrolls on any screen; its caption stays on
+   screen above it, as wide as the visible column (the wrap is the container) */
+@media screen {
+  .tbl-wrap { container-type: inline-size; }
+  .tbl caption { position: sticky; left: 0; max-width: 100cqi; }
+}
+/* on a phone the long addresses of the source tables may break anywhere */
 @media screen and (max-width: 640px) {
-  .tbl caption { position: sticky; left: 0; max-width: calc(100vw - 32px); }
+  .tbl td a.nourl { overflow-wrap: anywhere; }
 }
 
 /* =================================================================== print */
@@ -572,7 +582,7 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
   }
 
   @bottom-left {
-    content: "Green Southerners";
+    content: "The Green Southerners team";
     font-family: "Inter", system-ui, sans-serif;
     font-size: 7pt;
     color: #767676;
@@ -665,6 +675,11 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
 
   /* figures, tables and boxes are never split */
   .fig, .tbl-wrap, .callout, .keyfigs, blockquote.pull, .ref-list li { break-inside: avoid; }
+  /* the executive summary is taller than a page: it breaks between its points,
+     never inside one, and its kicker stays with the first point */
+  #summary > .callout.summary { break-inside: auto; }
+  #summary > .callout.summary::before { break-after: avoid; }
+  .callout li { break-inside: avoid; }
   .fig { margin: 5mm 0 6mm; }
   .fig img { max-height: 170mm; width: auto; max-width: 100%; margin: 0 auto; }
   .fig figcaption { font-size: 8pt; }
@@ -676,8 +691,15 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
   .tbl th, .tbl td { padding: 1.4mm 2.4mm; }
   .tbl thead { display: table-header-group; }
   .tbl tr { break-inside: avoid; }
+  /* a table of several groups (Annex A's source tables, one tbody per source) is taller than a page: it breaks between groups and nowhere else, its caption stays with its first group, and its label column keeps one width */
+  .tbl-wrap:has(tbody + tbody) { break-inside: auto; }
+  .tbl-wrap:has(tbody + tbody) > .tbl { display: block; }
+  .tbl-wrap:has(tbody + tbody) > .tbl > caption { display: block; break-inside: avoid; break-after: avoid; }
+  .tbl-wrap:has(tbody + tbody) > .tbl > tbody { display: table; width: 100%; border-collapse: collapse; break-inside: avoid; }
+  .tbl-wrap:has(tbody + tbody) > .tbl > tbody:first-of-type { break-before: avoid; }
+  .tbl-wrap:has(tbody + tbody) > .tbl > tbody > tr > th[scope="row"] { width: 20mm; }
 
-  .keyfigs { margin: 4mm 0 6mm; gap: 3mm; grid-template-columns: repeat(auto-fit, minmax(36mm, 1fr)); }
+  .keyfigs { margin: 4mm 0 6mm; gap: 3mm; grid-template-columns: repeat(auto-fit, minmax(30mm, 1fr)); }
   .keyfig { padding: 2.6mm 3.2mm 3mm; }
   .keyfig .num { font-size: 18pt; }
   .keyfig .lbl { font-size: 7.8pt; }
