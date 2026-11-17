@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 905.1" width="1000" height="905.1" role="img" aria-labelledby="title desc">
-<title id="title">Displacement orders by municipality</title>
-<desc id="desc">Municipalities shaded by the number of displacement order records naming a town in them, 1 March to 14 October 2026, with the areas of the orders that name a whole region outlined.</desc>
+<title id="title">Evacuation orders by municipality</title>
+<desc id="desc">Municipalities shaded by the number of evacuation order records naming a town in them, 1 March to 14 October 2026, with the areas of the orders that name a whole region outlined.</desc>
 <style>text{font-family:Inter, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;fill:#1f2220}.h{paint-order:stroke;stroke:#fff;stroke-width:3.4px;stroke-linejoin:round}.t1{font-size:19px;font-weight:700}.t2{font-size:14px;fill:#4b4e4c}.lg{font-size:14.5px}.lh{font-size:14.5px;font-weight:700}.ls{font-size:13px;fill:#4b4e4c}.lb{font-size:14.5px;font-weight:600}.ref{font-size:13.5px;fill:#3b3d3c}.dist{font-size:12.5px;font-weight:600;fill:#86827a;letter-spacing:1.6px}.dh{paint-order:stroke;stroke:#e2dfd6;stroke-width:3px;stroke-linejoin:round}.dh2{paint-order:stroke;stroke:#ecebe6;stroke-width:3px;stroke-linejoin:round}.nt{font-size:13px;fill:#4b4e4c}.cty{font-size:13px;font-weight:600;fill:#a6a298;letter-spacing:4px}.sea{font-size:14px;font-style:italic;fill:#a6a298;letter-spacing:1.5px}.src{font-size:12px;fill:#6f716f}.sc{font-size:12.5px;fill:#4b4e4c}.rg{font-size:13.5px;font-weight:600;fill:#4c2a9e}.ch{font-size:16px;font-weight:700}.rh{font-size:15px;font-weight:700}.cc{font-size:14px;font-weight:600}.cs{font-size:13px;fill:#4b4e4c}</style>
 <defs><clipPath id="fr"><rect x="0" y="0" width="1000" height="817.1"/></clipPath></defs>
 <rect x="0" y="0" width="1000" height="905.1" fill="#fff"/>
@@ -256,7 +256,7 @@
 </g>
 <rect x="0.5" y="0.5" width="999" height="816.1" fill="none" stroke="#bdb9b0" stroke-width="1"/>
 <rect x="14" y="14" width="285" height="292" rx="4" fill="#fff" fill-opacity="0.94" stroke="#cfcbc2" stroke-width="0.8"/>
-<text x="27" y="41" class="t1">Displacement orders</text>
+<text x="27" y="41" class="t1">Evacuation orders</text>
 <text x="27" y="61" class="t2">By municipality, 1 March to 14 October</text>
 <text x="27" y="79" class="t2">2026: 701 order records</text>
 <text x="27" y="104" class="lh">Records naming a town in the</text>

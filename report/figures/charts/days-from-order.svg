@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440" width="1000" height="440" role="img" aria-labelledby="desc">
-<desc id="desc">A dot plot in three groups: the median number of days from a town's first displacement order to its first white phosphorus attack, its first fire and its first detonation report, each for all orders and for town-named orders only, with the middle half of the towns as a bar and the median the calendar alone gives as a ring.</desc>
+<desc id="desc">A dot plot in three groups: the median number of days from a town's first evacuation order to its first white phosphorus attack, its first fire and its first detonation report, each for all orders and for town-named orders only, with the middle half of the towns as a bar and the median the calendar alone gives as a ring.</desc>
 <style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
 <rect width="1000" height="440" fill="#ffffff"/>
 <g class="grid">
@@ -48,7 +48,7 @@
 <text x="588" y="360" font-size="13" fill="#828282" text-anchor="middle" class="tn">90</text>
 <text x="684" y="360" font-size="13" fill="#828282" text-anchor="middle" class="tn">120</text>
 <text x="780" y="360" font-size="13" fill="#828282" text-anchor="middle" class="tn">150</text>
-<text x="540" y="382" font-size="13.5" fill="#4b4e4c" text-anchor="middle">Days from the town's first displacement order</text>
+<text x="540" y="382" font-size="13.5" fill="#4b4e4c" text-anchor="middle">Days from the town's first evacuation order</text>
 <text x="32.44" y="74"><tspan font-size="14.5" font-weight="700">To the first white phosphorus attack</tspan></text>
 <text x="286" y="102.5" font-size="13.5" fill="#1f2220" text-anchor="end">All orders, 49 towns</text>
 <text x="802" y="102.5"><tspan font-size="13" font-weight="700">22 days</tspan><tspan dx="6" font-size="12.5" fill="#4b4e4c">(calendar 21)</tspan></text>

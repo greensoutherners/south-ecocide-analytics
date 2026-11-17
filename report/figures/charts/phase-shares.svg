@@ -54,7 +54,7 @@
 <text x="431.46" y="169.42" font-size="13" font-weight="600" fill="#1f2220" text-anchor="middle" class="tn">41%</text>
 <text x="750.08" y="169.42" font-size="13" font-weight="600" fill="#1f2220" text-anchor="middle" class="tn">58%</text>
 <text x="946" y="169.42" font-size="13" font-weight="600" fill="#4b4e4c" class="tn">0.4%</text>
-<text x="32.44" y="162" font-size="14.5" font-weight="700">Displacement orders</text>
+<text x="32.44" y="162" font-size="14.5" font-weight="700">Evacuation orders</text>
 <text x="32.44" y="179" font-size="12.5" fill="#4b4e4c">701 recorded, each a town or region</text>
 <text x="450.02" y="233.42" font-size="13" font-weight="600" fill="#1f2220" text-anchor="middle" class="tn">47%</text>
 <text x="710.05" y="233.42" font-size="13" font-weight="600" fill="#1f2220" text-anchor="middle" class="tn">34%</text>
@@ -72,6 +72,6 @@
 <text x="32.44" y="354" font-size="14.5" font-weight="700">Detonations and demolitions</text>
 <text x="32.44" y="371" font-size="12.5" fill="#4b4e4c">624 reported</text>
 <text x="16" y="418" font-size="12.5" fill="#828282">Dashed lines carry the phases' share of the window's days down the chart: a kind spread evenly over the window would break at them. The middle phase ends</text>
-<text x="16" y="434.88" font-size="12.5" fill="#828282">with the week of 8 June, the last holding 10 or more displacement orders recorded.</text>
+<text x="16" y="434.88" font-size="12.5" fill="#828282">with the week of 8 June, the last holding 10 or more evacuation orders recorded.</text>
 </g>
 </svg>

@@ -49,7 +49,7 @@
 <text x="677.33" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">5</text>
 <text x="734.18" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">10</text>
 <text x="514" y="408" font-size="13.5" fill="#4b4e4c" text-anchor="middle">Weekly rate from 18 April as a multiple of the weekly rate before (log scale)</text>
-<text x="32.44" y="95" font-size="14.5" font-weight="700">Displacement orders</text>
+<text x="32.44" y="95" font-size="14.5" font-weight="700">Evacuation orders</text>
 <text x="32.44" y="112" font-size="12.5" fill="#4b4e4c">naming a town</text>
 <text x="818" y="93.42" font-size="13" font-weight="700" text-anchor="end" class="tn">0.06×</text>
 <text x="830" y="93.42" font-size="12.5" fill="#4b4e4c" class="tn">9.2 to 0.5</text>
@@ -61,7 +61,7 @@
 <text x="818" y="171.42" font-size="13" font-weight="700" text-anchor="end" class="tn">0.5×</text>
 <text x="830" y="171.42" font-size="12.5" fill="#4b4e4c" class="tn">2.0 to 1.0</text>
 <text x="32.44" y="215" font-size="14.5" font-weight="700">Fires linked to an attack</text>
-<text x="32.44" y="232" font-size="12.5" fill="#4b4e4c">at the town that day</text>
+<text x="32.44" y="232" font-size="12.5" fill="#4b4e4c">at the town that day or by their source</text>
 <text x="818" y="213.42" font-size="13" font-weight="700" text-anchor="end" class="tn">5.3×</text>
 <text x="830" y="213.42" font-size="12.5" fill="#4b4e4c" class="tn">1.6 to 8.4</text>
 <text x="818" y="231.42" font-size="13" font-weight="700" text-anchor="end" class="tn">1.5×</text>
@@ -78,7 +78,7 @@
 <text x="818" y="351.42" font-size="12.5" fill="#4b4e4c" text-anchor="end" font-style="italic">no ratio</text>
 <text x="553.31" y="350.92" font-size="12.5" fill="#4b4e4c" font-style="italic">none recorded before 18 April</text>
 <text x="830" y="351.42" font-size="12.5" fill="#4b4e4c" class="tn">none before, 2.2 after</text>
-<text x="16" y="434" font-size="12.5" fill="#828282">A record is placed by its town's gazetteer point; the zone is the outline of 18 June 2026 with the village lands named on 18 April. Displacement orders count</text>
+<text x="16" y="434" font-size="12.5" fill="#828282">A record is placed by its town's gazetteer point; the zone is the outline of 18 June 2026 with the village lands named on 18 April. Evacuation orders count</text>
 <text x="16" y="450.88" font-size="12.5" fill="#828282">town-named orders only: an order to a whole region has no point.</text>
 </g>
 </svg>

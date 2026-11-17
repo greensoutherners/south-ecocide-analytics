@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 436" width="1000" height="436" role="img" aria-labelledby="desc">
-<desc id="desc">Bars per week from the week of 2 March to the week of 12 October 2026: white phosphorus attacks recorded, the geolocated ones at the base of each bar and those not geolocated above them. The busiest week is labelled. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
+<desc id="desc">Bars per week from the week of 2 March to the week of 12 October 2026: white phosphorus attacks reported, the geolocated ones at the base of each bar and those not geolocated above them. The busiest week is labelled. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
 <style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
 <rect width="1000" height="436" fill="#ffffff"/>
 <g class="back">
@@ -72,7 +72,7 @@
 <line x1="246.14" y1="10" x2="246.14" y2="376" stroke="#1f2220" stroke-width="1.2"/>
 </g>
 <g class="text">
-<text x="982" y="22" font-size="12.5" fill="#4b4e4c" text-anchor="end">White phosphorus attacks recorded per week</text>
+<text x="982" y="22" font-size="12.5" fill="#4b4e4c" text-anchor="end">White phosphorus attacks reported per week</text>
 <rect x="704.09" y="37.64" width="11" height="11" rx="1.5" fill="#d6336c"/>
 <text x="720.09" y="48" font-size="13.5" fill="#4b4e4c">Geolocated, 35</text>
 <rect x="840.31" y="37.64" width="11" height="11" rx="1.5" fill="#efb1c7"/>

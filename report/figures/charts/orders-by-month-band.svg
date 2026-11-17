@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 486" width="1000" height="486" role="img" aria-labelledby="desc">
-<desc id="desc">Stacked bars of displacement order records per month, March to October 2026, split by where the named town's gazetteer point lies: south of the Litani, between the Litani and the Zahrani, north of the Zahrani in the South and Nabatieh governorates, elsewhere in Lebanon, a town with no point, or no town. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
+<desc id="desc">Stacked bars of evacuation order records per month, March to October 2026, split by where the named town's gazetteer point lies: south of the Litani, between the Litani and the Zahrani, north of the Zahrani in the South and Nabatieh governorates, elsewhere in Lebanon, a town with no point, or no town. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
 <style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
 <rect width="1000" height="486" fill="#ffffff"/>
 <g class="back">

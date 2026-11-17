@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 586" width="1000" height="586" role="img" aria-labelledby="desc">
-<desc id="desc">Four panels, one for each kind, white phosphorus attacks, fires, detonations and demolitions, and displacement orders, each with horizontal bars from 0 to 100%: the share of its cited sources archived and hashed, the share of its records holding a photograph or video and, for fires, the share seen by a satellite sensor and the share with burned ground seen but no detection. Each panel is read alone.</desc>
+<desc id="desc">Four panels, one for each kind, white phosphorus attacks, fires, detonations and demolitions, and evacuation orders, each with horizontal bars from 0 to 100%: the share of its cited sources archived and hashed, the share of its records holding a photograph or video and, for fires, the share seen by a satellite sensor and the share with burned ground seen but no detection. Each panel is read alone.</desc>
 <style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
 <rect width="1000" height="586" fill="#ffffff"/>
 <g class="grid">
@@ -79,7 +79,7 @@
 <text x="770.27" y="346" font-size="13" font-weight="600" class="tn">78%</text>
 <text x="280" y="369" font-size="13.5" fill="#1f2220" text-anchor="end">Records with a photo or video</text>
 <text x="638.15" y="369" font-size="13" font-weight="600" class="tn">56%</text>
-<text x="32.44" y="409"><tspan font-size="14.5" font-weight="700">Displacement orders</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">698 sources cited on 698 of 701 records</tspan></text>
+<text x="32.44" y="409"><tspan font-size="14.5" font-weight="700">Evacuation orders</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">698 sources cited on 698 of 701 records</tspan></text>
 <text x="280" y="434" font-size="13.5" fill="#1f2220" text-anchor="end">Sources archived</text>
 <text x="906" y="434" font-size="13" font-weight="600" class="tn">100%</text>
 <text x="280" y="457" font-size="13.5" fill="#1f2220" text-anchor="end">Sources hashed</text>
@@ -87,6 +87,6 @@
 <text x="280" y="480" font-size="13.5" fill="#1f2220" text-anchor="end">Records with the order's image or video</text>
 <text x="818.1" y="480" font-size="13" font-weight="600" class="tn">86%</text>
 <text x="16" y="560" font-size="12.5" fill="#828282">Archived: a public archive copy is stored; hashed: the SHA-256 of our captured copy is stored. Fires seen by a sensor and fires with burned ground but no</text>
-<text x="16" y="576.88" font-size="12.5" fill="#828282">detection do not overlap; a displacement order's image or video is the one its announcement carried.</text>
+<text x="16" y="576.88" font-size="12.5" fill="#828282">detection do not overlap; a evacuation order's image or video is the one its announcement carried.</text>
 </g>
 </svg>
