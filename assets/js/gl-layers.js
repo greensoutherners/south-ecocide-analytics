@@ -28,12 +28,12 @@ const FAR = 1e7;
 
 export const KINDS = [
   { code: 'BRN', slug: 'fires', short: 'Fires', long: 'Fire', form: 'points', measure: 'area_ha', unit: 'ha burned' },
-  // Detonations are hidden for now: their collection is not complete (the data
-  // owner, 2026-11-06). To show them again: { code: 'DET', slug: 'detonations',
-  // short: 'Detonations', long: 'Detonation or demolition', form: 'towns' },
-  // and DET back in spec.TYPES.
   { code: 'WPB', slug: 'phosphorus', short: 'White phosphorus', long: 'White phosphorus attack', form: 'points', shape: 'diamond' },
   { code: 'ALR', slug: 'displacement', short: 'Displacement orders', long: 'Forced displacement order', form: 'towns' },
+  // Detonations were hidden from 2026-11-06 while their collection was
+  // incomplete, and are shown again from 2026-11-17 (the data owner). The
+  // panel hides and shows them like every other kind.
+  { code: 'DET', slug: 'detonations', short: 'Detonations', long: 'Detonation or demolition', form: 'towns' },
   // Attacks on towns are hidden for now (the data owner, 2026-11-05). To show
   // them again: { code: 'ATT', slug: 'strikes', short: 'Attacks on towns',
   // long: 'Attack on a town', form: 'points' }, and ATT back in spec.TYPES.

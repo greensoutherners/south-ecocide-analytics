@@ -199,8 +199,11 @@ function render(mount, { summary: summaryPayload, payload, withSwipe, withLapse 
         value: fmt(withType('BRN')),
         sub: `${fmtArea(burned)} ha of measured burn scar`,
       }),
-      // Detonations are hidden for now (the data owner, 2026-11-06). To show
-      // them again: a tile 'With a demolition record', withType('DET').
+      stat({
+        label: 'With a demolition record',
+        value: fmt(withType('DET')),
+        sub: 'detonations and demolitions reported',
+      }),
       stat({
         label: 'With a white phosphorus record',
         value: fmt(withType('WPB')),

@@ -75,8 +75,7 @@ import { countLabel, el, kindNoun } from './ui.js';
 
 const SLUGS = {
   BRN: 'fires',
-  // Detonations are hidden for now (the data owner, 2026-11-06). To show them
-  // again: DET: 'detonations'.
+  DET: 'detonations',
   WPB: 'phosphorus',
   ALR: 'displacement',
   ATT: 'strikes',

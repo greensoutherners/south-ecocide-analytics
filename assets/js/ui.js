@@ -20,9 +20,7 @@ export const PAGES = [
   { href: 'index.html', label: 'Catalogue', key: 'catalogue', root: true },
   { href: 'investigations/', label: 'Investigations', key: 'investigations' },
   { href: 'platform.html', label: 'Platform', key: 'platform' },
-  // Detonations are hidden for now (the data owner, 2026-11-06: their collection
-  // is incomplete). To show them again, make this `types=BRN,WPB,DET`.
-  { href: 'platform.html?focus=ecosystem&types=BRN,WPB&shade=none', label: 'Ecosystem', key: 'ecosystem' },
+  { href: 'platform.html?focus=ecosystem&types=BRN,WPB,DET&shade=none', label: 'Ecosystem', key: 'ecosystem' },
   { href: 'pages/overview.html', label: 'Overview', key: 'overview' },
   { href: 'pages/timeline.html', label: 'Timeline', key: 'timeline' },
   { href: 'pages/map.html', label: 'Map', key: 'map' },
@@ -32,11 +30,10 @@ export const PAGES = [
 
 export const TYPE_PAGES = [
   { slug: 'fires', label: 'Fires', code: 'BRN' },
-  // Detonations are hidden for now (the data owner, 2026-11-06). To show them
-  // again: { slug: 'detonations', label: 'Detonations', code: 'DET' }, with
-  // pages/detonations.html restored and DET back in spec.TYPES.
   { slug: 'phosphorus', label: 'Phosphorus', code: 'WPB' },
   { slug: 'displacement', label: 'Displacement', code: 'ALR' },
+  // Shown again from 2026-11-17 (the data owner).
+  { slug: 'detonations', label: 'Detonations', code: 'DET' },
 ];
 
 /* Where a reader asks for the records themselves. The site publishes
@@ -59,8 +56,7 @@ const NOUNS = {
   BRN: ['fire', 'fires'],
   WPB: ['white phosphorus attack', 'white phosphorus attacks'],
   ALR: ['displacement order', 'displacement orders'],
-  // Detonations are hidden for now (the data owner, 2026-11-06). To show them
-  // again: DET: ['detonation or demolition', 'detonations and demolitions'].
+  DET: ['detonation or demolition', 'detonations and demolitions'],
   ATT: ['attack on a town', 'attacks on towns'],
 };
 

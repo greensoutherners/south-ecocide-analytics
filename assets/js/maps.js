@@ -298,9 +298,9 @@ export function burnedLayer(geojson, { from = null, to = null } = {}) {
 
 /* The kinds of record that are about a whole town: displacement orders. The
  * data owner's rule is that they shade the municipality they name, and the
- * maps open on that shading. Detonations (DET) are hidden for now (the data
- * owner, 2026-11-06); to show them again, add 'DET' to this set. */
-export const TOWN_KINDS = new Set(['ALR']);
+ * maps open on that shading. Detonations (DET) are placed at their village
+ * too, and are shown again from 2026-11-17 (the data owner). */
+export const TOWN_KINDS = new Set(['ALR', 'DET']);
 
 /* How large a town's circle is drawn.
  *
