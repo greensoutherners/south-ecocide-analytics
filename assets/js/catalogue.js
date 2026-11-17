@@ -60,7 +60,7 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
     // The research report comes first (the data owner, 2026-11-17).
     group('The research report', [
       page('Ecocide, Urbicide and Ethnocide in South Lebanon', 'report/',
-        'Our research report on the 2026 war, 1 March to 14 October 2026: the displacement orders, ' +
+        'Our research report on the 2026 war, 1 March to 14 October 2026: the evacuation orders, ' +
         'white phosphorus, fires and detonations of houses, their pattern, the method behind every ' +
         'figure, and why it reads them as consistent with the descriptive elements of ecocide, ' +
         'urbicide and ethnocide. Draft, under review; with a PDF.'),
