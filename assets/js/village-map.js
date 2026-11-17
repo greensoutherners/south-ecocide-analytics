@@ -146,6 +146,8 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
       maxzoom: p.zmax,
       date: p.date,
       credit: `Picture: OnGeo Intelligence, ${dateLabel(p.date)}`,
+      // OnGeo draws the edge of the area each report covers on its own pictures, in a red dashed line.
+      note: 'The red dashed line is OnGeo’s own: the edge of the area its report covers.',
     })),
     ...(info.pictures.esri || []).map((p) => ({
       key: p.key,
@@ -220,12 +222,13 @@ export async function villageMap({ city, root = document.getElementById('vmap'),
 
   function applyPicture() {
     const pic = pictures.find((p) => p.key === state.picture);
-    creditEl.textContent = pic.credit || '';
+    const credit = () => fill(creditEl, pic.credit || '', pic.note ? el('span', { class: 'vm-credit-note', text: pic.note }) : null);
+    credit();
     if (!map.isStyleLoaded()) return;   // the picture overlay draws it once the style has loaded
     const want = pic.base || 'satellite';
     if (handle.base !== want) handle.setBase(want);   // re-runs every overlay, the picture included
     else pictureLayer(map, pic, 'vm-picture');
-    creditEl.textContent = pic.credit || '';
+    credit();
   }
   handle.overlay((m) => pictureLayer(m, pictures.find((p) => p.key === state.picture), 'vm-picture'));
 

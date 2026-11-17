@@ -72,6 +72,7 @@ body:has(.vm) .site-foot { display: none; }
   position: absolute; left: 10px; top: 10px; z-index: 4; max-width: 60%;
   background: rgba(20, 20, 19, 0.72); color: #fff; font-size: 0.74rem; padding: 4px 8px; border-radius: 6px;
 }
+.vm-credit-note { display: block; margin-top: 2px; font-size: 0.68rem; opacity: 0.85; }
 .vm-panel-toggle { display: none; }
 .vm-pop .maplibregl-popup-content, .vm-pop .mapboxgl-popup-content { font-size: 0.82rem; line-height: 1.45; }
 
