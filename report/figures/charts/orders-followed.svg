@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 502" width="1000" height="502" role="img" aria-labelledby="desc">
 <desc id="desc">Two panels on one month axis, March to October 2026. Top: the share of checked evacuation orders followed by attack evidence at the named town by the end of the next Beirut day, by month, with the shares before and from 18 April as dashed lines. Bottom: the orders per month, split into followed, none found in these sources, and not checkable, with the number checked above each bar.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="502" fill="#ffffff"/>
 <g class="back">
 <line x1="181.36" y1="74" x2="181.36" y2="196" stroke="#f0f0ef" stroke-width="1"/>
@@ -28,7 +28,7 @@
 <line x1="56" y1="104.5" x2="978" y2="104.5" stroke="#e4e4e4" stroke-width="1"/>
 <line x1="56" y1="74" x2="978" y2="74" stroke="#e4e4e4" stroke-width="1"/>
 <line x1="56" y1="118.49" x2="250.11" y2="118.49" stroke="#4b4e4c" stroke-width="1.2" stroke-dasharray="5,4"/>
-<line x1="250.11" y1="102.63" x2="978" y2="102.63" stroke="#4b4e4c" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="250.11" y1="102.64" x2="978" y2="102.64" stroke="#4b4e4c" stroke-width="1.2" stroke-dasharray="5,4"/>
 <line x1="56" y1="361.04" x2="978" y2="361.04" stroke="#e4e4e4" stroke-width="1"/>
 <line x1="56" y1="312.08" x2="978" y2="312.08" stroke="#e4e4e4" stroke-width="1"/>
 <line x1="181.36" y1="410" x2="181.36" y2="415" stroke="#c3c2b7" stroke-width="1"/>
@@ -66,20 +66,20 @@
 <line x1="56" y1="410" x2="978" y2="410" stroke="#c3c2b7" stroke-width="1"/>
 </g>
 <g class="text">
-<text x="50" y="200.4" font-size="13" fill="#828282" text-anchor="end" class="tn">0%</text>
-<text x="50" y="139.4" font-size="13" fill="#828282" text-anchor="end" class="tn">50%</text>
-<text x="50" y="78.4" font-size="13" fill="#828282" text-anchor="end" class="tn">100%</text>
+<text x="50" y="200.4" font-size="13" fill="#828282" text-anchor="end">0%</text>
+<text x="50" y="139.4" font-size="13" fill="#828282" text-anchor="end">50%</text>
+<text x="50" y="78.4" font-size="13" fill="#828282" text-anchor="end">100%</text>
 <text x="16" y="56" font-size="14.5" font-weight="700">Share of the checked orders followed by attack evidence</text>
-<text x="118.68" y="105.85" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">65.7%</text>
-<text x="242.02" y="94.82" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">74.7%</text>
-<text x="365.36" y="87.94" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">80.4%</text>
-<text x="488.69" y="117.94" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">55.8%</text>
+<text x="118.68" y="105.85" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">65.7%</text>
+<text x="242.02" y="94.82" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">74.7%</text>
+<text x="365.36" y="87.94" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">80.4%</text>
+<text x="488.69" y="117.94" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">55.8%</text>
 <text x="860.73" y="94" font-size="12.5" fill="#4b4e4c" text-anchor="middle" class="h">2 of 2</text>
 <text x="60" y="134.49" font-size="12.5" fill="#4b4e4c" class="h">Before 18 April: 63.5%</text>
-<text x="974" y="118.63" font-size="12.5" fill="#4b4e4c" text-anchor="end" class="h">From 18 April: 76.5%</text>
-<text x="50" y="414.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="50" y="365.46" font-size="13" fill="#828282" text-anchor="end" class="tn">100</text>
-<text x="50" y="316.5" font-size="13" fill="#828282" text-anchor="end" class="tn">200</text>
+<text x="974" y="118.64" font-size="12.5" fill="#4b4e4c" text-anchor="end" class="h">From 18 April: 76.5%</text>
+<text x="50" y="414.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="50" y="365.46" font-size="13" fill="#828282" text-anchor="end">100</text>
+<text x="50" y="316.5" font-size="13" fill="#828282" text-anchor="end">200</text>
 <text x="16" y="240" font-size="14.5" font-weight="700">Orders recorded per month</text>
 <rect x="418.3" y="229.64" width="11" height="11" rx="1.5" fill="#7048e8"/>
 <text x="434.3" y="240" font-size="13.5" fill="#4b4e4c">Followed</text>

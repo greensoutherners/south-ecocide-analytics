@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 388" width="1000" height="388" role="img" aria-labelledby="desc">
 <desc id="desc">Horizontal bars: the 565 fires recorded from 1 March to 14 October 2026 by cause detail. A bracket groups the 344 fires linked to an Israeli military attack: secondary fire from explosion 294, white phosphorus 19, illumination flares 17, incendiary munition 14. Unidentified 219, non-attack fire 2.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="388" fill="#ffffff"/>
 <g class="grid">
 <line x1="282" y1="58" x2="282" y2="318" stroke="#e4e4e4" stroke-width="1"/>
@@ -21,10 +21,10 @@
 <path d="M28,67.0 L22,67.0 L22,201.0 L28,201.0" fill="none" stroke="#4b4e4c" stroke-width="1.4" stroke-linejoin="miter" stroke-linecap="butt"/>
 </g>
 <g class="text">
-<text x="282" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">0</text>
-<text x="481.33" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">100</text>
-<text x="680.67" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">200</text>
-<text x="880" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">300</text>
+<text x="282" y="340" font-size="13" fill="#828282" text-anchor="middle">0</text>
+<text x="481.33" y="340" font-size="13" fill="#828282" text-anchor="middle">100</text>
+<text x="680.67" y="340" font-size="13" fill="#828282" text-anchor="middle">200</text>
+<text x="880" y="340" font-size="13" fill="#828282" text-anchor="middle">300</text>
 <text x="984" y="30" font-size="12.5" fill="#4b4e4c" text-anchor="end">Fires recorded, 1 March to 14 October 2026</text>
 <text x="16" y="30"><tspan font-size="14.5" font-weight="700">Linked to an Israeli military attack</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">344 fires, 61% of those recorded</tspan></text>
 <text x="36" y="84.59" font-size="13.5" fill="#1f2220">Secondary fire from explosion</text>

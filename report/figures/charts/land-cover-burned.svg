@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 404" width="1000" height="404" role="img" aria-labelledby="desc">
 <desc id="desc">Paired horizontal bars, in percent of area: the 2025 land cover under the burned ground of 2026 against the land of the South and Nabatieh governorates. rangeland 60% of the burned ground, 44% of the land; built area 23% of the burned ground, 41% of the land; crops 17% of the burned ground, 5.9% of the land; trees 0.2% of the burned ground, 9.2% of the land.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="404" fill="#ffffff"/>
 <g class="grid">
 <line x1="144" y1="56" x2="144" y2="326" stroke="#e4e4e4" stroke-width="1"/>
@@ -19,26 +19,26 @@
 <rect x="144" y="295" width="107.87" height="22" fill="#8c8e8c"/>
 </g>
 <g class="text">
-<text x="144" y="344" font-size="13" fill="#828282" text-anchor="middle" class="tn">0%</text>
-<text x="378.51" y="344" font-size="13" fill="#828282" text-anchor="middle" class="tn">20%</text>
-<text x="613.01" y="344" font-size="13" fill="#828282" text-anchor="middle" class="tn">40%</text>
-<text x="847.52" y="344" font-size="13" fill="#828282" text-anchor="middle" class="tn">60%</text>
+<text x="144" y="344" font-size="13" fill="#828282" text-anchor="middle">0%</text>
+<text x="378.51" y="344" font-size="13" fill="#828282" text-anchor="middle">20%</text>
+<text x="613.01" y="344" font-size="13" fill="#828282" text-anchor="middle">40%</text>
+<text x="847.52" y="344" font-size="13" fill="#828282" text-anchor="middle">60%</text>
 <rect x="16" y="15.64" width="11" height="11" rx="1.5" fill="#f76707"/>
 <text x="32" y="26" font-size="13.5" fill="#4b4e4c">Under the burned ground: 202 Sentinel-2 burn scars, 6,101 ha</text>
 <rect x="462.45" y="15.64" width="11" height="11" rx="1.5" fill="#8c8e8c"/>
 <text x="478.45" y="26" font-size="13.5" fill="#4b4e4c">All land of the South and Nabatieh governorates</text>
 <text x="130" y="99.59" font-size="13.5" font-weight="600" fill="#1f2220" text-anchor="end">Rangeland</text>
-<text x="850" y="86.42" font-size="13" font-weight="700" fill="#1f2220" class="tn">60%</text>
-<text x="664.74" y="112.42" font-size="13" font-weight="600" fill="#4b4e4c" class="tn">44%</text>
+<text x="850" y="86.42" font-size="13" font-weight="700" fill="#1f2220">60%</text>
+<text x="664.74" y="112.42" font-size="13" font-weight="600" fill="#4b4e4c">44%</text>
 <text x="130" y="165.59" font-size="13.5" font-weight="600" fill="#1f2220" text-anchor="end">Built area</text>
-<text x="423.2" y="152.42" font-size="13" font-weight="700" fill="#1f2220" class="tn">23%</text>
-<text x="626.05" y="178.42" font-size="13" font-weight="600" fill="#4b4e4c" class="tn">41%</text>
+<text x="423.2" y="152.42" font-size="13" font-weight="700" fill="#1f2220">23%</text>
+<text x="626.05" y="178.42" font-size="13" font-weight="600" fill="#4b4e4c">41%</text>
 <text x="130" y="231.59" font-size="13.5" font-weight="600" fill="#1f2220" text-anchor="end">Crops</text>
-<text x="348.16" y="218.42" font-size="13" font-weight="700" fill="#1f2220" class="tn">17%</text>
-<text x="219.18" y="244.42" font-size="13" font-weight="600" fill="#4b4e4c" class="tn">5.9%</text>
+<text x="348.16" y="218.42" font-size="13" font-weight="700" fill="#1f2220">17%</text>
+<text x="219.18" y="244.42" font-size="13" font-weight="600" fill="#4b4e4c">5.9%</text>
 <text x="130" y="297.59" font-size="13.5" font-weight="600" fill="#1f2220" text-anchor="end">Trees</text>
-<text x="152.35" y="284.42" font-size="13" font-weight="700" fill="#1f2220" class="tn">0.2%</text>
-<text x="257.87" y="310.42" font-size="13" font-weight="600" fill="#4b4e4c" class="tn">9.2%</text>
+<text x="152.35" y="284.42" font-size="13" font-weight="700" fill="#1f2220">0.2%</text>
+<text x="257.87" y="310.42" font-size="13" font-weight="600" fill="#4b4e4c">9.2%</text>
 <text x="16" y="372" font-size="12.5" fill="#828282">Land cover of 2025, Sentinel-2 at 10 m. Bare ground, water and flooded vegetation: 0.4% of the land, 0.1% of the burned ground.</text>
 <text x="16" y="390" font-size="12.5" fill="#828282">Built area is the village fabric with its gardens and orchards; it does not mean that houses burned.</text>
 </g>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 506" width="1000" height="506" role="img" aria-labelledby="desc">
 <desc id="desc">Two lanes on one weekly time axis and one scale, 1 March to 14 October 2026: fires recorded inside the yellow-line zone and outside it. A dashed line in each lane gives the average per week before 18 April and from 18 April on. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="506" fill="#ffffff"/>
 <g class="back">
 <line x1="180.18" y1="70" x2="180.18" y2="220" stroke="#f0f0ef" stroke-width="1"/>
@@ -110,18 +110,18 @@
 </g>
 <g class="text">
 <text x="982" y="22" font-size="12.5" fill="#4b4e4c" text-anchor="end">Fires recorded per week, both lanes on one scale</text>
-<text x="48" y="224.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="185.04" font-size="13" fill="#828282" text-anchor="end" class="tn">10</text>
-<text x="48" y="145.67" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
-<text x="48" y="106.3" font-size="13" fill="#828282" text-anchor="end" class="tn">30</text>
+<text x="48" y="224.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="185.04" font-size="13" fill="#828282" text-anchor="end">10</text>
+<text x="48" y="145.67" font-size="13" fill="#828282" text-anchor="end">20</text>
+<text x="48" y="106.3" font-size="13" fill="#828282" text-anchor="end">30</text>
 <text x="32.44" y="62" class="h"><tspan font-size="14.5" font-weight="700">Inside the yellow-line zone</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">364 recorded: 1.6 a week before 18 April, 13.7 a week from then (8.6 times)</tspan></text>
-<text x="727.61" y="89" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">32</text>
-<text x="48" y="424.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="385.05" font-size="13" fill="#828282" text-anchor="end" class="tn">10</text>
-<text x="48" y="345.67" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
-<text x="48" y="306.3" font-size="13" fill="#828282" text-anchor="end" class="tn">30</text>
+<text x="727.61" y="89" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">32</text>
+<text x="48" y="424.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="385.05" font-size="13" fill="#828282" text-anchor="end">10</text>
+<text x="48" y="345.67" font-size="13" fill="#828282" text-anchor="end">20</text>
+<text x="48" y="306.3" font-size="13" fill="#828282" text-anchor="end">30</text>
 <text x="32.44" y="262" class="h"><tspan font-size="14.5" font-weight="700">Outside the zone</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">198 recorded: 2.8 a week before 18 April, 7.0 a week from then (2.5 times)</tspan></text>
-<text x="756.11" y="348.06" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">17</text>
+<text x="756.11" y="348.06" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">17</text>
 <text x="117.09" y="441.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">March 2026</text>
 <text x="241.23" y="441.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">April</text>
 <text x="365.37" y="441.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">May</text>

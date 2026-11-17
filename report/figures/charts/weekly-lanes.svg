@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 614" width="1000" height="614" role="img" aria-labelledby="desc">
 <desc id="desc">Four lanes sharing one weekly time axis, from the week of 2 March to the week of 12 October 2026: evacuation orders, white phosphorus attacks, fires in the published scope with the part linked to an attack shaded, and detonations and demolitions. Each lane has its own scale and its peak is labelled. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="614" fill="#ffffff"/>
 <g class="back">
 <line x1="176.64" y1="66" x2="176.64" y2="154" stroke="#f0f0ef" stroke-width="1"/>
@@ -192,28 +192,28 @@
 </g>
 <g class="text">
 <text x="982" y="22" font-size="12.5" fill="#4b4e4c" text-anchor="end">Records per week, each lane on its own scale</text>
-<text x="48" y="158.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="114.69" font-size="13" fill="#828282" text-anchor="end" class="tn">100</text>
+<text x="48" y="158.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="114.69" font-size="13" fill="#828282" text-anchor="end">100</text>
 <text x="32.44" y="58" class="h"><tspan font-size="14.5" font-weight="700">Evacuation orders</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">701 recorded, each a town or region named in an order</tspan></text>
-<text x="68.31" y="78.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">161</text>
-<text x="48" y="290.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="262.26" font-size="13" fill="#828282" text-anchor="end" class="tn">10</text>
-<text x="48" y="234.1" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
+<text x="68.31" y="78.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">161</text>
+<text x="48" y="290.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="262.26" font-size="13" fill="#828282" text-anchor="end">10</text>
+<text x="48" y="234.1" font-size="13" fill="#828282" text-anchor="end">20</text>
 <text x="32.44" y="190" class="h"><tspan font-size="14.5" font-weight="700">White phosphorus attacks</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">128 reported</tspan></text>
-<text x="154.16" y="210.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">25</text>
-<text x="48" y="422.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="383.31" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
+<text x="154.16" y="210.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">25</text>
+<text x="48" y="422.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="383.31" font-size="13" fill="#828282" text-anchor="end">20</text>
 <text x="32.44" y="322" class="h"><tspan font-size="14.5" font-weight="700">Fires</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">451 recorded in the published scope</tspan></text>
 <rect x="721.4" y="311.64" width="11" height="11" rx="1.5" fill="#f76707"/>
 <text x="737.4" y="322" font-size="13.5" fill="#4b4e4c">344 linked to an attack</text>
 <rect x="900.3" y="311.64" width="11" height="11" rx="1.5" fill="#fbbf8a"/>
 <text x="916.3" y="322" font-size="13.5" fill="#4b4e4c">not linked</text>
-<text x="726.49" y="342.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">36</text>
-<text x="48" y="554.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="525.09" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
-<text x="48" y="495.75" font-size="13" fill="#828282" text-anchor="end" class="tn">40</text>
+<text x="726.49" y="342.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">36</text>
+<text x="48" y="554.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="525.09" font-size="13" fill="#828282" text-anchor="end">20</text>
+<text x="48" y="495.75" font-size="13" fill="#828282" text-anchor="end">40</text>
 <text x="32.44" y="454" class="h"><tspan font-size="14.5" font-weight="700">Detonations and demolitions</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">624 reported</tspan></text>
-<text x="640.64" y="474.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">48</text>
+<text x="640.64" y="474.6" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">48</text>
 <text x="115.32" y="571.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">March 2026</text>
 <text x="237.96" y="571.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">April</text>
 <text x="362.65" y="571.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">May</text>

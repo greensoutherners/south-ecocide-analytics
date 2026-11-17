@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 436" width="1000" height="436" role="img" aria-labelledby="desc">
 <desc id="desc">Bars per week from the week of 2 March to the week of 12 October 2026: white phosphorus attacks reported, the geolocated ones at the base of each bar and those not geolocated above them. The busiest week is labelled. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="436" fill="#ffffff"/>
 <g class="back">
 <line x1="176.64" y1="70" x2="176.64" y2="372" stroke="#f0f0ef" stroke-width="1"/>
@@ -77,13 +77,13 @@
 <text x="720.09" y="48" font-size="13.5" fill="#4b4e4c">Geolocated, 35</text>
 <rect x="840.31" y="37.64" width="11" height="11" rx="1.5" fill="#efb1c7"/>
 <text x="856.31" y="48" font-size="13.5" fill="#4b4e4c">Not geolocated, 93</text>
-<text x="48" y="376.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="48" y="322.06" font-size="13" fill="#828282" text-anchor="end" class="tn">5</text>
-<text x="48" y="267.7" font-size="13" fill="#828282" text-anchor="end" class="tn">10</text>
-<text x="48" y="213.34" font-size="13" fill="#828282" text-anchor="end" class="tn">15</text>
-<text x="48" y="158.98" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
-<text x="48" y="104.62" font-size="13" fill="#828282" text-anchor="end" class="tn">25</text>
-<text x="154.16" y="95.2" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">25</text>
+<text x="48" y="376.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="48" y="322.06" font-size="13" fill="#828282" text-anchor="end">5</text>
+<text x="48" y="267.7" font-size="13" fill="#828282" text-anchor="end">10</text>
+<text x="48" y="213.34" font-size="13" fill="#828282" text-anchor="end">15</text>
+<text x="48" y="158.98" font-size="13" fill="#828282" text-anchor="end">20</text>
+<text x="48" y="104.62" font-size="13" fill="#828282" text-anchor="end">25</text>
+<text x="154.16" y="95.2" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">25</text>
 <text x="115.32" y="393.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">March 2026</text>
 <text x="237.96" y="393.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">April</text>
 <text x="362.65" y="393.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">May</text>

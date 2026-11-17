@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 586" width="1000" height="586" role="img" aria-labelledby="desc">
-<desc id="desc">Four panels, one for each kind, white phosphorus attacks, fires, detonations and demolitions, and evacuation orders, each with horizontal bars from 0 to 100%: the share of its cited sources archived and hashed, the share of its records holding a photograph or video and, for fires, the share seen by a satellite sensor and the share with burned ground seen but no detection. Each panel is read alone.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<desc id="desc">Four panels, one for each category of record, white phosphorus attacks, fires, detonations and demolitions, and evacuation orders, each with horizontal bars from 0 to 100%: the share of its cited sources archived and hashed, the share of its records holding a photograph or video and, for fires, the share seen by a satellite sensor and the share with burned ground seen but no detection. Each panel is read alone.</desc>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="586" fill="#ffffff"/>
 <g class="grid">
 <line x1="290" y1="37" x2="290" y2="110" stroke="#c3c2b7" stroke-width="1"/>
@@ -27,66 +27,66 @@
 <g class="marks">
 <rect x="16" y="19.56" width="10.44" height="10.44" rx="1.5" fill="#d6336c"/>
 <rect x="290" y="42" width="309.27" height="17" fill="#d6336c"/>
-<rect x="290" y="65" width="547.11" height="17" fill="#e789aa"/>
-<rect x="290" y="88" width="352.64" height="17" fill="#f2bed0"/>
+<rect x="290" y="65" width="547.08" height="17" fill="#e789aa"/>
+<rect x="290" y="88" width="352.66" height="17" fill="#f2bed0"/>
 <rect x="16" y="130.56" width="10.44" height="10.44" rx="1.5" fill="#f76707"/>
-<rect x="290" y="153" width="608.17" height="17" fill="#f76707"/>
-<rect x="290" y="176" width="608.17" height="17" fill="#faa76f"/>
-<rect x="290" y="199" width="8.66" height="17" fill="#fcceb0"/>
-<rect x="290" y="222" width="288.29" height="17" fill="#b24a05"/>
-<rect x="290" y="245" width="130.66" height="17" fill="#b24a05"/>
+<rect x="290" y="153" width="608.2" height="17" fill="#f76707"/>
+<rect x="290" y="176" width="608.2" height="17" fill="#faa76f"/>
+<rect x="290" y="199" width="8.64" height="17" fill="#fcceb0"/>
+<rect x="290" y="222" width="288.27" height="17" fill="#b24a05"/>
+<rect x="290" y="245" width="130.64" height="17" fill="#b24a05"/>
 <rect x="16" y="287.56" width="10.44" height="10.44" rx="1.5" fill="#d9202f"/>
-<rect x="290" y="310" width="240.16" height="17" fill="#d9202f"/>
-<rect x="290" y="333" width="474.27" height="17" fill="#e97e86"/>
+<rect x="290" y="310" width="240.18" height="17" fill="#d9202f"/>
+<rect x="290" y="333" width="474.25" height="17" fill="#e97e86"/>
 <rect x="290" y="356" width="342.15" height="17" fill="#f3b8bc"/>
 <rect x="16" y="398.56" width="10.44" height="10.44" rx="1.5" fill="#7048e8"/>
 <rect x="290" y="421" width="610" height="17" fill="#7048e8"/>
 <rect x="290" y="444" width="610" height="17" fill="#ac95f2"/>
-<rect x="290" y="467" width="522.1" height="17" fill="#d1c4f8"/>
+<rect x="290" y="467" width="522.11" height="17" fill="#d1c4f8"/>
 </g>
 <g class="over">
 <line x1="290" y1="494" x2="900" y2="494" stroke="#c3c2b7" stroke-width="1"/>
 </g>
 <g class="text">
-<text x="290" y="512" font-size="13" fill="#828282" text-anchor="middle" class="tn">0%</text>
-<text x="442.5" y="512" font-size="13" fill="#828282" text-anchor="middle" class="tn">25%</text>
-<text x="595" y="512" font-size="13" fill="#828282" text-anchor="middle" class="tn">50%</text>
-<text x="747.5" y="512" font-size="13" fill="#828282" text-anchor="middle" class="tn">75%</text>
-<text x="900" y="512" font-size="13" fill="#828282" text-anchor="middle" class="tn">100%</text>
-<text x="595" y="534" font-size="13.5" fill="#4b4e4c" text-anchor="middle">Share of the kind's own sources or records</text>
+<text x="290" y="512" font-size="13" fill="#828282" text-anchor="middle">0%</text>
+<text x="442.5" y="512" font-size="13" fill="#828282" text-anchor="middle">25%</text>
+<text x="595" y="512" font-size="13" fill="#828282" text-anchor="middle">50%</text>
+<text x="747.5" y="512" font-size="13" fill="#828282" text-anchor="middle">75%</text>
+<text x="900" y="512" font-size="13" fill="#828282" text-anchor="middle">100%</text>
+<text x="595" y="534" font-size="13.5" fill="#4b4e4c" text-anchor="middle">Share of the category's own sources or records</text>
 <text x="32.44" y="30"><tspan font-size="14.5" font-weight="700">White phosphorus attacks</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">572 sources cited on 127 of 128 records</tspan></text>
 <text x="280" y="55" font-size="13.5" fill="#1f2220" text-anchor="end">Sources archived</text>
-<text x="605.27" y="55" font-size="13" font-weight="600" class="tn">51%</text>
+<text x="605.27" y="55" font-size="13" font-weight="600">51%</text>
 <text x="280" y="78" font-size="13.5" fill="#1f2220" text-anchor="end">Sources hashed</text>
-<text x="843.11" y="78" font-size="13" font-weight="600" class="tn">90%</text>
+<text x="843.08" y="78" font-size="13" font-weight="600">90%</text>
 <text x="280" y="101" font-size="13.5" fill="#1f2220" text-anchor="end">Records with a photo or video</text>
-<text x="648.64" y="101" font-size="13" font-weight="600" class="tn">58%</text>
+<text x="648.66" y="101" font-size="13" font-weight="600">58%</text>
 <text x="32.44" y="141"><tspan font-size="14.5" font-weight="700">Fires</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">676 sources cited on 324 of 565 records</tspan></text>
 <text x="280" y="166" font-size="13.5" fill="#1f2220" text-anchor="end">Sources archived</text>
-<text x="904.17" y="166" font-size="13" font-weight="600" class="tn">&gt;99%</text>
+<text x="904.2" y="166" font-size="13" font-weight="600">&gt;99%</text>
 <text x="280" y="189" font-size="13.5" fill="#1f2220" text-anchor="end">Sources hashed</text>
-<text x="904.17" y="189" font-size="13" font-weight="600" class="tn">&gt;99%</text>
+<text x="904.2" y="189" font-size="13" font-weight="600">&gt;99%</text>
 <text x="280" y="212" font-size="13.5" fill="#1f2220" text-anchor="end">Records with a photo or video</text>
-<text x="304.66" y="212" font-size="13" font-weight="600" class="tn">1.4%</text>
+<text x="304.64" y="212" font-size="13" font-weight="600">1.4%</text>
 <text x="280" y="235" font-size="13.5" fill="#1f2220" text-anchor="end">Seen by a satellite sensor</text>
-<text x="584.29" y="235" font-size="13" font-weight="600" class="tn">47%</text>
+<text x="584.27" y="235" font-size="13" font-weight="600">47%</text>
 <text x="280" y="258" font-size="13.5" fill="#1f2220" text-anchor="end">Burned ground seen, no detection</text>
-<text x="426.66" y="258" font-size="13" font-weight="600" class="tn">21%</text>
+<text x="426.64" y="258" font-size="13" font-weight="600">21%</text>
 <text x="32.44" y="298"><tspan font-size="14.5" font-weight="700">Detonations and demolitions</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">2,395 sources cited on 614 of 624 records</tspan></text>
 <text x="280" y="323" font-size="13.5" fill="#1f2220" text-anchor="end">Sources archived</text>
-<text x="536.16" y="323" font-size="13" font-weight="600" class="tn">39%</text>
+<text x="536.18" y="323" font-size="13" font-weight="600">39%</text>
 <text x="280" y="346" font-size="13.5" fill="#1f2220" text-anchor="end">Sources hashed</text>
-<text x="770.27" y="346" font-size="13" font-weight="600" class="tn">78%</text>
+<text x="770.25" y="346" font-size="13" font-weight="600">78%</text>
 <text x="280" y="369" font-size="13.5" fill="#1f2220" text-anchor="end">Records with a photo or video</text>
-<text x="638.15" y="369" font-size="13" font-weight="600" class="tn">56%</text>
+<text x="638.15" y="369" font-size="13" font-weight="600">56%</text>
 <text x="32.44" y="409"><tspan font-size="14.5" font-weight="700">Evacuation orders</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">698 sources cited on 698 of 701 records</tspan></text>
 <text x="280" y="434" font-size="13.5" fill="#1f2220" text-anchor="end">Sources archived</text>
-<text x="906" y="434" font-size="13" font-weight="600" class="tn">100%</text>
+<text x="906" y="434" font-size="13" font-weight="600">100%</text>
 <text x="280" y="457" font-size="13.5" fill="#1f2220" text-anchor="end">Sources hashed</text>
-<text x="906" y="457" font-size="13" font-weight="600" class="tn">100%</text>
+<text x="906" y="457" font-size="13" font-weight="600">100%</text>
 <text x="280" y="480" font-size="13.5" fill="#1f2220" text-anchor="end">Records with the order's image or video</text>
-<text x="818.1" y="480" font-size="13" font-weight="600" class="tn">86%</text>
+<text x="818.11" y="480" font-size="13" font-weight="600">86%</text>
 <text x="16" y="560" font-size="12.5" fill="#828282">Archived: a public archive copy is stored; hashed: the SHA-256 of our captured copy is stored. Fires seen by a sensor and fires with burned ground but no</text>
-<text x="16" y="576.88" font-size="12.5" fill="#828282">detection do not overlap; a evacuation order's image or video is the one its announcement carried.</text>
+<text x="16" y="576.88" font-size="12.5" fill="#828282">detection do not overlap; an evacuation order's image or video is the one its announcement carried.</text>
 </g>
 </svg>

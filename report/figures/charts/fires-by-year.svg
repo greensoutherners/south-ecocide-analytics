@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 452" width="1000" height="452" role="img" aria-labelledby="desc">
 <desc id="desc">Two bar charts, one bar per year from 2019 to 2026, over the same days every year. Left: VIIRS Suomi NPP thermal detections from 1 March to 14 October (2019 102, 2020 127, 2021 99, 2022 49, 2023 73, 2024 361, 2025 84, 2026 334), with the pre-war mean of 90. Right: hectares EFFIS mapped in polygons of 30 ha and above from 1 March to 15 September (2019 253, 2020 125, 2021 202, 2022 80, 2023 322, 2024 5,366, 2025 393, 2026 6,495), with the pre-war mean of 196 ha. Pre-war years grey, 2024 and 2026 orange, 2025 mid grey.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="452" fill="#ffffff"/>
 <g class="grid">
 <line x1="62" y1="300.67" x2="424" y2="300.67" stroke="#e4e4e4" stroke-width="1"/>
@@ -44,51 +44,51 @@
 <text x="466.47" y="24" font-size="13.5" fill="#4b4e4c">2025, after the 2024 ceasefire</text>
 <line x1="682.81" y1="19.14" x2="704.81" y2="19.14" stroke="#4b4e4c" stroke-width="1.6" stroke-dasharray="6 4"/>
 <text x="710.81" y="24" font-size="13.5" fill="#4b4e4c">Pre-war mean</text>
-<text x="56" y="366.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="56" y="305.09" font-size="13" fill="#828282" text-anchor="end" class="tn">100</text>
-<text x="56" y="243.76" font-size="13" fill="#828282" text-anchor="end" class="tn">200</text>
-<text x="56" y="182.43" font-size="13" fill="#828282" text-anchor="end" class="tn">300</text>
-<text x="56" y="121.1" font-size="13" fill="#828282" text-anchor="end" class="tn">400</text>
+<text x="56" y="366.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="56" y="305.09" font-size="13" fill="#828282" text-anchor="end">100</text>
+<text x="56" y="243.76" font-size="13" fill="#828282" text-anchor="end">200</text>
+<text x="56" y="182.43" font-size="13" fill="#828282" text-anchor="end">300</text>
+<text x="56" y="121.1" font-size="13" fill="#828282" text-anchor="end">400</text>
 <text x="16" y="64" font-size="14.5" font-weight="700">Thermal detections, VIIRS on Suomi NPP</text>
 <text x="16" y="84" font-size="13.5" fill="#4b4e4c">Detections, 1 March to 14 October each year</text>
-<text x="84.23" y="294.44" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">102</text>
+<text x="84.23" y="294.44" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">102</text>
 <text x="84.23" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2019</text>
-<text x="129.59" y="279.11" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">127</text>
+<text x="129.59" y="279.11" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">127</text>
 <text x="129.59" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2020</text>
-<text x="174.95" y="296.28" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">99</text>
+<text x="174.95" y="296.28" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">99</text>
 <text x="174.95" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2021</text>
-<text x="220.32" y="326.95" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">49</text>
+<text x="220.32" y="326.95" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">49</text>
 <text x="220.32" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2022</text>
-<text x="265.68" y="312.23" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">73</text>
+<text x="265.68" y="312.23" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">73</text>
 <text x="265.68" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2023</text>
-<text x="311.05" y="135.6" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">361</text>
+<text x="311.05" y="135.6" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">361</text>
 <text x="311.05" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2024</text>
-<text x="356.41" y="305.48" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">84</text>
+<text x="356.41" y="305.48" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">84</text>
 <text x="356.41" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2025</text>
-<text x="401.77" y="152.16" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">334</text>
+<text x="401.77" y="152.16" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">334</text>
 <text x="401.77" y="380" font-size="13" font-weight="700" fill="#4b4e4c" text-anchor="middle">2026</text>
 <text x="430" y="310.8" font-size="12.5" fill="#4b4e4c">mean 90</text>
-<text x="584" y="366.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="584" y="298.24" font-size="13" fill="#828282" text-anchor="end" class="tn">2,000</text>
-<text x="584" y="230.07" font-size="13" fill="#828282" text-anchor="end" class="tn">4,000</text>
-<text x="584" y="161.89" font-size="13" fill="#828282" text-anchor="end" class="tn">6,000</text>
+<text x="584" y="366.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="584" y="298.24" font-size="13" fill="#828282" text-anchor="end">2,000</text>
+<text x="584" y="230.07" font-size="13" fill="#828282" text-anchor="end">4,000</text>
+<text x="584" y="161.89" font-size="13" fill="#828282" text-anchor="end">6,000</text>
 <text x="544" y="64" font-size="14.5" font-weight="700">Burnt area mapped by EFFIS, 30 ha and above</text>
 <text x="544" y="84" font-size="13.5" fill="#4b4e4c">Hectares, 1 March to 15 September each year</text>
-<text x="610.63" y="348.38" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">253</text>
+<text x="610.63" y="348.38" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">253</text>
 <text x="610.63" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2019</text>
-<text x="652.74" y="352.74" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">125</text>
+<text x="652.74" y="352.74" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">125</text>
 <text x="652.74" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2020</text>
-<text x="694.84" y="350.11" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">202</text>
+<text x="694.84" y="350.11" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">202</text>
 <text x="694.84" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2021</text>
-<text x="736.95" y="354.27" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">80</text>
+<text x="736.95" y="354.27" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">80</text>
 <text x="736.95" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2022</text>
-<text x="779.05" y="346.02" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">322</text>
+<text x="779.05" y="346.02" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">322</text>
 <text x="779.05" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2023</text>
-<text x="821.16" y="174.09" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">5,366</text>
+<text x="821.16" y="174.09" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">5,366</text>
 <text x="821.16" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2024</text>
-<text x="863.26" y="343.6" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h tn">393</text>
+<text x="863.26" y="343.6" font-size="12.5" font-weight="600" fill="#1f2220" text-anchor="middle" class="h">393</text>
 <text x="863.26" y="380" font-size="13" fill="#4b4e4c" text-anchor="middle">2025</text>
-<text x="905.37" y="135.6" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">6,495</text>
+<text x="905.37" y="135.6" font-size="12.5" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">6,495</text>
 <text x="905.37" y="380" font-size="13" font-weight="700" fill="#4b4e4c" text-anchor="middle">2026</text>
 <text x="932" y="359.31" font-size="12.5" fill="#4b4e4c">mean 196</text>
 <text x="16" y="410" font-size="12.5" fill="#828282">Left: the four collection rings; 2023 counts to 7 October, as the war began on 8 October 2023. 2024 was a war year until the ceasefire of 27 November.</text>

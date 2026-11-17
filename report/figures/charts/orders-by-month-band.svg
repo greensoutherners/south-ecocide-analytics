@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 486" width="1000" height="486" role="img" aria-labelledby="desc">
 <desc id="desc">Stacked bars of evacuation order records per month, March to October 2026, split by where the named town's gazetteer point lies: south of the Litani, between the Litani and the Zahrani, north of the Zahrani in the South and Nabatieh governorates, elsewhere in Lebanon, a town with no point, or no town. A vertical line marks the ceasefire and the yellow line of 17 and 18 April.</desc>
-<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}</style>
 <rect width="1000" height="486" fill="#ffffff"/>
 <g class="back">
 <line x1="250.11" y1="10" x2="250.11" y2="262.49" stroke="#1f2220" stroke-width="1.2"/>
@@ -53,20 +53,20 @@
 <line x1="56" y1="410" x2="978" y2="410" stroke="#c3c2b7" stroke-width="1"/>
 </g>
 <g class="text">
-<text x="50" y="414.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
-<text x="50" y="353.75" font-size="13" fill="#828282" text-anchor="end" class="tn">50</text>
-<text x="50" y="293.07" font-size="13" fill="#828282" text-anchor="end" class="tn">100</text>
-<text x="50" y="232.4" font-size="13" fill="#828282" text-anchor="end" class="tn">150</text>
-<text x="50" y="171.72" font-size="13" fill="#828282" text-anchor="end" class="tn">200</text>
-<text x="50" y="111.05" font-size="13" fill="#828282" text-anchor="end" class="tn">250</text>
+<text x="50" y="414.42" font-size="13" fill="#828282" text-anchor="end">0</text>
+<text x="50" y="353.75" font-size="13" fill="#828282" text-anchor="end">50</text>
+<text x="50" y="293.07" font-size="13" fill="#828282" text-anchor="end">100</text>
+<text x="50" y="232.4" font-size="13" fill="#828282" text-anchor="end">150</text>
+<text x="50" y="171.72" font-size="13" fill="#828282" text-anchor="end">200</text>
+<text x="50" y="111.05" font-size="13" fill="#828282" text-anchor="end">250</text>
 <text x="978" y="22" font-size="12.5" fill="#4b4e4c" text-anchor="end">Order records per month, one per town or region named</text>
-<text x="118.68" y="126.11" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">229</text>
-<text x="242.02" y="275.37" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">106</text>
-<text x="365.36" y="80" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">267</text>
-<text x="488.69" y="287.51" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">96</text>
-<text x="612.03" y="402.79" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">1</text>
+<text x="118.68" y="126.11" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">229</text>
+<text x="242.02" y="275.37" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">106</text>
+<text x="365.36" y="80" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">267</text>
+<text x="488.69" y="287.51" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">96</text>
+<text x="612.03" y="402.79" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">1</text>
 <text x="737.39" y="404" font-size="12.5" fill="#828282" text-anchor="middle">none</text>
-<text x="860.73" y="401.57" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">2</text>
+<text x="860.73" y="401.57" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h">2</text>
 <text x="949.69" y="404" font-size="12.5" fill="#828282" text-anchor="middle">none</text>
 <text x="566.35" y="64" font-size="13.5" font-weight="700">Where the named town lies</text>
 <rect x="566.35" y="75.5" width="12" height="12" rx="1.5" fill="#8c8e8c"/>
