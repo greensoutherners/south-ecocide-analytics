@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 384" width="1000" height="384" role="img" aria-labelledby="desc">
+<desc id="desc">Two bars, each 100 % of the fires rated: the fire-danger class forecast for the fire's day, issued the day before (NASA GFWED Fire Weather Index, EFFIS classes since 2021), for the fires of spring and of the dry season. Spring: low 53%, moderate 11%, high 30%, very high 6.1%. Dry season: low 0.2%, moderate 1.6%, high 2.6%, very high 23%, extreme 58%, very extreme 15%.</desc>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<rect width="1000" height="384" fill="#ffffff"/>
+<g class="grid">
+<line x1="236" y1="262" x2="236" y2="267" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="423" y1="262" x2="423" y2="267" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="610" y1="262" x2="610" y2="267" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="797" y1="262" x2="797" y2="267" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="984" y1="262" x2="984" y2="267" stroke="#c3c2b7" stroke-width="1"/>
+</g>
+<g class="marks">
+<rect x="236" y="84" width="396.66" height="52" fill="#fde4c8"/>
+<rect x="632.66" y="84" width="79.36" height="52" fill="#fbbf8a"/>
+<line x1="632.66" y1="84" x2="632.66" y2="136" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="712.03" y="84" width="226.64" height="52" fill="#f78f4f"/>
+<line x1="712.03" y1="84" x2="712.03" y2="136" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="938.67" y="84" width="45.33" height="52" fill="#e8573a"/>
+<line x1="938.67" y1="84" x2="938.67" y2="136" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="236" y="210" width="1.5" height="52" fill="#fde4c8"/>
+<rect x="237.5" y="210" width="12.04" height="52" fill="#fbbf8a"/>
+<line x1="237.5" y1="210" x2="237.5" y2="262" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="249.54" y="210" width="19.6" height="52" fill="#f78f4f"/>
+<line x1="249.54" y1="210" x2="249.54" y2="262" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="269.14" y="210" width="174.96" height="52" fill="#e8573a"/>
+<line x1="269.14" y1="210" x2="269.14" y2="262" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="444.09" y="210" width="431.3" height="52" fill="#c92e4a"/>
+<line x1="444.09" y1="210" x2="444.09" y2="262" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="875.39" y="210" width="108.61" height="52" fill="#93256e"/>
+<line x1="875.39" y1="210" x2="875.39" y2="262" stroke="#ffffff" stroke-width="1.2"/>
+</g>
+<g class="over">
+<line x1="252.57" y1="201" x2="252.57" y2="209" stroke="#828282" stroke-width="0.9"/>
+</g>
+<g class="text">
+<text x="16" y="22" font-size="12.5" fill="#4b4e4c">Fire danger forecast for each fire's day, issued the day before (NASA GFWED), as a share of the fires rated</text>
+<rect x="236" y="43.64" width="11" height="11" rx="1.5" fill="#fde4c8"/>
+<text x="252" y="54" font-size="13.5" fill="#4b4e4c">Low</text>
+<rect x="300.43" y="43.64" width="11" height="11" rx="1.5" fill="#fbbf8a"/>
+<text x="316.43" y="54" font-size="13.5" fill="#4b4e4c">Moderate</text>
+<rect x="402.51" y="43.64" width="11" height="11" rx="1.5" fill="#f78f4f"/>
+<text x="418.51" y="54" font-size="13.5" fill="#4b4e4c">High</text>
+<rect x="471.8" y="43.64" width="11" height="11" rx="1.5" fill="#e8573a"/>
+<text x="487.8" y="54" font-size="13.5" fill="#4b4e4c">Very high</text>
+<rect x="572.36" y="43.64" width="11" height="11" rx="1.5" fill="#c92e4a"/>
+<text x="588.36" y="54" font-size="13.5" fill="#4b4e4c">Extreme</text>
+<rect x="663.21" y="43.64" width="11" height="11" rx="1.5" fill="#93256e"/>
+<text x="679.21" y="54" font-size="13.5" fill="#4b4e4c">Very extreme</text>
+<text x="236" y="282" font-size="13" fill="#828282" class="tn">0%</text>
+<text x="423" y="282" font-size="13" fill="#828282" text-anchor="middle" class="tn">25%</text>
+<text x="610" y="282" font-size="13" fill="#828282" text-anchor="middle" class="tn">50%</text>
+<text x="797" y="282" font-size="13" fill="#828282" text-anchor="middle" class="tn">75%</text>
+<text x="984" y="282" font-size="13" fill="#828282" text-anchor="end" class="tn">100%</text>
+<text x="16" y="106" font-size="14.5" font-weight="700">Spring</text>
+<text x="16" y="124" font-size="12.5" fill="#4b4e4c">March to May, 66 fires rated</text>
+<text x="434.33" y="114.42" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="tn">53%</text>
+<text x="672.35" y="114.42" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="tn">11%</text>
+<text x="825.35" y="114.42" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="tn">30%</text>
+<text x="961.34" y="114.42" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" class="tn">6.1%</text>
+<text x="16" y="232" font-size="14.5" font-weight="700">Dry season</text>
+<text x="16" y="250" font-size="12.5" fill="#4b4e4c">June to 14 October, 496 fires rated</text>
+<text x="356.62" y="240.42" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" class="tn">23%</text>
+<text x="659.74" y="240.42" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" class="tn">58%</text>
+<text x="929.7" y="240.42" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" class="tn">15%</text>
+<text x="248.57" y="196" font-size="12.5" fill="#4b4e4c">Low 0.2%, moderate 1.6%, high 2.6%</text>
+<text x="16" y="348" font-size="12.5" fill="#828282">EFFIS classes since 2021, by Fire Weather Index: low under 11.2, moderate to 21.3, high to 38, very high to 50, extreme to 70, very extreme 70 and above.</text>
+<text x="16" y="368" font-size="12.5" fill="#828282">EFFIS's scale before 2021 also had a very low class (under 5.2): 24 of the 66 spring fires and none of the dry-season fires would fall in it.</text>
+</g>
+</svg>

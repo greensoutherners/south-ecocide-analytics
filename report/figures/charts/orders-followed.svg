@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 502" width="1000" height="502" role="img" aria-labelledby="desc">
+<desc id="desc">Two panels on one month axis, March to October 2026. Top: the share of checked displacement orders followed by attack evidence at the named town by the end of the next Beirut day, by month, with the shares before and from 18 April as dashed lines. Bottom: the orders per month, split into followed, none found in these sources, and not checkable, with the number checked above each bar.</desc>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<rect width="1000" height="502" fill="#ffffff"/>
+<g class="back">
+<line x1="181.36" y1="74" x2="181.36" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="181.36" y1="258" x2="181.36" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="302.68" y1="74" x2="302.68" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="302.68" y1="258" x2="302.68" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="428.04" y1="74" x2="428.04" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="428.04" y1="258" x2="428.04" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="549.35" y1="74" x2="549.35" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="549.35" y1="258" x2="549.35" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="674.71" y1="74" x2="674.71" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="674.71" y1="258" x2="674.71" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="800.07" y1="74" x2="800.07" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="800.07" y1="258" x2="800.07" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="921.39" y1="74" x2="921.39" y2="196" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="921.39" y1="258" x2="921.39" y2="410" stroke="#f0f0ef" stroke-width="1"/>
+<line x1="250.11" y1="10" x2="250.11" y2="41.98" stroke="#1f2220" stroke-width="1.2"/>
+<line x1="250.11" y1="62.48" x2="250.11" y2="81.94" stroke="#1f2220" stroke-width="1.2"/>
+<line x1="250.11" y1="100.94" x2="250.11" y2="338.6" stroke="#1f2220" stroke-width="1.2"/>
+<line x1="250.11" y1="357.1" x2="250.11" y2="410" stroke="#1f2220" stroke-width="1.2"/>
+</g>
+<g class="grid">
+<line x1="56" y1="165.5" x2="978" y2="165.5" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="56" y1="135" x2="978" y2="135" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="56" y1="104.5" x2="978" y2="104.5" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="56" y1="74" x2="978" y2="74" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="56" y1="118.49" x2="250.11" y2="118.49" stroke="#4b4e4c" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="250.11" y1="102.63" x2="978" y2="102.63" stroke="#4b4e4c" stroke-width="1.2" stroke-dasharray="5,4"/>
+<line x1="56" y1="361.04" x2="978" y2="361.04" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="56" y1="312.08" x2="978" y2="312.08" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="181.36" y1="410" x2="181.36" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="302.68" y1="410" x2="302.68" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="428.04" y1="410" x2="428.04" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="549.35" y1="410" x2="549.35" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="674.71" y1="410" x2="674.71" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="800.07" y1="410" x2="800.07" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="921.39" y1="410" x2="921.39" y2="415" stroke="#c3c2b7" stroke-width="1"/>
+</g>
+<g class="marks">
+<path d="M118.68,115.85 L242.02,104.82 L365.36,97.94 L488.69,127.94" fill="none" stroke="#7048e8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="118.68" cy="115.85" r="4.6" fill="#7048e8" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="242.02" cy="104.82" r="4.6" fill="#7048e8" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="365.36" cy="97.94" r="4.6" fill="#7048e8" stroke="#ffffff" stroke-width="1.2"/>
+<circle cx="488.69" cy="127.94" r="4.6" fill="#7048e8" stroke="#ffffff" stroke-width="1.2"/>
+<rect x="63" y="343.42" width="111.36" height="66.58" fill="#7048e8"/>
+<rect x="188.36" y="375.24" width="107.32" height="34.76" fill="#7048e8"/>
+<rect x="309.68" y="305.72" width="111.36" height="104.28" fill="#7048e8"/>
+<rect x="435.04" y="384.05" width="107.32" height="25.95" fill="#7048e8"/>
+<rect x="807.07" y="409.02" width="107.32" height="0.98" fill="#7048e8"/>
+<rect x="63" y="308.66" width="111.36" height="34.76" fill="#cec1f7"/>
+<rect x="188.36" y="363.49" width="107.32" height="11.75" fill="#cec1f7"/>
+<rect x="309.68" y="280.26" width="111.36" height="25.46" fill="#cec1f7"/>
+<rect x="435.04" y="363.49" width="107.32" height="20.56" fill="#cec1f7"/>
+<rect x="63" y="297.88" width="111.36" height="10.77" fill="#b4b5b3"/>
+<rect x="188.36" y="358.1" width="107.32" height="5.39" fill="#b4b5b3"/>
+<rect x="309.68" y="279.28" width="111.36" height="0.98" fill="#b4b5b3"/>
+<rect x="435.04" y="363" width="107.32" height="0.49" fill="#b4b5b3"/>
+<rect x="556.35" y="409.51" width="111.36" height="0.49" fill="#b4b5b3"/>
+</g>
+<g class="over">
+<line x1="56" y1="196" x2="978" y2="196" stroke="#c3c2b7" stroke-width="1"/>
+<circle cx="860.73" cy="74" r="4.6" fill="#ffffff" stroke="#7048e8" stroke-width="1.8"/>
+<line x1="56" y1="410" x2="978" y2="410" stroke="#c3c2b7" stroke-width="1"/>
+</g>
+<g class="text">
+<text x="50" y="200.4" font-size="13" fill="#828282" text-anchor="end" class="tn">0%</text>
+<text x="50" y="139.4" font-size="13" fill="#828282" text-anchor="end" class="tn">50%</text>
+<text x="50" y="78.4" font-size="13" fill="#828282" text-anchor="end" class="tn">100%</text>
+<text x="16" y="56" font-size="14.5" font-weight="700">Share of the checked orders followed by attack evidence</text>
+<text x="118.68" y="105.85" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">65.7%</text>
+<text x="242.02" y="94.82" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">74.7%</text>
+<text x="365.36" y="87.94" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">80.4%</text>
+<text x="488.69" y="117.94" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">55.8%</text>
+<text x="860.73" y="94" font-size="12.5" fill="#4b4e4c" text-anchor="middle" class="h">2 of 2</text>
+<text x="60" y="134.49" font-size="12.5" fill="#4b4e4c" class="h">Before 18 April: 63.5%</text>
+<text x="974" y="118.63" font-size="12.5" fill="#4b4e4c" text-anchor="end" class="h">From 18 April: 76.5%</text>
+<text x="50" y="414.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
+<text x="50" y="365.46" font-size="13" fill="#828282" text-anchor="end" class="tn">100</text>
+<text x="50" y="316.5" font-size="13" fill="#828282" text-anchor="end" class="tn">200</text>
+<text x="16" y="240" font-size="14.5" font-weight="700">Orders recorded per month</text>
+<rect x="418.3" y="229.64" width="11" height="11" rx="1.5" fill="#7048e8"/>
+<text x="434.3" y="240" font-size="13.5" fill="#4b4e4c">Followed</text>
+<rect x="509.39" y="229.64" width="11" height="11" rx="1.5" fill="#cec1f7"/>
+<text x="525.39" y="240" font-size="13.5" fill="#4b4e4c">No attack evidence found in these sources</text>
+<rect x="818.73" y="229.64" width="11" height="11" rx="1.5" fill="#b4b5b3"/>
+<text x="834.73" y="240" font-size="13.5" fill="#4b4e4c">Could not be checked</text>
+<text x="118.68" y="290.88" text-anchor="middle" class="h"><tspan font-size="12.5" fill="#1f2220">207 checked</tspan></text>
+<text x="242.02" y="351.1" text-anchor="middle" class="h"><tspan font-size="12.5" fill="#1f2220">95 checked</tspan></text>
+<text x="365.36" y="272.28" text-anchor="middle" class="h"><tspan font-size="12.5" fill="#1f2220">265 checked</tspan></text>
+<text x="488.69" y="356" text-anchor="middle" class="h"><tspan font-size="12.5" fill="#1f2220">95 checked</tspan></text>
+<text x="612.03" y="402.51" text-anchor="middle" class="h"><tspan font-size="12.5" fill="#4b4e4c">1 not checkable</tspan></text>
+<text x="737.39" y="404" font-size="12.5" fill="#828282" text-anchor="middle">no order</text>
+<text x="860.73" y="402.02" text-anchor="middle" class="h"><tspan font-size="12.5" fill="#1f2220">2 checked</tspan></text>
+<text x="949.69" y="404" font-size="12.5" fill="#828282" text-anchor="middle">no order</text>
+<text x="118.68" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">March 2026</text>
+<text x="242.02" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">April</text>
+<text x="365.36" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">May</text>
+<text x="488.69" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">June</text>
+<text x="612.03" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">July</text>
+<text x="737.39" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">August</text>
+<text x="860.73" y="431.5" font-size="13.5" fill="#4b4e4c" text-anchor="middle">September</text>
+<text x="925.39" y="431.5" font-size="13.5" fill="#4b4e4c">October</text>
+<text x="256.11" y="22" font-size="13.5" font-weight="500" fill="#1f2220" class="h">Ceasefire and yellow line, 17 and 18 April</text>
+<text x="16" y="468" font-size="12.5" fill="#828282">Followed: attack evidence at the named town from the order's posting to the end of the next Beirut day. No attack evidence found means none was found in</text>
+<text x="16" y="484.88" font-size="12.5" fill="#828282">these sources, not that no attack followed. A month with fewer than 10 checked orders shows counts, not a share.</text>
+</g>
+</svg>

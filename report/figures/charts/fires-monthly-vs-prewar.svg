@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 458" width="1000" height="458" role="img" aria-labelledby="desc">
+<desc id="desc">Bars per month, March to October: VIIRS Suomi NPP detections in 2026 (March 0, April 2, May 10, June 62, July 92, August 119, September 47, October 2) beside the pre-war range of 2019 to 2023 as a grey bar from the lowest to the highest year, with the pre-war mean marked (March 2.2, April 3.2, May 4.0, June 10.4, July 17.6, August 14.8, September 19.8, October 18.0). October holds 1 to 14 October.</desc>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<rect width="1000" height="458" fill="#ffffff"/>
+<g class="grid">
+<line x1="54" y1="334.81" x2="982" y2="334.81" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="54" y1="287.61" x2="982" y2="287.61" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="54" y1="240.42" x2="982" y2="240.42" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="54" y1="193.23" x2="982" y2="193.23" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="54" y1="146.03" x2="982" y2="146.03" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="54" y1="98.84" x2="982" y2="98.84" stroke="#e4e4e4" stroke-width="1"/>
+</g>
+<g class="marks">
+<rect x="89.61" y="363.12" width="34.27" height="18.88" fill="#b4b5b3"/>
+<rect x="200.88" y="363.12" width="34.27" height="18.88" fill="#b4b5b3"/>
+<rect x="241.38" y="377.28" width="37.39" height="4.72" fill="#f76707"/>
+<rect x="312.15" y="360.76" width="34.27" height="18.88" fill="#b4b5b3"/>
+<rect x="352.65" y="358.4" width="37.39" height="23.6" fill="#f76707"/>
+<rect x="423.42" y="323.01" width="34.27" height="47.19" fill="#b4b5b3"/>
+<rect x="463.92" y="235.7" width="37.39" height="146.3" fill="#f76707"/>
+<rect x="534.69" y="275.82" width="34.27" height="89.67" fill="#b4b5b3"/>
+<rect x="575.19" y="164.91" width="37.39" height="217.09" fill="#f76707"/>
+<rect x="645.96" y="313.57" width="34.27" height="63.71" fill="#b4b5b3"/>
+<rect x="686.46" y="101.2" width="37.39" height="280.8" fill="#f76707"/>
+<rect x="757.23" y="320.65" width="34.27" height="33.04" fill="#b4b5b3"/>
+<rect x="797.74" y="271.1" width="37.39" height="110.9" fill="#f76707"/>
+<rect x="868.5" y="207.38" width="34.27" height="172.26" fill="#b4b5b3"/>
+<rect x="909.01" y="377.28" width="37.39" height="4.72" fill="#f76707"/>
+</g>
+<g class="over">
+<line x1="54" y1="382" x2="982" y2="382" stroke="#c3c2b7" stroke-width="1"/>
+<line x1="86.61" y1="376.81" x2="126.88" y2="376.81" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="197.88" y1="374.45" x2="238.15" y2="374.45" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="309.15" y1="372.56" x2="349.42" y2="372.56" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="420.42" y1="357.46" x2="460.69" y2="357.46" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="531.69" y1="340.47" x2="571.96" y2="340.47" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="642.96" y1="347.08" x2="683.23" y2="347.08" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="754.23" y1="335.28" x2="794.5" y2="335.28" stroke="#1f2220" stroke-width="2.2"/>
+<line x1="865.5" y1="339.53" x2="905.78" y2="339.53" stroke="#1f2220" stroke-width="2.2"/>
+</g>
+<g class="text">
+<text x="48" y="386.42" font-size="13" fill="#828282" text-anchor="end" class="tn">0</text>
+<text x="48" y="339.23" font-size="13" fill="#828282" text-anchor="end" class="tn">20</text>
+<text x="48" y="292.03" font-size="13" fill="#828282" text-anchor="end" class="tn">40</text>
+<text x="48" y="244.84" font-size="13" fill="#828282" text-anchor="end" class="tn">60</text>
+<text x="48" y="197.65" font-size="13" fill="#828282" text-anchor="end" class="tn">80</text>
+<text x="48" y="150.45" font-size="13" fill="#828282" text-anchor="end" class="tn">100</text>
+<text x="48" y="103.26" font-size="13" fill="#828282" text-anchor="end" class="tn">120</text>
+<text x="982" y="24" font-size="12.5" fill="#4b4e4c" text-anchor="end">Detections per month, VIIRS on Suomi NPP</text>
+<rect x="16" y="13.64" width="11" height="11" rx="1.5" fill="#f76707"/>
+<text x="32" y="24" font-size="13.5" fill="#4b4e4c">2026</text>
+<rect x="88.02" y="13.64" width="11" height="11" rx="1.5" fill="#b4b5b3"/>
+<text x="104.02" y="24" font-size="13.5" fill="#4b4e4c">Pre-war range, lowest to highest year, 2019 to 2023</text>
+<line x1="464.87" y1="19.14" x2="475.87" y2="19.14" stroke="#1f2220" stroke-width="2.5"/>
+<text x="480.87" y="24" font-size="13.5" fill="#4b4e4c">Pre-war mean</text>
+<text x="83.61" y="380.81" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">2.2</text>
+<text x="148.8" y="377" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">0</text>
+<text x="128.55" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">March</text>
+<text x="194.88" y="378.45" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">3.2</text>
+<text x="260.07" y="372.28" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">2</text>
+<text x="239.82" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">April</text>
+<text x="306.15" y="376.56" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">4.0</text>
+<text x="371.34" y="353.4" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">10</text>
+<text x="351.09" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">May</text>
+<text x="417.42" y="361.46" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">10.4</text>
+<text x="482.62" y="230.7" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">62</text>
+<text x="462.36" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">June</text>
+<text x="528.69" y="344.47" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">17.6</text>
+<text x="593.89" y="159.91" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">92</text>
+<text x="573.64" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">July</text>
+<text x="639.96" y="351.08" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">14.8</text>
+<text x="705.16" y="96.2" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">119</text>
+<text x="684.91" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">August</text>
+<text x="751.23" y="339.28" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">19.8</text>
+<text x="816.43" y="266.1" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">47</text>
+<text x="796.18" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">September</text>
+<text x="862.5" y="343.53" font-size="12" font-weight="500" fill="#4b4e4c" text-anchor="end" class="h tn">18.0</text>
+<text x="927.7" y="372.28" font-size="13" font-weight="700" fill="#1f2220" text-anchor="middle" class="h tn">2</text>
+<text x="862.5" y="216.38" font-size="12.5" fill="#4b4e4c" text-anchor="end" class="h">74 in 2020</text>
+<text x="907.45" y="404" font-size="13.5" fill="#4b4e4c" text-anchor="middle">October</text>
+<text x="982" y="440" font-size="12.5" fill="#828282" text-anchor="end">October holds 1 to 14 October in every year, and 1 to 7 October in 2023.</text>
+</g>
+</svg>

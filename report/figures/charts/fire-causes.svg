@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 388" width="1000" height="388" role="img" aria-labelledby="desc">
+<desc id="desc">Horizontal bars: the 565 fires recorded from 1 March to 14 October 2026 by cause detail. A bracket groups the 344 fires linked to an Israeli military attack: secondary fire from explosion 294, white phosphorus 19, illumination flares 17, incendiary munition 14. Unidentified 219, non-attack fire 2.</desc>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<rect width="1000" height="388" fill="#ffffff"/>
+<g class="grid">
+<line x1="282" y1="58" x2="282" y2="318" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="481.33" y1="58" x2="481.33" y2="318" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="680.67" y1="58" x2="680.67" y2="318" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="880" y1="58" x2="880" y2="318" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="16" y1="218" x2="984" y2="218" stroke="#e4e4e4" stroke-width="1"/>
+</g>
+<g class="marks">
+<rect x="282" y="69" width="586.04" height="22" fill="#f76707"/>
+<rect x="282" y="105" width="37.87" height="22" fill="#f76707"/>
+<rect x="282" y="141" width="33.89" height="22" fill="#f76707"/>
+<rect x="282" y="177" width="27.91" height="22" fill="#f76707"/>
+<rect x="282" y="242" width="436.54" height="22" fill="#8c8e8c"/>
+<rect x="282" y="288" width="3.99" height="22" fill="#b4b5b3"/>
+</g>
+<g class="over">
+<path d="M28,67.0 L22,67.0 L22,201.0 L28,201.0" fill="none" stroke="#4b4e4c" stroke-width="1.4" stroke-linejoin="miter" stroke-linecap="butt"/>
+</g>
+<g class="text">
+<text x="282" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">0</text>
+<text x="481.33" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">100</text>
+<text x="680.67" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">200</text>
+<text x="880" y="340" font-size="13" fill="#828282" text-anchor="middle" class="tn">300</text>
+<text x="984" y="30" font-size="12.5" fill="#4b4e4c" text-anchor="end">Fires recorded, 1 March to 14 October 2026</text>
+<text x="16" y="30"><tspan font-size="14.5" font-weight="700">Linked to an Israeli military attack</tspan><tspan dx="9" font-size="13.5" fill="#4b4e4c">344 fires, 61% of those recorded</tspan></text>
+<text x="36" y="84.59" font-size="13.5" fill="#1f2220">Secondary fire from explosion</text>
+<text x="875.04" y="84.42"><tspan font-size="13" font-weight="700">294</tspan><tspan dx="6" font-size="12.5" fill="#828282">52%</tspan></text>
+<text x="36" y="120.59" font-size="13.5" fill="#1f2220">White phosphorus</text>
+<text x="326.87" y="120.42"><tspan font-size="13" font-weight="700">19</tspan><tspan dx="6" font-size="12.5" fill="#828282">3.4%</tspan></text>
+<text x="36" y="156.59" font-size="13.5" fill="#1f2220">Illumination flares</text>
+<text x="322.89" y="156.42"><tspan font-size="13" font-weight="700">17</tspan><tspan dx="6" font-size="12.5" fill="#828282">3%</tspan></text>
+<text x="36" y="192.59" font-size="13.5" fill="#1f2220">Incendiary munition</text>
+<text x="316.91" y="192.42"><tspan font-size="13" font-weight="700">14</tspan><tspan dx="6" font-size="12.5" fill="#828282">2.5%</tspan></text>
+<text x="36" y="250" font-size="13.5" fill="#1f2220">Unidentified</text>
+<text x="36" y="266" font-size="12.5" fill="#828282">no attack found in these sources</text>
+<text x="725.54" y="257.42"><tspan font-size="13" font-weight="700">219</tspan><tspan dx="6" font-size="12.5" fill="#828282">39%</tspan></text>
+<text x="36" y="296" font-size="13.5" fill="#1f2220">Non-attack fire</text>
+<text x="36" y="312" font-size="12.5" fill="#828282">a source states another cause</text>
+<text x="292.99" y="303.42"><tspan font-size="13" font-weight="700">2</tspan><tspan dx="6" font-size="12.5" fill="#828282">0.4%</tspan></text>
+<text x="16" y="374" font-size="12.5" fill="#828282">A fire is linked to an attack documented at the same town on a day of the fire; the link does not show that the attack lit the fire.</text>
+</g>
+</svg>

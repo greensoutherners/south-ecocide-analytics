@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 472" width="1000" height="472" role="img" aria-labelledby="desc">
+<desc id="desc">Paired horizontal bars on a log scale: for each kind, its weekly rate from 18 April divided by its weekly rate before, inside the yellow-line zone and outside it in the South and Nabatieh governorates. Bars run left of the no-change line for a fall and right of it for a rise; each ratio is labelled with the weekly rates before and after.</desc>
+<style>svg{fill:#1f2220}text{font-family:Inter, "Segoe UI", system-ui, sans-serif}.h{paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}.tn{font-variant-numeric:tabular-nums}</style>
+<rect width="1000" height="472" fill="#ffffff"/>
+<g class="grid">
+<line x1="299.58" y1="78" x2="299.58" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="356.43" y1="78" x2="356.43" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="413.29" y1="78" x2="413.29" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="488.45" y1="78" x2="488.45" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="602.16" y1="78" x2="602.16" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="677.33" y1="78" x2="677.33" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+<line x1="734.18" y1="78" x2="734.18" y2="368" stroke="#e4e4e4" stroke-width="1"/>
+</g>
+<g class="marks">
+<rect x="16" y="84.56" width="10.44" height="10.44" rx="1.5" fill="#7048e8"/>
+<rect x="314.53" y="81.5" width="230.78" height="15" fill="#d9a400"/>
+<rect x="508.7" y="99.5" width="36.61" height="15" fill="#8c8e8c"/>
+<rect x="16" y="152.49" width="10.44" height="10.44" rx="1.5" fill="#d6336c"/>
+<rect x="428.25" y="141.5" width="117.06" height="15" fill="#d9a400"/>
+<rect x="488.45" y="159.5" width="56.86" height="15" fill="#8c8e8c"/>
+<rect x="16" y="204.56" width="10.44" height="10.44" rx="1.5" fill="#f76707"/>
+<rect x="545.31" y="201.5" width="136.18" height="15" fill="#d9a400"/>
+<rect x="545.31" y="219.5" width="34.35" height="15" fill="#8c8e8c"/>
+<rect x="16" y="264.56" width="10.44" height="10.44" rx="1.5" fill="#f76707"/>
+<rect x="545.31" y="261.5" width="165.17" height="15" fill="#d9a400"/>
+<rect x="545.31" y="279.5" width="89.84" height="15" fill="#8c8e8c"/>
+<rect x="16" y="332.49" width="10.44" height="10.44" rx="1.5" fill="#d9202f"/>
+<rect x="545.31" y="321.5" width="122.83" height="15" fill="#d9a400"/>
+</g>
+<g class="over">
+<line x1="545.31" y1="78" x2="545.31" y2="368" stroke="#1f2220" stroke-width="1.3"/>
+<line x1="286" y1="368" x2="742" y2="368" stroke="#c3c2b7" stroke-width="1"/>
+</g>
+<g class="text">
+<rect x="16" y="13.64" width="11" height="11" rx="1.5" fill="#d9a400"/>
+<text x="32" y="24" font-size="13.5" fill="#4b4e4c">Inside the yellow-line zone</text>
+<rect x="228.64" y="13.64" width="11" height="11" rx="1.5" fill="#8c8e8c"/>
+<text x="244.64" y="24" font-size="13.5" fill="#4b4e4c">Outside it, in the South and Nabatieh governorates</text>
+<text x="818" y="70" font-size="12.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Change</text>
+<text x="830" y="70" font-size="12.5" font-weight="600" fill="#4b4e4c">Per week, before to after</text>
+<text x="535.31" y="70" font-size="13.5" font-weight="600" fill="#4b4e4c" text-anchor="end">Lower after 18 April</text>
+<text x="555.31" y="70" font-size="13.5" font-weight="600" fill="#4b4e4c">Higher after 18 April</text>
+<text x="299.58" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">0.05</text>
+<text x="356.43" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">0.1</text>
+<text x="413.29" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">0.2</text>
+<text x="488.45" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">0.5</text>
+<text x="545.31" y="386" font-size="13" font-weight="600" fill="#1f2220" text-anchor="middle" class="tn">1</text>
+<text x="602.16" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">2</text>
+<text x="677.33" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">5</text>
+<text x="734.18" y="386" font-size="13" fill="#828282" text-anchor="middle" class="tn">10</text>
+<text x="514" y="408" font-size="13.5" fill="#4b4e4c" text-anchor="middle">Weekly rate from 18 April as a multiple of the weekly rate before (log scale)</text>
+<text x="32.44" y="95" font-size="14.5" font-weight="700">Displacement orders</text>
+<text x="32.44" y="112" font-size="12.5" fill="#4b4e4c">naming a town</text>
+<text x="818" y="93.42" font-size="13" font-weight="700" text-anchor="end" class="tn">0.06×</text>
+<text x="830" y="93.42" font-size="12.5" fill="#4b4e4c" class="tn">9.2 to 0.5</text>
+<text x="818" y="111.42" font-size="13" font-weight="700" text-anchor="end" class="tn">0.64×</text>
+<text x="830" y="111.42" font-size="12.5" fill="#4b4e4c" class="tn">22.6 to 14.5</text>
+<text x="32.44" y="162.93" font-size="14.5" font-weight="700">White phosphorus attacks</text>
+<text x="818" y="153.42" font-size="13" font-weight="700" text-anchor="end" class="tn">0.24×</text>
+<text x="830" y="153.42" font-size="12.5" fill="#4b4e4c" class="tn">6.7 to 1.6</text>
+<text x="818" y="171.42" font-size="13" font-weight="700" text-anchor="end" class="tn">0.5×</text>
+<text x="830" y="171.42" font-size="12.5" fill="#4b4e4c" class="tn">2.0 to 1.0</text>
+<text x="32.44" y="215" font-size="14.5" font-weight="700">Fires linked to an attack</text>
+<text x="32.44" y="232" font-size="12.5" fill="#4b4e4c">at the town that day</text>
+<text x="818" y="213.42" font-size="13" font-weight="700" text-anchor="end" class="tn">5.3×</text>
+<text x="830" y="213.42" font-size="12.5" fill="#4b4e4c" class="tn">1.6 to 8.4</text>
+<text x="818" y="231.42" font-size="13" font-weight="700" text-anchor="end" class="tn">1.5×</text>
+<text x="830" y="231.42" font-size="12.5" fill="#4b4e4c" class="tn">2.5 to 3.8</text>
+<text x="32.44" y="275" font-size="14.5" font-weight="700">Every fire recorded</text>
+<text x="32.44" y="292" font-size="12.5" fill="#4b4e4c">whatever lit it</text>
+<text x="818" y="273.42" font-size="13" font-weight="700" text-anchor="end" class="tn">7.5×</text>
+<text x="830" y="273.42" font-size="12.5" fill="#4b4e4c" class="tn">1.6 to 12.0</text>
+<text x="818" y="291.42" font-size="13" font-weight="700" text-anchor="end" class="tn">3.0×</text>
+<text x="830" y="291.42" font-size="12.5" fill="#4b4e4c" class="tn">2.8 to 8.3</text>
+<text x="32.44" y="342.93" font-size="14.5" font-weight="700">Detonations and demolitions</text>
+<text x="818" y="333.42" font-size="13" font-weight="700" text-anchor="end" class="tn">4.5×</text>
+<text x="830" y="333.42" font-size="12.5" fill="#4b4e4c" class="tn">4.7 to 20.8</text>
+<text x="818" y="351.42" font-size="12.5" fill="#4b4e4c" text-anchor="end" font-style="italic">no ratio</text>
+<text x="553.31" y="350.92" font-size="12.5" fill="#4b4e4c" font-style="italic">none recorded before 18 April</text>
+<text x="830" y="351.42" font-size="12.5" fill="#4b4e4c" class="tn">none before, 2.2 after</text>
+<text x="16" y="434" font-size="12.5" fill="#828282">A record is placed by its town's gazetteer point; the zone is the outline of 18 June 2026 with the village lands named on 18 April. Displacement orders count</text>
+<text x="16" y="450.88" font-size="12.5" fill="#828282">town-named orders only: an order to a whole region has no point.</text>
+</g>
+</svg>

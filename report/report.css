@@ -548,6 +548,11 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
   .toc-num { min-width: 2.6em; }
 }
 
+/* a wide table scrolls on a phone; its caption stays on screen above it */
+@media screen and (max-width: 640px) {
+  .tbl caption { position: sticky; left: 0; max-width: calc(100vw - 32px); }
+}
+
 /* =================================================================== print */
 
 @page {
@@ -700,6 +705,6 @@ blockquote.pull cite, blockquote.pull footer { display: block; font-style: norma
     overflow-wrap: anywhere;
   }
 
-  .ref-list li { font-size: 8.4pt; padding: 1.4mm 0; }
+  .ref-list li { font-size: 8.4pt; padding: 1.1mm 0; }
   .ref-url { color: var(--ink-2); }
 }
