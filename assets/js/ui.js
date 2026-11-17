@@ -18,6 +18,8 @@ restoreTheme();
 
 export const PAGES = [
   { href: 'index.html', label: 'Catalogue', key: 'catalogue', root: true },
+  // The research report, second beside the catalogue (the data owner, 2026-11-17).
+  { href: 'report/', label: 'Report', key: 'report' },
   { href: 'investigations/', label: 'Investigations', key: 'investigations' },
   { href: 'platform.html', label: 'Platform', key: 'platform' },
   { href: 'platform.html?focus=ecosystem&types=BRN,WPB,DET&shade=none', label: 'Ecosystem', key: 'ecosystem' },
