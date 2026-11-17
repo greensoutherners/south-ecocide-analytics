@@ -1,27 +1,23 @@
 {
- "intro": "From late July to early October 2026, photographers, television crews and residents filmed the detonations in Al-Mansouri, mostly from the neighbouring village of Hanniyeh on the ridge to the north-east and from the shore of Tyre across the bay. A selection follows, each shown through its publisher's own page or player and credited to it. Green Southerners copied none of these pictures; what each shows is described in our words.",
+ "intro": "From late July to early October 2026, photographers, television crews and residents filmed the detonations in Al-Mansouri, mostly from the neighbouring village of Hanniyeh on the ridge to the north-east and from the shore of Tyre across the bay. A selection follows, each shown through its publisher's own page or player and credited to it. Green Southerners copied none of these pictures; what each shows is described in our words. Where a picture's place was checked on the dated satellite pictures, two separate checks had to agree before it is said here.",
  "note": "These are what others published, cited as reports. The records of the corpus count detonation reports by week; the sharp pictures above say which houses went between which dates. Neither says which detonation brought down which house.",
  "items": [
-  {
-   "title": "Twenty-five detonations in five hours",
-   "text": "Annahar's photographer Ahmad Mantash counted twenty-five detonations in five hours; the report's photographs and video show columns of grey and white dust rolling across the slope, and houses already flattened below them.",
-   "outlet": "Annahar",
-   "url": "https://www.annahar.com/lebanon/346243/بالصور-والفيديو---بلدة-المنصوري-تمحى-عن-الخريطة-عدسة-النهار-ترصد-25-تفجيرا-في-5-ساعات",
-   "date_words": "11 September 2026"
-  },
-  {
-   "title": "Residents watch drones drop explosives on their village",
-   "text": "Associated Press photographs by Hussein Malla, taken from Hanniyeh: residents filming the smoke over Al-Mansouri, and a drone carrying a box on a long line above a damaged house, which the agency's caption describes as explosives to be dropped on houses for detonation.",
-   "outlet": "Associated Press, via KSAT",
-   "url": "https://www.ksat.com/news/2026/09/11/residents-of-southern-lebanon-gather-to-watch-israeli-drones-drop-explosives-on-their-village/",
-   "date_words": "11 September 2026"
-  },
   {
    "title": "A drone releases packages over the slope",
    "text": "A short video: a drone over the wooded ridge lets go of two packages, then explosions throw white and grey smoke up among the houses.",
    "outlet": "Al Jazeera English",
    "url": "https://www.aljazeera.com/video/newsfeed/2026/9/4/04-09-sv-israel-drone-bombs-mansouri-lb-fm",
-   "date_words": "4 September 2026"
+   "date_words": "4 September 2026",
+   "placed": "Placed by two separate checks among houses that also appear in the Associated Press photographs of 11 September, taken from Hanniyeh. They stand on the pictures of 10 and 19 August 2026, and most of them are rubble on 8 October; the pictures cannot date this blast more closely than that."
+  },
+  {
+   "title": "A white column at the foot of the slope, seen from Tyre",
+   "text": "Al-Araby TV's clip opens on older footage; its last shot is a long-lens view across the bay from the southern seafront of Tyre, with a large white column of dust rising at the foot of the village slope.",
+   "placed": "That last shot is placed by two separate checks: the column rises at the foot of the town beside a compound whose buildings stand on the picture of 19 August 2026 and are rubble on 8 October.",
+   "outlet": "Al-Araby TV on Telegram",
+   "url": "https://t.me/AlarabyTelevision/406260",
+   "date_words": "5 September 2026",
+   "embed": "AlarabyTelevision/406260"
   },
   {
    "title": "The first moments after a large detonation",
@@ -29,7 +25,31 @@
    "outlet": "Al-Araby TV on Telegram",
    "url": "https://t.me/AlarabyTelevision/407703",
    "embed": "AlarabyTelevision/407703",
+   "date_words": "9 September 2026",
+   "placed": "Placed by two separate checks: the camera stood on the northern rim at the western edge of Hanniyeh, looking south-south-west at Al-Mansouri."
+  },
+  {
+   "title": "Buildings pulverised",
+   "text": "An AFP photograph by Kawnat Haju: a huge tan cloud of dust rolls across the lower town, with gutted houses at its edge.",
+   "outlet": "L'Orient Today",
+   "url": "https://today.lorientlejour.com/article/1547035/israel-intensifies-attacks-on-mansouri-drone-strikes-injure-3-near-nabatieh.html",
    "date_words": "9 September 2026"
+  },
+  {
+   "title": "Twenty-five detonations in five hours",
+   "text": "Annahar's photographer Ahmad Mantash counted twenty-five detonations in five hours; the report's photographs and video show columns of grey and white dust rolling across the slope, and houses already flattened below them.",
+   "outlet": "Annahar",
+   "url": "https://www.annahar.com/lebanon/346243/بالصور-والفيديو---بلدة-المنصوري-تمحى-عن-الخريطة-عدسة-النهار-ترصد-25-تفجيرا-في-5-ساعات",
+   "date_words": "11 September 2026",
+   "placed": "Placed by two separate checks: the camera stood beside the main road in Hanniyeh, looking south-west across to Al-Mansouri. The column in the key photograph rises from among the houses in the middle of the town, which stand on the pictures of 23 May and 10 August 2026, are hidden by smoke on 19 August and are rubble on 8 October."
+  },
+  {
+   "title": "Residents watch drones drop explosives on their village",
+   "text": "Associated Press photographs by Hussein Malla, taken from Hanniyeh: residents filming the smoke over Al-Mansouri, and a drone carrying a box on a long line above a damaged house, which the agency's caption describes as explosives to be dropped on houses for detonation.",
+   "outlet": "Associated Press, via KSAT",
+   "url": "https://www.ksat.com/news/2026/09/11/residents-of-southern-lebanon-gather-to-watch-israeli-drones-drop-explosives-on-their-village/",
+   "date_words": "11 September 2026",
+   "placed": "Placed by two separate checks, from the photographs' own capture times (11:22 to 14:20 that day) and the far ridge: the camera was in western Hanniyeh, looking south-south-west. The large house under the drone stands on every picture from 2023 to 8 October 2026, damaged as it is in the photograph: it was not levelled in those weeks."
   },
   {
    "title": "Four detonations at once, filmed across the sea",
@@ -40,11 +60,12 @@
    "date_words": "13 September 2026"
   },
   {
-   "title": "Buildings pulverised",
-   "text": "An AFP photograph by Kawnat Haju: a huge tan cloud of dust rolls across the lower town, with gutted houses at its edge.",
-   "outlet": "L'Orient Today",
-   "url": "https://today.lorientlejour.com/article/1547035/israel-intensifies-attacks-on-mansouri-drone-strikes-injure-3-near-nabatieh.html",
-   "date_words": "9 September 2026"
+   "title": "The water tower down",
+   "text": "Photographs by Ahmad Mantash, taken from Hanniyeh and set beside the view he had less than two weeks earlier: excavators by a long wall, gutted multi-storey frames, and on the hilltop a broken round tank.",
+   "placed": "Placed by two separate checks: the tank is the town's water tower, which stands on the pictures of 10 and 19 August 2026 and lies as a ring on the ground on 8 October, so it fell between 19 August and the day the photographs were published.",
+   "outlet": "Annahar",
+   "url": "https://www.annahar.com/lebanon/349137/القوات-الإسرائيلية-تواصل-تدمير-وتخريب-ما-تبقى-من-حجر-وشجر-في-المنصوري",
+   "date_words": "19 September 2026"
   },
   {
    "title": "A wall of dust across the slope",
@@ -52,7 +73,8 @@
    "outlet": "Al-Araby TV on Telegram",
    "url": "https://t.me/AlarabyTelevision/414720",
    "embed": "AlarabyTelevision/414720",
-   "date_words": "28 September 2026"
+   "date_words": "28 September 2026",
+   "placed": "Placed by two separate checks, one of them against an AFP photograph of the same scene taken that day from the same spot: the row of blasts is in the south-west of the town, along and just north of its east-west road, where the houses stand on every picture up to 19 August 2026 and are rubble or cleared on 8 October."
   },
   {
    "title": "Smoke over the town, seen from Hanniyeh",
@@ -62,18 +84,19 @@
    "date_words": "28 September 2026"
   },
   {
-   "title": "A demolition filmed, then placed on the map by others",
-   "text": "A video by the photographer Courtney Bonneau shows a sequence of detonations on the upper slope of the village. The open-source researcher franfran2424 placed the two houses it shows about 450 m south of the village centre, by matching the slope, the ridge and the gullies.",
-   "outlet": "Courtney Bonneau, and franfran2424's geolocation, on X",
-   "url": "https://x.com/franfran2424/status/2117944940739035641",
-   "date_words": "1 October 2026"
-  },
-  {
    "title": "The army's own account",
    "text": "The Israeli army published photographs of its reservists in the village and said they had destroyed more than six hundred sites there that it called terror infrastructure, among them a tunnel shaft under a house. This is the army's statement, reported as it was published.",
    "outlet": "Maariv",
    "url": "https://www.maariv.co.il/news/military/article-1371632",
    "date_words": "28 September 2026"
+  },
+  {
+   "title": "A demolition filmed, then placed on the map by others",
+   "text": "A video by the photographer Courtney Bonneau shows a sequence of detonations on the upper slope of the village. The open-source researcher franfran2424 placed the two houses it shows about 450 m south of the village centre, by matching the slope, the ridge and the gullies.",
+   "outlet": "Courtney Bonneau, and franfran2424's geolocation, on X",
+   "url": "https://x.com/franfran2424/status/2117944940739035641",
+   "date_words": "1 October 2026",
+   "placed": "Two separate checks of our own confirm the place, and the pictures agree with the day the video was posted: the camera stood on the edge of Hanniyeh, and the first blasts are on three houses on the upper slope south of the centre, which stand on every picture up to 19 August 2026 and are rubble on 8 October, beside a road bulldozed by then."
   }
  ]
 }
