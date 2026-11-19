@@ -57,17 +57,8 @@ function render(mount, { meta: metaPayload, summary: summaryPayload, villages: v
       }),
     ]),
 
-    // The research report comes first (the data owner, 2026-11-17).
-    group('The research report', [
-      page('Ecocide, Urbicide and Ethnocide in South Lebanon', 'https://greensoutherners.github.io/south-ecocide-report-2026/',
-        'Our research report on the 2026 war, 1 March to 14 October 2026: the evacuation orders, ' +
-        'white phosphorus, fires and detonations of houses, their pattern, the method behind every ' +
-        'figure, and why it reads them as consistent with the descriptive elements of ecocide, ' +
-        'urbicide and ethnocide. Draft, under review; with a PDF.'),
-      page('The short edition', 'https://greensoutherners.github.io/south-ecocide-report-2026/short.html',
-        'The same report in brief: the findings, the key maps and charts, the method and the ' +
-        'qualification, for a first reading. Draft, under review; with its own PDF.'),
-    ]),
+    // The research report's cards are withdrawn for now (the data owner, 2026-11-19:
+    // it is not shared while it is being revised).
 
     group('The database and the investigations', [
       page('Database', 'platform.html',
