@@ -18,10 +18,8 @@ restoreTheme();
 
 export const PAGES = [
   { href: 'index.html', label: 'Catalogue', key: 'catalogue', root: true },
-  // The research report, second beside the catalogue (the data owner, 2026-11-17).
-  // The report has its own repository and site since 2026-11-18 (the data owner:
-  // a fixed edition, while this site keeps changing).
-  { href: 'https://greensoutherners.github.io/south-ecocide-report-2026/', label: 'Report', key: 'report' },
+  // The research report is not linked from this site for now (the data owner,
+  // 2026-11-19: it is not shared while it is being revised).
   { href: 'investigations/', label: 'Investigations', key: 'investigations' },
   { href: 'platform.html', label: 'Platform', key: 'platform' },
   { href: 'platform.html?focus=ecosystem&types=BRN,WPB,DET&shade=none', label: 'Ecosystem', key: 'ecosystem' },
